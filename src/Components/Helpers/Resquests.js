@@ -36,8 +36,8 @@ class Requests {
         url,
         {
           ...args,
-        },
-        headers
+          headers
+        }
       );
       return res;
     } catch (error) {
@@ -64,10 +64,8 @@ class Requests {
       GET_INFO_USER_LOGGED,
       {},
       {
-        headers: {
           authorization: `Bearer ${token}`,
-        },
-      }
+      },
     );
     return userInfoLogged;
   }

@@ -38,7 +38,6 @@ const LoginContainer = () => {
       alertDanger("Error in your credentials");
     } else if (res?.data?.ok === true) {
       alertSuccess("Successful login.");
-      console.log(res.data.data.token);
       const userInfoLogged = await Resquests.getInfoUserLogged(
         res.data.data.token
       );
