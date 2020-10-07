@@ -33,15 +33,19 @@ const LoginContainer = () => {
     ev.preventDefault();
     setLoading(true);
     const res = await Resquests.login(credentials.email, credentials.password);
+
     if (res?.data?.ok === false) {
       alertDanger("Error in your credentials");
-      setLoading(false);
     } else if (res?.data?.ok === true) {
       alertSuccess("Successful login.");
-      setLogged(true);
+      console.log(res.data.data.token);
+      const userInfoLogged = await Resquests.getInfoUserLogged(
+        res.data.data.token
+      );
+      console.log(userInfoLogged);
+      //setLogged(true);
     }
-
-    console.log(res);
+    setLoading(false);
   };
 
   return isLogged ? (
