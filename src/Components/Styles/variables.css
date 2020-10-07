@@ -1,0 +1,7 @@
+:root {
+  --color-dark: #212121;
+  --color-white: rgba(255, 255, 255, 0.863);
+  --color-white-light: rgba(255, 255, 255, 0.781);
+  --color-gray: #eee;
+  --color-gray-light: rgba(238, 238, 238, 0.466);
+}

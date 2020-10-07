@@ -1,0 +1,5 @@
+@media screen and (max-width: 767px) {
+  .columns-sm-reverse {
+    flex-direction: column-reverse;
+  }
+}

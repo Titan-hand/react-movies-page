@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// Routers
+import Routers from "./Components/Routers/Routers";
+
+// components
+import { ToastContainer } from "react-toastify";
+
+// Global Styles
+import "./Components/Styles/variables.css";
+import "./Components/Styles/styles.css";
+import "./Components/Styles/Vendors/titanium.css";
+import "./Components/Styles/normalize.css";
+import "./Components/Styles/Components/loaders.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToastContainer />
+      <Routers />
+    </>
   );
 }
 

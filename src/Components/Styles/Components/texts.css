@@ -1,0 +1,11 @@
+.text-right {
+  text-align: right;
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+body .text-bold {
+  font-weight: bold;
+}

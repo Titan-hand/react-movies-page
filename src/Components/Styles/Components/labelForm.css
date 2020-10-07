@@ -1,0 +1,20 @@
+.label-form {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.label-form::first-letter {
+  text-transform: uppercase;
+}
+
+.label-floating {
+  position: absolute;
+  bottom: 0.2rem;
+  transition: all 0.2s ease;
+}
+
+input:focus ~ .label-floating,
+.label-floating-fixed {
+  bottom: 1.8rem;
+  font-size: 14px;
+}
