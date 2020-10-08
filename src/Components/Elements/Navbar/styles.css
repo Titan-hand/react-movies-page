@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.2s ease;
 }
 
 .nav-section {
@@ -135,4 +136,73 @@ body .field-addon.nav-field-addon {
 
 .nav-perfil > figure > img {
   border: 2px solid var(--color-white);
+}
+
+.navbar-nav-toggle {
+  top: 30px;
+  right: 30px;
+  position: absolute;
+  font-size: 2em;
+  cursor: pointer;
+  display: none;
+}
+
+#navbar-nav-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .navbar-nav-toggle {
+    display: block;
+  }
+
+  .nav {
+    width: 330px;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding: 3rem 2rem;
+    position: fixed;
+    top: 0;
+    right: -332px;
+    bottom: 0;
+    background: linear-gradient(180deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.746));
+  }
+
+  #navbar-nav-toggle:checked ~ .nav {
+    right: 0;
+  }
+
+  .nav-section {
+    flex-direction: column-reverse;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .nav-menu-link {
+    margin: 1.5rem 0;
+  }
+
+  .nav-perfil {
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
+
+  .nav-notify {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+
+  .nav-search {
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .nav {
+    width: 100%;
+  }
 }
