@@ -49,7 +49,7 @@ const LoginComponent = ({
                       id: "password",
                       name: "password",
                       className: "input-form-system-entry",
-                      minLength: "8",
+                      minLength: "3",
                       autoComplete: "off",
                       onChange: onChangeCredentials,
                       value: password,

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+// import { useSelector } from 'react-redux';
 
 // components
 import LoginComponent from "./LoginComponent";
@@ -44,13 +45,16 @@ const LoginContainer = (props) => {
       );
 
       props.SetCurrentUserInfo(userInfoLogged);
-      console.log(props);
-      //setLogged(true);
+      console.log("en la linea 49", props.UserInformation);
+        
+      setLogged(true);
     }
   };
 
+  console.log("en la linea 53", props.UserInformation);
+
   return isLogged ? (
-    <Redirect to="/home" />
+    <Redirect to="/" />
   ) : (
     <LoginComponent
       {...{ onChangeCredentials, ...credentials, onSubmitForm, isLoading }}
@@ -59,11 +63,11 @@ const LoginContainer = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  UserInformation: state,
+  UserInformation: state.UserInformation,
 });
 
 const mapDispatchToProps = {
-  SetCurrentUserInfo,
+  SetCurrentUserInfo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
