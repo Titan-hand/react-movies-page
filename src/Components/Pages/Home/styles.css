@@ -5,24 +5,47 @@
   filter: blur(0);
 }
 
-.home-container{
+.home-container {
   padding: 0 8rem;
+}
+
+.home-coverpage {
+  margin-top: 8rem;
 }
 
 .home-title {
   font-size: 4.5em;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
-.home-detail{
+.home-details {
+  display: flex;
+}
+
+.home-detail {
   font-size: 18px;
 }
 
-.home-detail > i{
+.home-detail:not(:last-child) {
+  margin-right: 40px;
+}
+
+.home-detail i {
   margin-right: 8px;
   color: var(--color-yellow);
 }
 
-.home-desc{
+.home-desc {
   margin-top: 1rem;
+}
+
+.home-buttons {
+  margin-top: 2rem;
+}
+
+.home-buttons button > i {
+  margin-right: 8px;
+}
+
+@media screen and (max-width: 1200px) {
 }

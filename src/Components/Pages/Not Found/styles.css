@@ -1,0 +1,31 @@
+body h1 {
+  margin: 0;
+}
+
+.container-not-found {
+  padding: 0 14rem;
+  padding-top: 5rem;
+  position: relative;
+}
+
+.not-found {
+  text-align: left;
+}
+
+.title-not-found {
+  font-size: 10em;
+  text-shadow: -8px -8px 2px black;
+}
+
+.not-found-menu > li {
+  margin: 1rem 0;
+}
+
+.not-found-menu > li > span {
+  border-bottom: 1px solid var(--color-yellow);
+}
+
+.bg.bg-not-found {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.726), #21212178),
+    url("https://works.bepress.com/erikpri/4/download/");
+}

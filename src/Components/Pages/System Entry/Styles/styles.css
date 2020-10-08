@@ -43,7 +43,7 @@ input.input-form-system-entry:focus {
 }
 
 .bg.bg-system-entry {
-  background-image: linear-gradient(to right, #2c5364a8, #203a43d2, #0f2027ca),
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.726), #2121219d),
     url("https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 

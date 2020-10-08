@@ -12,10 +12,10 @@ const NavbarLinks = () => {
           <Link to="/">Top Movies</Link>
         </li>
         <li className="nav-menu-link">
-          <Link to="/">Series</Link>
+          <Link to="/login">Login</Link>
         </li>
         <li className="nav-menu-link">
-          <Link to="/">My List</Link>
+          <Link to="/signup">Sign up</Link>
         </li>
       </ul>
     </div>

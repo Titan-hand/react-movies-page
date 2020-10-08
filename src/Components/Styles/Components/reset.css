@@ -17,6 +17,11 @@ body {
   min-height: 100vh;
 }
 
-p{
+ul,
+ol {
+  list-style: none;
+}
+
+p {
   line-height: 1.6;
 }
