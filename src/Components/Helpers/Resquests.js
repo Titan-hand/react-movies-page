@@ -25,20 +25,17 @@ class Requests {
       );
       return res;
     } catch (error) {
-      this._showNetworkErrorAlert(error.response.status);
+      this._showNetworkErrorAlert(error?.response?.status);
     }
   }
 
   async _get(url, args, headers) {
     console.log(headers);
     try {
-      const res = await axios.get(
-        url,
-        {
-          ...args,
-          headers
-        }
-      );
+      const res = await axios.get(url, {
+        ...args,
+        headers,
+      });
       return res;
     } catch (error) {
       this._showNetworkErrorAlert(error.response.status);
@@ -64,10 +61,10 @@ class Requests {
       GET_INFO_USER_LOGGED,
       {},
       {
-          authorization: `Bearer ${token}`,
-      },
+        authorization: `Bearer ${token}`,
+      }
     );
-    return userInfoLogged;
+    return userInfoLogged?.data?.data?.user;
   }
 }
 

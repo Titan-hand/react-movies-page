@@ -1,0 +1,138 @@
+.nav {
+  padding: 2rem 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-logo {
+}
+
+.nav-logo-text {
+  color: var(--color-yellow);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+}
+
+.nav-menu-link {
+  list-style-type: none;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.nav-menu-link::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 4px 2px var(--color-nav-active-link);
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.nav-menu-link:hover::before {
+  opacity: 1;
+}
+
+.nav-menu-link > * {
+  color: var(--color-white);
+}
+
+.input.nav-input-search {
+  border: none;
+  background: transparent;
+  color: var(--color-white);
+  height: 28;
+  padding: 5px;
+  transition: all 0.2s ease-in;
+  width: 188px;
+}
+
+.input.nav-input-search:focus {
+  width: 280px;
+}
+
+.input.nav-input-search:focus {
+  box-shadow: none;
+}
+
+body .field-addon.nav-field-addon {
+  background: transparent;
+  border: none;
+}
+
+.field-input > .field-addon.nav-field-addon > i {
+  color: var(--color-white);
+}
+
+.nav-notify {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-notify-alert {
+  background-color: var(--color-notify-alert);
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  top: -11px;
+  right: -12px;
+}
+
+.nav-notify-alert > span {
+  color: #fff;
+  font-size: 9px;
+}
+
+.nav-notify > i {
+  color: var(--color-white);
+}
+
+.nav-perfil {
+  margin-left: 2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-perfil::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: var(--color-online-user);
+  width: 15px;
+  height: 15px;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+}
+
+.nav-perfil > figure,
+.nav-perfil > figure > img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.nav-perfil > figure > img {
+  border: 2px solid var(--color-white);
+}

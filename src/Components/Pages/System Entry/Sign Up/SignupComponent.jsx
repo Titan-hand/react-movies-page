@@ -4,6 +4,7 @@ import React from "react";
 import Center from "../../../Elements/Aligns/Center";
 import LoaderBtn from "../../../Elements/Buttons/LoaderBtn";
 import LabeledInput from "../../../Elements/Inputs/LabeledInput/LabeledInput";
+import Background from "../../../Elements/Background/Background";
 
 // Styles
 // the styles are imported in LoginComponent.jsx
@@ -18,7 +19,7 @@ const SignupComponent = ({
 }) => {
   return (
     <>
-      <div className="bg-system-entry"></div>
+      <Background className="bg-system-entry" />
       <Center>
         <div className="container">
           <div className="container-system-entry">
@@ -99,7 +100,9 @@ const SignupComponent = ({
               <div className="column-5 column-sm-12">
                 <div className="container-coverpage container-center-elements relative">
                   <div className="bg-system-entry-coverpage"></div>
-                  <h1 className="title title-system-entry">Signup with your account</h1>
+                  <h1 className="title title-system-entry">
+                    Signup with your account
+                  </h1>
                 </div>
               </div>
             </div>

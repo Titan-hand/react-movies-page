@@ -12,7 +12,7 @@ import { SetCurrentUserInfo } from "../../../Redux/Actions/UserActions";
 // api links
 import Resquests from "../../../Helpers/Resquests";
 
-const LoginContainer = () => {
+const LoginContainer = (props) => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -33,6 +33,7 @@ const LoginContainer = () => {
     ev.preventDefault();
     setLoading(true);
     const res = await Resquests.login(credentials.email, credentials.password);
+    setLoading(false);
 
     if (res?.data?.ok === false) {
       alertDanger("Error in your credentials");
@@ -41,10 +42,11 @@ const LoginContainer = () => {
       const userInfoLogged = await Resquests.getInfoUserLogged(
         res.data.data.token
       );
-      console.log(userInfoLogged);
+
+      props.SetCurrentUserInfo(userInfoLogged);
+      console.log(props);
       //setLogged(true);
     }
-    setLoading(false);
   };
 
   return isLogged ? (
@@ -56,8 +58,8 @@ const LoginContainer = () => {
   );
 };
 
-const mapStateToProps = (store) => ({
-  UserInformation: store.UserInformation,
+const mapStateToProps = (state) => ({
+  UserInformation: state,
 });
 
 const mapDispatchToProps = {

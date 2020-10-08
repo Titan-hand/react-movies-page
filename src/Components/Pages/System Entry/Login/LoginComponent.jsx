@@ -4,10 +4,11 @@ import React from "react";
 import Center from "../../../Elements/Aligns/Center";
 import LoaderBtn from "../../../Elements/Buttons/LoaderBtn";
 import LabeledInput from "../../../Elements/Inputs/LabeledInput/LabeledInput";
+import Background from "../../../Elements/Background/Background";
 
 // Styles
 import "../Styles/styles.css";
- 
+
 const LoginComponent = ({
   onChangeCredentials,
   onSubmitForm,
@@ -17,7 +18,7 @@ const LoginComponent = ({
 }) => {
   return (
     <>
-      <div className="bg-system-entry"></div>
+      <Background className="bg-system-entry"/>
       <Center>
         <div className="container">
           <div className="container-system-entry">

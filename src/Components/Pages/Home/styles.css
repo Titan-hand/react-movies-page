@@ -1,0 +1,28 @@
+.bg.bg-home {
+  /* 180deg = to top */
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.726), #21212178),
+    url("https://i.pinimg.com/originals/11/5e/2c/115e2cbc6b31a3bbeeb4d5e68d9920d3.jpg");
+  filter: blur(0);
+}
+
+.home-container{
+  padding: 0 8rem;
+}
+
+.home-title {
+  font-size: 4.5em;
+  margin-bottom: .5rem;
+}
+
+.home-detail{
+  font-size: 18px;
+}
+
+.home-detail > i{
+  margin-right: 8px;
+  color: var(--color-yellow);
+}
+
+.home-desc{
+  margin-top: 1rem;
+}
