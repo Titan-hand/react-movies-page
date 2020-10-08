@@ -5,6 +5,7 @@ import NavbarLinks from "./Elements/NavbarLinks";
 import NavbarUserInfo from "../Elements Logged/Navbar/NavbarUserInfo";
 import NavbarSearch from "./Elements/NavbarSearch";
 import NavbarBars from "./Elements/NavbarBars";
+import NavbarCloseMenu from "./Elements/NavbarCloseMenu";
 
 // styles
 import "./styles.css";
@@ -17,6 +18,7 @@ const NavbarComponent = () => {
         <NavbarLinks />
 
         <div className="nav-section">
+          <NavbarCloseMenu />
           <NavbarSearch />
           <NavbarUserInfo />
         </div>

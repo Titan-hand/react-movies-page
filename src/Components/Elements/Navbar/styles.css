@@ -151,6 +151,14 @@ body .field-addon.nav-field-addon {
   display: none;
 }
 
+.nav-menu-toggle{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1200px) {
   .navbar-nav-toggle {
     display: block;

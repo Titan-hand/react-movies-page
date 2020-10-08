@@ -8,7 +8,7 @@ const NavbarUserInfo = ({ currentUserInfo, isLoggedUser }) => {
     <>
       <div className="nav-notify"> 
         <div className="nav-notify-alert">
-          <span>{username}</span>
+          <span>2</span>
         </div>
         <i className="fa fa-bell"></i>
       </div>
