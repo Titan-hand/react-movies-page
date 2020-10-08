@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 const NavbarUserInfo = (props) => {
   console.log(props);
-  return props.isLoggedUser ? (
+  return true ? (
     <>
       <div className="nav-notify">
         <div className="nav-notify-alert">

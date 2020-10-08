@@ -4,20 +4,24 @@ import React from "react";
 import NavbarLinks from "./Elements/NavbarLinks";
 import NavbarUserInfo from "../Elements Logged/Navbar/NavbarUserInfo";
 import NavbarSearch from "./Elements/NavbarSearch";
+import NavbarBars from "./Elements/NavbarBars";
 
 // styles
 import "./styles.css";
 
 const NavbarComponent = () => {
   return (
-    <nav className="nav">
-      <NavbarLinks />
+    <>
+      <NavbarBars />
+      <nav className="nav">
+        <NavbarLinks />
 
-      <div className="nav-section">
-        <NavbarSearch />
-        <NavbarUserInfo />
-      </div>
-    </nav>
+        <div className="nav-section">
+          <NavbarSearch />
+          <NavbarUserInfo />
+        </div>
+      </nav>
+    </>
   );
 };
 
