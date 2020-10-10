@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const HomeMovie = ({ imageCoverpage, imageBackground, title, description }) => {
   return (
     <div className="columns">
       <div className="column-4">
         <img
-          src="https://upload.wikimedia.org/wikipedia/en/9/90/Bad_Boys_for_Life_poster.jpg"
+          src={imageCoverpage}
           className="home-movie-coverpage"
           alt="Movie Coverpage"
         />
@@ -15,16 +16,12 @@ const HomeMovie = ({ imageCoverpage, imageBackground, title, description }) => {
         <div
           className="home-movie-desc"
           style={{
-            backgroundImage:
-              "url(https://pbs.twimg.com/profile_images/1215478938492817410/wzSbHlKA_400x400.jpg)",
+            backgroundImage: `url(${imageBackground})`,
           }}
         >
           <div>
-            <h4 className="home-movie-title">Bad boys for life</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti,
-              asperiores magnam deserunt officiis ducimus possimus.
-            </p>
+            <h4 className="home-movie-title">{title}</h4>
+            <p>{description}</p>
           </div>
         </div>
       </div>
@@ -32,4 +29,10 @@ const HomeMovie = ({ imageCoverpage, imageBackground, title, description }) => {
   );
 };
 
+HomeMovie.propTypes = {
+  imageCoverpage: PropTypes.string.isRequired,
+  imageBackground: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 export default HomeMovie;
