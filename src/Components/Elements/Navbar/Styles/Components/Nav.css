@@ -1,0 +1,35 @@
+.nav {
+  padding: 2rem 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.nav-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-logo {
+}
+
+.nav-logo-text {
+  color: var(--color-yellow);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+.home-buttons {
+  margin-top: 2rem;
+}
+
+.home-buttons button > i {
+  margin-right: 8px;
+}

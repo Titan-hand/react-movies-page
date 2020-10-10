@@ -1,0 +1,26 @@
+.input.nav-input-search {
+  border: none;
+  background: transparent;
+  color: var(--color-white);
+  height: 28;
+  padding: 5px;
+  transition: all 0.2s ease-in;
+  width: 188px;
+}
+
+.input.nav-input-search:focus {
+  width: 280px;
+}
+
+.input.nav-input-search:focus {
+  box-shadow: none;
+}
+
+body .field-addon.nav-field-addon {
+  background: transparent;
+  border: none;
+}
+
+.field-input > .field-addon.nav-field-addon > i {
+  color: var(--color-white);
+}

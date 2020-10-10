@@ -5,7 +5,7 @@ import HomeCoverpage from "./Elements/HomeCoverpage";
 import HomeMovieList from "./Elements/HomeMovieList";
 
 // styles
-import "./styles.css";
+import "./Styles/styles.css";
 
 const HomeComponent = () => {
   return (

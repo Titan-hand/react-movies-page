@@ -1,0 +1,26 @@
+.nav-notify {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-notify-alert {
+  background-color: var(--color-notify-alert);
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  top: -11px;
+  right: -12px;
+}
+
+.nav-notify-alert > span {
+  color: #fff;
+  font-size: 9px;
+}
+
+.nav-notify > i {
+  color: var(--color-white);
+}

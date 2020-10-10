@@ -1,0 +1,29 @@
+.nav-menu-link {
+  list-style-type: none;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.nav-menu-link::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 4px 2px var(--color-nav-active-link);
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.nav-menu-link:hover::before {
+  opacity: 1;
+}
+
+.nav-menu-link > * {
+  color: var(--color-white);
+}

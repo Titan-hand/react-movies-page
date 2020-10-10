@@ -1,0 +1,50 @@
+@media screen and (min-width: 1200px) {
+  .home-container {
+    padding-right: 0;
+  }
+
+  .home-movies-column {
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .home-container {
+    padding: 0 4rem;
+  }
+
+  .home-title {
+    font-size: 3.4em;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .home-details {
+    flex-direction: column;
+  }
+
+  .home-container {
+    font-size: 14px;
+  }
+
+  h1.home-title {
+    font-size: 2.5em;
+  }
+
+  .home-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-buttons > button.button {
+    margin: 0.5rem 0 !important;
+  }
+
+  .bg.bg-home {
+    background-position-x: -300px;
+  }
+
+  .home-container {
+    padding: 0 2rem;
+  }
+}

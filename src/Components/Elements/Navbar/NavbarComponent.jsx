@@ -8,7 +8,7 @@ import NavbarBars from "./Elements/NavbarBars";
 import NavbarCloseMenu from "./Elements/NavbarCloseMenu";
 
 // styles
-import "./styles.css";
+import "./Styles/styles.css";
 
 const NavbarComponent = () => {
   return (
