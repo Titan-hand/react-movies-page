@@ -87,6 +87,10 @@ body .field-addon.nav-field-addon {
   cursor: pointer;
 }
 
+.nav-menu-toggle {
+  display: none;
+}
+
 .nav-notify-alert {
   background-color: var(--color-notify-alert);
   width: 18px;
@@ -143,15 +147,19 @@ body .field-addon.nav-field-addon {
   right: 30px;
   position: absolute;
   font-size: 2em;
-  cursor: pointer;
   display: none;
+}
+
+.navbar-nav-toggle > label,
+.nav-menu-toggle > label {
+  cursor: pointer;
 }
 
 #navbar-nav-toggle {
   display: none;
 }
 
-.nav-menu-toggle{
+.nav-menu-toggle {
   position: absolute;
   top: 30px;
   right: 30px;
@@ -178,6 +186,10 @@ body .field-addon.nav-field-addon {
 
   #navbar-nav-toggle:checked ~ .nav {
     right: 0;
+  }
+
+  #navbar-nav-toggle:checked ~ .nav .nav-menu-toggle {
+    display: block;
   }
 
   .nav-section {
@@ -210,7 +222,7 @@ body .field-addon.nav-field-addon {
 }
 
 @media screen and (max-width: 550px) {
-  .nav {
+  #navbar-nav-toggle:checked ~ .nav {
     width: 100%;
   }
 }

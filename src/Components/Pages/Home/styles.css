@@ -47,5 +47,108 @@
   margin-right: 8px;
 }
 
-@media screen and (max-width: 1200px) {
+.home-movies-column {
+  width: 410px;
+  max-width: 100%;
+}
+
+.home-movie-coverpage {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.home-movie-desc {
+  padding: 1rem;
+  background-size: cover;
+  position: relative;
+  width: 300px;
+  margin-top: auto;
+  background-size: cover;
+}
+
+.home-movie-desc::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.712);
+}
+
+.home-movie-desc > div {
+  z-index: 2;
+  position: relative;
+}
+
+.home-movie-desc p {
+  font-weight: lighter;
+  line-height: 1.6;
+  font-size: 12px;
+}
+
+.home-movie-title {
+  font-family: "Secular One", sans-serif;
+  font-weight: lighter;
+  margin-bottom: 0.8rem;
+}
+
+.home-movie-desc-column {
+  display: flex;
+}
+
+@media screen and (min-width: 1200px) {
+  .home-container {
+    padding-right: 0;
+  }
+
+  .home-movies-column {
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .home-container {
+    padding: 0 4rem;
+  }
+
+  .home-title {
+    font-size: 3.4em;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .home-details {
+    flex-direction: column;
+  }
+
+  .home-container {
+    font-size: 14px;
+  }
+
+  h1.home-title {
+    font-size: 2.5em;
+  }
+
+  .home-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-buttons > button.button {
+    margin: 0.5rem 0 !important;
+  }
+
+  .bg.bg-home {
+    background-position-x: -300px;
+  }
+
+  .home-container {
+    padding: 0 2rem;
+  }
 }

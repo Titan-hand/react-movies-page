@@ -12,8 +12,8 @@ const Routers = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/login" component={LoginContainer} />
-        <Route path="/signup" component={SignupContainer} />
+        <Route exact path="/login" component={LoginContainer} />
+        <Route exact path="/signup" component={SignupContainer} />
         <Route exact path="/" component={HomeContainer} />
         <Route component={NotFound} />
       </Switch>
