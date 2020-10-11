@@ -42,17 +42,21 @@ class Requests {
     }
   }
 
-  async login(email, password) {
-    const loginUser = await this._post(LOGIN_URL, { email, password });
+  async login({ email, password, headers }) {
+    const loginUser = await this._post(LOGIN_URL, { email, password }, headers);
     return loginUser;
   }
 
-  async signup(username, email, password) {
-    const signupUser = await this._post(SIGNUP_URL, {
-      username,
-      email,
-      password,
-    });
+  async signup({ username, email, password, headers }) {
+    const signupUser = await this._post(
+      SIGNUP_URL,
+      {
+        username,
+        email,
+        password,
+      },
+      headers
+    );
     return signupUser;
   }
 

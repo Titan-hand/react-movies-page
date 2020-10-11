@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
+
 // import { useSelector } from 'react-redux';
 
 // components
@@ -20,8 +22,12 @@ const LoginContainer = (props) => {
   });
 
   const [isLogged, setLogged] = useState(false);
-
   const [isLoading, setLoading] = useState(false);
+  let source = null;
+
+  useEffect(() => {
+    return () => source && source.cancel();
+  }, []);
 
   const onChangeCredentials = ({ target }) => {
     setCredentials({
@@ -33,7 +39,15 @@ const LoginContainer = (props) => {
   const onSubmitForm = async (ev) => {
     ev.preventDefault();
     setLoading(true);
-    const res = await Resquests.login(credentials.email, credentials.password);
+    source = axios.CancelToken.source();
+    const res = await Resquests.login({
+      email: credentials.email,
+      password: credentials.password,
+      headers: {
+        cancelToken: source.token,
+      },
+    });
+
     setLoading(false);
 
     if (res?.data?.ok === false) {
@@ -46,7 +60,7 @@ const LoginContainer = (props) => {
 
       props.SetCurrentUserInfo(userInfoLogged);
       console.log("en la linea 49", props.UserInformation);
-        
+
       setLogged(true);
     }
   };
@@ -67,7 +81,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  SetCurrentUserInfo
+  SetCurrentUserInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

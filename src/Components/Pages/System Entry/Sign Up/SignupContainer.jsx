@@ -28,12 +28,12 @@ const SignupContainer = () => {
   const onSubmitForm = async (ev) => {
     ev.preventDefault();
     setLoading(true);
-    const res = await Resquests.signup(
-      credentials.username,
-      credentials.email,
-      credentials.password
-    );
-
+    const res = await Resquests.signup({
+      username: credentials.username,
+      email: credentials.email,
+      password: credentials.password,
+    });
+ 
     if (res?.data?.ok === false) {
       alertDanger("Failed to create account.");
       setLoading(false);
