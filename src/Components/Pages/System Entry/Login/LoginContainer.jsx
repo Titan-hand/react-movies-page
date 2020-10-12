@@ -23,10 +23,15 @@ const LoginContainer = (props) => {
 
   const [isLogged, setLogged] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  let source = null;
+  let cancelResquest = null;
 
+  /*
+  
+    This cancellation of the petition DOES NOT WORK
+  */
   useEffect(() => {
-    return () => source && source.cancel();
+    return () =>
+      cancelResquest && cancelResquest.cancel("Finalizando peticion");
   }, []);
 
   const onChangeCredentials = ({ target }) => {
@@ -39,14 +44,21 @@ const LoginContainer = (props) => {
   const onSubmitForm = async (ev) => {
     ev.preventDefault();
     setLoading(true);
-    source = axios.CancelToken.source();
-    const res = await Resquests.login({
-      email: credentials.email,
-      password: credentials.password,
-      headers: {
-        cancelToken: source.token,
-      },
-    });
+
+    /*
+      Here I generate my token when the form is submitted
+    */
+    cancelResquest = axios.CancelToken.source();
+    const res = await Resquests.login(
+      {  
+        email: credentials.email,
+        password: credentials.password,
+
+      }, // The third parameter is the "headers"
+      {
+        cancelToken: cancelResquest.token, // the token
+      }
+    );
 
     setLoading(false);
 

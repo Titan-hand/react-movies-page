@@ -12,7 +12,9 @@ class Requests {
       alertDanger("A connection error occurred.");
     }
   }
+
   async _post(url, args, headers) {
+    console.log({ ...headers });
     try {
       const res = await axios.post(
         url,
@@ -20,7 +22,7 @@ class Requests {
           ...args,
         },
         {
-          ...headers,
+          ...headers, // here I receive the headers (including the cancellation token)
         }
       );
       return res;
@@ -43,6 +45,8 @@ class Requests {
   }
 
   async login({ email, password, headers }) {
+    
+    // here I pass the parameters with the headers (and the cancellation token)
     const loginUser = await this._post(LOGIN_URL, { email, password }, headers);
     return loginUser;
   }
@@ -55,7 +59,7 @@ class Requests {
         email,
         password,
       },
-      headers
+      headers // Here same as the previous ones
     );
     return signupUser;
   }
