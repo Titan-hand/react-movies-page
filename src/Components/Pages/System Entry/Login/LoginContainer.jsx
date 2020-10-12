@@ -15,6 +15,8 @@ import { SetCurrentUserInfo } from "../../../Redux/Actions/UserActions";
 // api links
 import Resquests from "../../../Helpers/Resquests";
 
+let source = null;
+
 const LoginContainer = (props) => {
   const [credentials, setCredentials] = useState({
     email: "",
@@ -23,10 +25,13 @@ const LoginContainer = (props) => {
 
   const [isLogged, setLogged] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  let source = null;
+  // let source = null;
 
   useEffect(() => {
-    return () => source && source.cancel();
+    return () => {
+      console.log("component will unmount???", source);
+      source && source.cancel()
+    };
   }, []);
 
   const onChangeCredentials = ({ target }) => {
@@ -59,13 +64,9 @@ const LoginContainer = (props) => {
       );
 
       props.SetCurrentUserInfo(userInfoLogged);
-      console.log("en la linea 49", props.UserInformation);
-
       setLogged(true);
     }
   };
-
-  console.log("en la linea 53", props.UserInformation);
 
   return isLogged ? (
     <Redirect to="/" />

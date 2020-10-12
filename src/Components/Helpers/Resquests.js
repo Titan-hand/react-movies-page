@@ -13,6 +13,7 @@ class Requests {
     }
   }
   async _post(url, args, headers) {
+    // console.log(headers);
     try {
       const res = await axios.post(
         url,

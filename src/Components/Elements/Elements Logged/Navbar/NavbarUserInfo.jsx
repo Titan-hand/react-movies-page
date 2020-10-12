@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 const NavbarUserInfo = ({ currentUserInfo, isLoggedUser }) => {
-  const { username, photoUrl } = currentUserInfo || {};
+  const { photoUrl } = currentUserInfo || {};
   
   return isLoggedUser ? (
     <>
