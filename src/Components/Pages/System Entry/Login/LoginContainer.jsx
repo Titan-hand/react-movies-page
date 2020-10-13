@@ -6,7 +6,7 @@ import axios from "axios";
 
 // components
 import LoginComponent from "./LoginComponent";
-import { alertDanger, alertSuccess } from "../../../Helpers/notifications";
+import { alertError, alertSuccess } from "../../../Helpers/notifications";
 
 // Redux elements
 import { connect } from "react-redux";
@@ -65,7 +65,7 @@ const LoginContainer = (props) => {
     setLoading(false);
 
     if (res?.data?.ok === false) {
-      alertDanger("Error in your credentials");
+      alertError("Error in your credentials");
     } else if (res?.data?.ok === true) {
       alertSuccess("Successful login.");
       const userInfoLogged = await Resquests.getInfoUserLogged(

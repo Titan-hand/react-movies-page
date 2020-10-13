@@ -1,16 +1,22 @@
 import axios from "axios";
-import { LOGIN_URL, SIGNUP_URL, GET_INFO_USER_LOGGED } from "../Config/api";
-import { alertDanger } from "./notifications";
+import {
+  LOGIN_URL,
+  SIGNUP_URL,
+  GET_INFO_USER_LOGGED,
+  VALIDATE_TOKEN_URL,
+} from "../Config/api";
+
+import { alertError } from "./notifications";
 
 class Requests {
   _showNetworkErrorAlert(status) {
     if (status >= 400 && status < 500) {
-      alertDanger("A client network error occurred.");
+      alertError("A client network error occurred.");
     } else if (status >= 500 && status < 600) {
-      alertDanger("Platform server error.");
+      alertError("Platform server error.");
     } else {
-      alertDanger("A connection error occurred.");
-    }  
+      alertError("A connection error occurred.");
+    }
   }
 
   async _post(url, args, headers) {
@@ -32,7 +38,6 @@ class Requests {
   }
 
   async _get(url, args, headers) {
-    console.log(headers);
     try {
       const res = await axios.get(url, {
         ...args,
@@ -45,7 +50,6 @@ class Requests {
   }
 
   async login({ email, password, headers }) {
-    
     // here I pass the parameters with the headers (and the cancellation token)
     const loginUser = await this._post(LOGIN_URL, { email, password }, headers);
     return loginUser;
@@ -73,6 +77,18 @@ class Requests {
       }
     );
     return userInfoLogged?.data?.data?.user;
+  }
+
+  async validateToken(token) {
+    const isValidToken = await this._get(
+      VALIDATE_TOKEN_URL,
+      {},
+      {
+        authorization: `Bearer ${token}`,
+      }
+    );
+
+    return isValidToken?.data?.ok;
   }
 }
 
