@@ -10,11 +10,11 @@ class Requests {
       alertDanger("Platform server error.");
     } else {
       alertDanger("A connection error occurred.");
-    }
+    }  
   }
 
   async _post(url, args, headers) {
-    console.log({ ...headers });
+    // console.log(headers);
     try {
       const res = await axios.post(
         url,
