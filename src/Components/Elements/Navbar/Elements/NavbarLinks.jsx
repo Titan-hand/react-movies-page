@@ -5,7 +5,9 @@ const NavbarLinks = () => {
   return (
     <div className="nav-section">
       <div className="nav-logo">
-        <h2 className="nav-logo-text title">Logo</h2>
+        <Link to="/">
+          <h2 className="nav-logo-text title">Logo</h2>
+        </Link>
       </div>
       <ul className="nav-menu">
         <li className="nav-menu-link">

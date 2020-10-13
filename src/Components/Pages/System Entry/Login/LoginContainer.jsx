@@ -14,9 +14,10 @@ import { SetCurrentUserInfo } from "../../../Redux/Actions/UserActions";
 
 // api links
 import Resquests from "../../../Helpers/Resquests";
+import { saveToken } from "../../../Helpers/tokenFunctions";
 
-let source = null;
-  
+let cancelResquest = null;
+
 const LoginContainer = (props) => {
   const [credentials, setCredentials] = useState({
     email: "",
@@ -25,16 +26,14 @@ const LoginContainer = (props) => {
 
   const [isLogged, setLogged] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  // let source = null;
-
   /*
   
     This cancellation of the petition DOES NOT WORK
   */
   useEffect(() => {
     return () => {
-      console.log("component will unmount???", source);
-      source && source.cancel()
+      console.log("component will unmount???", cancelResquest);
+      cancelResquest && cancelResquest.cancel();
     };
   }, []);
 
@@ -54,10 +53,9 @@ const LoginContainer = (props) => {
     */
     cancelResquest = axios.CancelToken.source();
     const res = await Resquests.login(
-      {  
+      {
         email: credentials.email,
         password: credentials.password,
-
       }, // The third parameter is the "headers"
       {
         cancelToken: cancelResquest.token, // the token
@@ -74,6 +72,7 @@ const LoginContainer = (props) => {
         res.data.data.token
       );
 
+      saveToken(res.data.data.token);
       props.SetCurrentUserInfo(userInfoLogged);
       setLogged(true);
     }
@@ -87,7 +86,7 @@ const LoginContainer = (props) => {
     />
   );
 };
-   
+
 const mapStateToProps = (state) => ({
   UserInformation: state.UserInformation,
 });
