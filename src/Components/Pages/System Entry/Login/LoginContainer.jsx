@@ -79,7 +79,7 @@ const LoginContainer = (props) => {
   };
 
   return isLogged ? (
-    <Redirect to="/" />
+    <Redirect to="/dashboard" />
   ) : (
     <LoginComponent
       {...{ onChangeCredentials, ...credentials, onSubmitForm, isLoading }}
