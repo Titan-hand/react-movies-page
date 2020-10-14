@@ -44,6 +44,7 @@ const LoginContainer = (props) => {
   const onSubmitForm = async (ev) => {
     ev.preventDefault();
     setLoading(true);
+    if(source) source.cancel();
     source = axios.CancelToken.source();
     const res = await Resquests.login({
       email: credentials.email,
