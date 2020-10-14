@@ -10,8 +10,14 @@ const commonsProps = {
   progress: undefined,
 };
 
-export function alertDanger(title = "Error.") {
-  toast.error("⚠ " + title, {
+export function alertError(title = "Error.") {
+  toast.error("☓ " + title, {
+    ...commonsProps,
+  });
+}
+
+export function alertWarn(title = "Warning.") {
+  toast.warn("⚠ " + title, {
     ...commonsProps,
   });
 }

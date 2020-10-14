@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 // components
 import SignupComponent from "./SignupComponent";
-import { alertDanger, alertSuccess } from "../../../Helpers/notifications";
+import { alertError, alertSuccess } from "../../../Helpers/notifications";
 
 // api links
 import Resquests from "../../../Helpers/Resquests";
@@ -35,7 +35,7 @@ const SignupContainer = () => {
     });
  
     if (res?.data?.ok === false) {
-      alertDanger("Failed to create account.");
+      alertError("Failed to create account.");
       setLoading(false);
     } else if (res?.data?.ok === true) {
       alertSuccess("Account created.");

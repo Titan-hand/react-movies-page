@@ -1,17 +1,15 @@
 import React from "react";
-import NavbarContainer from "../../Elements/Navbar/NavbarContainer";
 import Background from "../../Elements/Background/Background";
 import HomeCoverpage from "./Elements/HomeCoverpage";
 import HomeMovieList from "./Elements/HomeMovieList";
-
+import LayoutComponent from "../../Elements/Layout/LayoutComponent";
 // styles
 import "./Styles/styles.css";
 
 const HomeComponent = () => {
   return (
-    <main>
+    <LayoutComponent>
       <Background className="bg-home" />
-      <NavbarContainer />
       <div className="home-container">
         <div className="columns">
           <div className="column-7 column-xl-12">
@@ -22,7 +20,7 @@ const HomeComponent = () => {
           </div>
         </div>
       </div>
-    </main>
+    </LayoutComponent>
   );
 };
 
