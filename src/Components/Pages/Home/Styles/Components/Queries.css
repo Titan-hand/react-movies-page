@@ -1,18 +1,10 @@
 @media screen and (min-width: 1200px) {
-  .home-container {
-    padding-right: 0;
-  }
-
   .home-movies-column {
     margin-left: auto;
   }
 }
 
 @media screen and (max-width: 880px) {
-  .home-container {
-    padding: 0 4rem;
-  }
-
   .home-title {
     font-size: 3.4em;
   }
@@ -21,10 +13,6 @@
 @media screen and (max-width: 550px) {
   .home-details {
     flex-direction: column;
-  }
-
-  .home-container {
-    font-size: 14px;
   }
 
   h1.home-title {
@@ -42,9 +30,5 @@
 
   .bg.bg-home {
     background-position-x: -300px;
-  }
-
-  .home-container {
-    padding: 0 2rem;
   }
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const NavbarLinks = () => {
+const NavbarLinks = (props) => {
   return (
     <div className="nav-section">
       <div className="nav-logo">
@@ -13,15 +14,31 @@ const NavbarLinks = () => {
         <li className="nav-menu-link">
           <Link to="/">Top Movies</Link>
         </li>
-        <li className="nav-menu-link">
-          <Link to="/login">Login</Link>
-        </li>
-        <li className="nav-menu-link">
-          <Link to="/signup">Sign up</Link>
-        </li>
+        {props.isLoggedUser && (
+          <>
+            <li className="nav-menu-link">
+              <Link to="/dashboard/movies">Your movies</Link>
+            </li>
+          </>
+        )}
+
+        {!props.isLoggedUser && (
+          <>
+            <li className="nav-menu-link">
+              <Link to="/login">Login</Link>
+            </li>
+            <li className="nav-menu-link">
+              <Link to="/signup">Sign up</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );
 };
 
-export default NavbarLinks;
+const mapStateToProps = (state) => ({
+  isLoggedUser: state.UserInformation.isLoggedUser,
+});
+
+export default connect(mapStateToProps)(NavbarLinks);

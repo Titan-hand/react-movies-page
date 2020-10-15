@@ -1,0 +1,11 @@
+.container-system-entry {
+  max-width: 100%;
+  width: 700px;
+  margin: auto;
+  box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.411);
+  border-radius: 20px;
+}
+
+.container-coverpage {
+  height: 100%;
+}

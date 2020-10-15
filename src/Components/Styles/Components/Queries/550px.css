@@ -1,0 +1,6 @@
+@media screen and (max-width: 550px) {
+  .container {
+    font-size: 14px;
+    padding: 0 2rem;
+  }
+}

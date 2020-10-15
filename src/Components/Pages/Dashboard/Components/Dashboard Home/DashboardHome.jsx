@@ -1,9 +1,8 @@
 import React from "react";
+import Layout from "../../../../../Elements/Layout/LayoutComponent";
+import Container from "../../../../../Elements/Containers/ContainerComponent";
+import NavbarLinks from "../../NavbarLinks";
 
-import Layout from "../../Elements/Layout/LayoutComponent";
-import Container from "../../Elements/Containers/ContainerComponent";
-import NavbarLinks from "./Elements/NavbarLinks";
-import Routers from "./Elements/Routers";
 
 const DashboardComponent = () => {
   return (
@@ -15,8 +14,6 @@ const DashboardComponent = () => {
           <div className="column-7"></div>
         </div>
       </Container>
-
-      <Routers />
     </Layout>
   );
 };

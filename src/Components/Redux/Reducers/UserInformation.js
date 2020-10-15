@@ -7,7 +7,6 @@ const UserInformation = (state = {}, action) => {
 
   switch (action.type) {
     case SET_CURRENT_USER_INFO:
-      // console.log("Usuario logeado: ", action.payload)
       return {
         currentUserInfo: action.payload,
         isLoggedUser: true,

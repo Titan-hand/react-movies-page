@@ -14,10 +14,23 @@ const Routers = () => {
   return (
     <Router>
       <Switch>
-        <SessionPrivateRoute exact path="/dashboard" component={DashboardContainer} />
-        <Route exact path="/login" component={LoginContainer} />
-        <Route exact path="/signup" component={SignupContainer} />
-        <Route exact path="/" component={HomeContainer} />
+        <SessionPrivateRoute
+          exact
+          path="/dashboard"
+          component={DashboardContainer}
+        />
+        <Route exact path="/login">
+          <LoginContainer />
+        </Route>
+
+        <Route exact path="/signup">
+          <SignupContainer />
+        </Route>
+
+        <Route exact path="/">
+          <HomeContainer />
+        </Route>
+        
         <Route component={NotFound} />
       </Switch>
     </Router>

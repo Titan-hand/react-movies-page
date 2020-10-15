@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 const NavbarUserInfo = ({ currentUserInfo, isLoggedUser }) => {
-  const { photoUrl } = currentUserInfo || {};
-  
+  const { photoUrl, username } = currentUserInfo || {};
+
   return isLoggedUser ? (
     <>
-      <div className="nav-notify"> 
+      <div className="nav-notify">
         <div className="nav-notify-alert">
           <span>2</span>
         </div>
@@ -17,6 +17,8 @@ const NavbarUserInfo = ({ currentUserInfo, isLoggedUser }) => {
           <img
             src={photoUrl}
             alt="Your profile"
+            title={username}
+            aler={username}
           />
         </figure>
       </div>

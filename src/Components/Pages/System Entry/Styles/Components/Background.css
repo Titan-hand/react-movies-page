@@ -1,0 +1,16 @@
+.bg.bg-system-entry {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.726), #2121219d),
+    url("https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+
+.bg-system-entry-coverpage {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #2c536493, #203a43c7, #0f2027be),
+    url("https://images.pexels.com/photos/269140/pexels-photo-269140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=300");
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
