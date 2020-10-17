@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SessionPrivateRoute from "./SessionPrivateRoute";
 
 // All Components Pages
-import DashboardContainer from "../Pages/Dashboard/DashboardContainer";
+import MovieContainer from "../Pages/Movie/MovieContainer";
+import MoviesContainer from "../Pages/Movies/MoviesContainer";
 import LoginContainer from "../Pages/System Entry/Login/LoginContainer";
 import SignupContainer from "../Pages/System Entry/Sign Up/SignupContainer";
 import HomeContainer from "../Pages/Home/HomeContainer";
@@ -14,11 +15,14 @@ const Routers = () => {
   return (
     <Router>
       <Switch>
-        <SessionPrivateRoute
-          exact
-          path="/dashboard"
-          component={DashboardContainer}
-        />
+        <SessionPrivateRoute exact path="/movies/:id">
+          <MovieContainer />
+        </SessionPrivateRoute>
+
+        <SessionPrivateRoute exact path="/movies">
+          <MoviesContainer />
+        </SessionPrivateRoute>
+
         <Route exact path="/login">
           <LoginContainer />
         </Route>
@@ -30,7 +34,7 @@ const Routers = () => {
         <Route exact path="/">
           <HomeContainer />
         </Route>
-        
+
         <Route component={NotFound} />
       </Switch>
     </Router>

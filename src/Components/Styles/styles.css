@@ -1,24 +1,16 @@
+
 @import "./Components/reset.css";
+@import "./Vendors/normalize.css";
+@import "./variables.css";
+@import "./Vendors/titanium.css";
+@import "./Components/loaders.css";
 @import "./Components/labelForm.css";
 @import "./Components/titles.css";
 @import "./Components/positions.css";
 @import "./Components/texts.css";
 @import "./Components/containers.css";
 @import "./Components/Backgrounds.css";
+@import "./Components/Movie.css";
 @import "./Components/Queries/767px.css";
 @import "./Components/Queries/880px.css";
 @import "./Components/Queries/1200px.css";
-
-.tabs {
-  margin-top: 3rem;
-  display: flex;
-}
-
-.tab-link {
-  font-family: "Secular One", sans-serif;
-  display: block;
-  color: var(--color-gray);
-  padding: 0.8rem 1rem;
-  font-size: 1.3em;
-  text-transform: capitalize;
-}

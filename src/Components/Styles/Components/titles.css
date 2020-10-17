@@ -1,4 +1,8 @@
 .title {
-  font-family: "Secular One", sans-serif;
   text-transform: capitalize;
+}
+
+.title,
+.title-normal {
+  font-family: "Secular One", sans-serif;
 }

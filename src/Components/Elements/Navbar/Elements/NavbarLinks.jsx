@@ -17,7 +17,7 @@ const NavbarLinks = (props) => {
         {props.isLoggedUser && (
           <>
             <li className="nav-menu-link">
-              <Link to="/dashboard/movies">Your movies</Link>
+              <Link to="/movies/favorites">Favorites movies</Link>
             </li>
           </>
         )}

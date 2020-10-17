@@ -1,6 +1,7 @@
 @media screen and (max-width: 1200px) {
   .navbar-nav-toggle {
     display: block;
+    z-index: 400;
   }
 
   .nav {
@@ -57,4 +58,4 @@
   #navbar-nav-toggle:checked ~ .nav {
     width: 100%;
   }
-} 
+}

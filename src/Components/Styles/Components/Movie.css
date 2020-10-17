@@ -1,0 +1,63 @@
+.movie {
+  display: flex;
+  height: 170px;
+  margin-right: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.movie-image {
+  display: flex;
+  margin-right: 0.3rem;
+  width: 158px;
+}
+
+.movie-image a,
+.movie-image img {
+  display: block;
+  width: 100%;
+  height: 100% !important;
+}
+
+.movie-image img {
+  object-fit: cover;
+}
+
+.movie-rating {
+  color: var(--color-yellow);
+  display: block;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.movie-rating > i {
+  font-size: 14px;
+}
+
+.movie-rating > i:not(:last-child) {
+  margin-right: 0.3rem;
+}
+
+.movie-body {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem;
+  padding-bottom: 0;
+}
+
+.movie-title {
+  font-weight: lighter;
+  margin-bottom: 0.6rem;
+}
+
+.movie-body .button-movie {
+  display: block;
+  margin-top: auto;
+}
+
+.movie-date {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--color-gray-light);
+  font-size: 10px;
+}

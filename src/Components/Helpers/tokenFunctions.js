@@ -22,7 +22,7 @@ export function existToken() {
 }
 
 export async function isValidToken(token) {
-  if (!token) {
+  if (!existToken()) {
     return false;
   }
   const _isValidToken = await Requests.validateToken(token);

@@ -1,0 +1,81 @@
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.bgimg {
+  background: url(https://ucarecdn.com/718f79c5-2868-41c8-b56e-c87237674adb/-/resize/500x/man.jpg)
+    50% 50% no-repeat;
+  background-size: cover;
+  height: 300px;
+  margin-top: 0.5em;
+  font-size: 2em;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+}
+.bgimg.replace {
+  background-image: url(https://ucarecdn.com/718f79c5-2868-41c8-b56e-c87237674adb/-/resize/32x/man.jpg);
+}
+.primary {
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+}
+.boxout1,
+.boxout2,
+.full {
+  clear: both;
+  width: 100%;
+  box-shadow: 0 3px 4px #000;
+}
+@media (min-width: 40em) {
+  .boxout1,
+  .boxout2 {
+    clear: both;
+    float: left;
+    width: 22em;
+    margin: 1em 1em 1em -4em;
+  }
+  .boxout2 {
+    float: right;
+    margin: 1em -4em 1em 1em;
+  }
+}
+.lazy-load {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  outline: 0;
+}
+.lazy-load img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  border: 0;
+}
+.lazy-load img.preview {
+  filter: blur(2vw);
+  transform: scale(1.05);
+}
+.lazy-load img.reveal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform, opacity;
+  animation: lazyLoadReveal 1s ease-out;
+}
+@keyframes lazyLoadReveal {
+  0% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

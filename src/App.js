@@ -6,11 +6,9 @@ import Routers from "./Components/Routers/Routers";
 import { ToastContainer } from "react-toastify";
 
 // Global Styles
-import "./Components/Styles/variables.css";
+
 import "./Components/Styles/styles.css";
-import "./Components/Styles/Vendors/titanium.css";
-import "./Components/Styles/normalize.css";
-import "./Components/Styles/Components/loaders.css";
+import "./Components/Styles/Vendors/lazy-load-images.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
