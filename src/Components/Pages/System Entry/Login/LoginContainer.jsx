@@ -48,15 +48,12 @@ const LoginContainer = (props) => {
     ev.preventDefault();
     setLoading(true);
 
-    /*
-      Here I generate my token when the form is submitted
-    */
     cancelResquest = axios.CancelToken.source();
     const res = await Resquests.login(
       {
         email: credentials.email,
         password: credentials.password,
-      }, // The third parameter is the "headers"
+      }, 
       {
         cancelToken: cancelResquest.token, // the token
       }

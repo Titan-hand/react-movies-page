@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SessionPrivateRoute from "./SessionPrivateRoute";
+import SessionRedirectRoute from "./SessionRedirectRouter";
 
 // All Components Pages
 import MovieContainer from "../Pages/Movie/MovieContainer";
@@ -23,13 +24,13 @@ const Routers = () => {
           <MoviesContainer />
         </SessionPrivateRoute>
 
-        <Route exact path="/login">
+        <SessionRedirectRoute exact path="/login">
           <LoginContainer />
-        </Route>
+        </SessionRedirectRoute>
 
-        <Route exact path="/signup">
+        <SessionRedirectRoute exact path="/signup">
           <SignupContainer />
-        </Route>
+        </SessionRedirectRoute>
 
         <Route exact path="/">
           <HomeContainer />
