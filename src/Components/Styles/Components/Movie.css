@@ -61,3 +61,7 @@
   color: var(--color-gray-light);
   font-size: 10px;
 }
+
+.movies-category:not(:last-child) {
+  margin-bottom: 3rem;
+}
