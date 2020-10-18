@@ -2,12 +2,12 @@ import React from "react";
 
 import Layout from "../../Elements/Layout/LayoutComponent";
 import Container from "../../Elements/Containers/ContainerComponent";
-import MoviesCategory from "./Elements/MoviesCategory";
-import MoviesList from "./Elements/MoviesList";
+import MoviesCategory from "./Components/MoviesCategory";
+import MoviesList from "./Components/MoviesList";
 
 import "./Styles/styles.css";
 
-const MoviesComponent = () => {
+const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
   return (
     <Layout>
       <Container className="movies-container">
@@ -17,7 +17,7 @@ const MoviesComponent = () => {
           </div>
 
           <div className="column-9 column-xl-12">
-            <MoviesList />
+            <MoviesList moviesGenrers={moviesGenrers}/>
           </div>
         </div>
       </Container>

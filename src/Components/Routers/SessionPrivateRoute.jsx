@@ -24,7 +24,6 @@ class SessionPrivateRoute extends Component {
 
   checkToken = async () => {
     const validToken = await isValidToken(getToken());
-    console.log("Is a valid token?: ", validToken);
     this.setState({ validToken });
   };
 
@@ -52,7 +51,6 @@ class SessionPrivateRoute extends Component {
 
   render() {
     const { isLoggedUser, isLoading, validToken, allChecked } = this.state;
-    console.log("rendering private route");
     if (isLoggedUser || validToken) {
       return <Route {...this.props} />;
     }

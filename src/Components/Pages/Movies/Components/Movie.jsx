@@ -2,35 +2,45 @@ import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function Movie({ title = "", date = "", rating = 0, id }) {
+function Movie({
+  title_long = "",
+  year = "",
+  rating = 0,
+  medium_cover_image,
+  small_cover_image,
+  language,
+  genres,
+  id,
+}) {
   const stars = [];
 
-  for (let i = 0; i < rating; i++) {
+  for (let i = 0; i < Math.floor(rating); i++) {
     stars.push(<i className="fa fa-star" key={i}></i>);
   }
 
   return (
     <div className="movie">
       <div className="movie-image">
-        <a
-          href={`https://picsum.photos/id/${id}/200/300`}
-          className="lazy-load replace"
-        >
+        <a href={medium_cover_image} className="lazy-load replace">
           <img
-            src={`https://picsum.photos/id/${id}/5/5`}
-            alt={`${title}'s Coverpage`}
-            title={`${title}'s Coverpage`}
+            src={small_cover_image}
+            alt={`${title_long}'s Coverpage`}
+            title={`${title_long}'s Coverpage`}
             className="image preview"
           />
         </a>
       </div>
       <div className="movie-body">
         <h5 className="movie-title">
-          {title.length >= 62 ? title.substring(0, 62) + "..." : title}
+          {title_long.length >= 62
+            ? title_long.substring(0, 62) + "..."
+            : title_long}
         </h5>
-        <time dateTime="15-02-2015" className="movie-date">
-          {date}
+        <time dateTime="15-02-2015" className="movie-info">
+          Year: {year}
         </time>
+        <p className="movie-info">Language: {language}</p>
+        <p className="movie-info">Genres : {genres.join(", ")}</p>
         <span className="movie-rating">{stars}</span>
 
         <Link to={`/movies/${id}`} className="button-movie">
@@ -44,9 +54,11 @@ function Movie({ title = "", date = "", rating = 0, id }) {
 }
 
 Movie.propTypes = {
-  title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  title_long: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
+  small_cover_image: PropTypes.string,
+  medium_cover_image: PropTypes.string,
   id: PropTypes.number.isRequired,
 };
 

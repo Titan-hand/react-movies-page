@@ -6,6 +6,7 @@ import {
   VALIDATE_TOKEN_URL,
 } from "../Config/api";
 
+import { MOVIES_ALL, MOVIES_GENRERS_URL } from "../Config/apiMovies";
 import { alertError } from "./notifications";
 
 class Requests {
@@ -89,6 +90,19 @@ class Requests {
     );
 
     return isValidToken?.data?.ok;
+  }
+
+  async getAllMovies() {
+    const movies = await this._get(MOVIES_ALL);
+    return movies?.data?.data?.movies;
+  }
+
+  async getGenrerMovie(genrer) {
+    const movies = await this._get(MOVIES_GENRERS_URL(genrer));
+    return {
+      ...movies?.data?.data,
+      genrer,
+    };
   }
 }
 

@@ -30,7 +30,9 @@
 }
 
 .movie-rating > i {
-  font-size: 14px;
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 10px;
 }
 
 .movie-rating > i:not(:last-child) {
@@ -55,9 +57,9 @@
   margin-top: auto;
 }
 
-.movie-date {
+.movie-info {
   display: block;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
   color: var(--color-gray-light);
   font-size: 10px;
 }

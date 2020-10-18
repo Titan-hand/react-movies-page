@@ -49,6 +49,9 @@
 
 ul.movies-category-movies > .movies-category-title {
   margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.080rem;
 }
 
 ul.movies-category-movies > .movies-category-title h4 {
@@ -65,7 +68,7 @@ ul.movies-category-movies > .movies-category-title i {
     display: none;
   }
 
-  .movies-movies{
+  .movies-movies {
     margin-left: 0;
   }
 }

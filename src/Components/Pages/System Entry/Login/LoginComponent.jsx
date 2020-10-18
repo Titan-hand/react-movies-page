@@ -3,7 +3,7 @@ import React from "react";
 // Components
 import Center from "../../../Elements/Aligns/Center";
 import Background from "../../../Elements/Background/Background";
-import LoginForm from "./Elements/LoginForm";
+import LoginForm from "./Components/LoginForm";
 
 // Styles
 import "../Styles/styles.css";
