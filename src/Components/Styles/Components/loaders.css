@@ -24,6 +24,24 @@
   background: var(--color-dark);
 }
 
+.movie-loader {
+  max-width: 100%;
+  width: 98%;
+  margin-bottom: 0.5rem;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: rgba(0, 0, 0, 0.376);
+}
+
+.movies-category-loader{
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
