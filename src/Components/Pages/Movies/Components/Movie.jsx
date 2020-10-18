@@ -19,7 +19,7 @@ function Movie({
   }
 
   return (
-    <div className="movie">
+    <div className="movie" data-aos="fade-up">
       <div className="movie-image">
         <a href={medium_cover_image} className="lazy-load replace">
           <img
@@ -55,7 +55,10 @@ function Movie({
 
 Movie.propTypes = {
   title_long: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  year: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]),
   rating: PropTypes.number.isRequired,
   small_cover_image: PropTypes.string,
   medium_cover_image: PropTypes.string,

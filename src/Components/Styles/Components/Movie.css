@@ -2,7 +2,7 @@
   display: flex;
   height: 170px;
   margin-right: 1.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .movie-image {
@@ -66,4 +66,17 @@
 
 .movies-category:not(:last-child) {
   margin-bottom: 3rem;
+}
+
+.movie-loader {
+  max-width: 100%;
+  width: 98%;
+  margin-bottom: 0.5rem;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: rgba(0, 0, 0, 0.376);
 }

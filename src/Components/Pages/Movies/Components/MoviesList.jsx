@@ -1,6 +1,8 @@
-import React from "react";
-import Movie from "./Movie";
+import React, { lazy, Suspense } from "react";
+import LoaderMovie from "../../../Elements/Loaders/LoaderMovie";
 import Banner from "../../../Elements/Banners/Banner";
+
+const MovieLazy = lazy(() => import("./Movie"));
 
 export default function MoviesList({ moviesGenrers }) {
   return (
@@ -19,7 +21,9 @@ export default function MoviesList({ moviesGenrers }) {
               {movieGenrer.movies.map((movie) => {
                 return (
                   <div className="column-6 column-sm-12" key={movie.id}>
-                    <Movie {...movie} />
+                    <Suspense fallback={<LoaderMovie />}>
+                      <MovieLazy {...movie} />
+                    </Suspense>
                   </div>
                 );
               })}
