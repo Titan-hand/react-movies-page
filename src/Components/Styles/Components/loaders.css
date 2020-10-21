@@ -34,7 +34,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  background: rgba(0, 0, 0, 0.376);
+  background: var(--color-black);
 }
 
 .movies-category-loader{

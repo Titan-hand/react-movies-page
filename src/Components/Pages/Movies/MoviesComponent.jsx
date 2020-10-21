@@ -5,6 +5,8 @@ import Container from "../../Elements/Containers/ContainerComponent";
 import MoviesCategory from "./Components/MoviesCategory";
 import MoviesList from "./Components/MoviesList";
 import Loader from "../../Elements/Loaders/Loader";
+import ErrorAlert from "../../Elements/Errors/ErrorAlert";
+
 import "./Styles/styles.css";
 
 const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
@@ -17,7 +19,12 @@ const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
           </div>
 
           <div className="column-9 column-xl-12">
-            {isLoading ? (
+            {error ? (
+              <ErrorAlert 
+                title="Movie download failed"
+                description="Error occurred, it may be due to a connection problem with our servers or a technical failure." 
+              />
+            ): isLoading ? (
               <Loader isopen size="80px" className="movies-category-loader" />
             ) : (
               <MoviesList moviesGenrers={moviesGenrers} />

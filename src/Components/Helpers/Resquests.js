@@ -6,7 +6,7 @@ import {
   VALIDATE_TOKEN_URL,
 } from "../Config/api";
 
-import { MOVIES_ALL, MOVIES_GENRERS_URL } from "../Config/apiMovies";
+import { MOVIES_ALL, MOVIES_GENRERS_URL, MOVIES_GENRERS } from "../Config/apiMovies";
 import { alertError } from "./notifications";
 
 class Requests {
@@ -21,7 +21,6 @@ class Requests {
   }
 
   async _post(url, args, headers) {
-    // console.log(headers);
     try {
       const res = await axios.post(
         url,
@@ -46,7 +45,7 @@ class Requests {
       });
       return res;
     } catch (error) {
-      this._showNetworkErrorAlert(error.response.status);
+      this._showNetworkErrorAlert(error?.response?.status);
     }
   }
 
@@ -103,6 +102,16 @@ class Requests {
       ...movies?.data?.data,
       genrer,
     };
+  }
+
+  async getAllGenrersMovies(){
+    const moviesGenrersPromises = [];
+
+    for (const genrer of MOVIES_GENRERS) {
+      moviesGenrersPromises.push(this.getGenrerMovie(genrer));
+    }
+
+    return axios.all(moviesGenrersPromises)
   }
 }
 

@@ -1,0 +1,30 @@
+.error{
+	padding: 2rem;
+	background: var(--color-black);
+	margin: 7rem auto 2rem 3rem;
+	display: flex;
+}
+
+.error-body{
+	margin-left: 1rem;
+}
+
+.error-title{
+	font-family: "Secular One", sans-serif;
+	font-weight: 500;
+}
+
+.error-description{
+	margin-top: 1rem;
+}
+
+.error-icon{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.error-icon > i{
+	color: #bb2205;
+	font-size: 4.5rem;
+}
