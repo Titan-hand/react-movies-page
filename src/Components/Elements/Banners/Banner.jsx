@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import RGBA from "../../Helpers/rgba.js";
 
 function Banner({
   title,
@@ -10,7 +11,7 @@ function Banner({
   color2 = "f127119a",
 }) {
   const styles = {
-    background: `linear-gradient(to right, #${color1}, #${color2}), url("${image}")`,
+    background: `linear-gradient(to right, ${ RGBA(color1, 90) }, ${ RGBA(color2, 60) }), url("${image}")`,
   };
   return (
     <header className="banner-category" style={styles}>

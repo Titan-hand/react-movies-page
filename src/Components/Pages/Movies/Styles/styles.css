@@ -52,6 +52,9 @@ ul.movies-category-movies > .movies-category-title {
   display: flex;
   align-items: center;
   letter-spacing: 0.080rem;
+  padding: 1.5rem 1rem;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 ul.movies-category-movies > .movies-category-title h4 {
