@@ -2,6 +2,7 @@
 @import "./Vendors/normalize.css";
 @import "./variables.css";
 @import "./Vendors/titanium.css";
+@import "./Components/layout.css";
 @import "./Components/loaders.css";
 @import "./Components/labelForm.css";
 @import "./Components/titles.css";

@@ -6,8 +6,6 @@
   .error{
   	flex-direction: column;
   	font-size: 12px;
-  	margin-left: auto;
-  	margin-right: auto;
   }
 
   .error-icon > i{

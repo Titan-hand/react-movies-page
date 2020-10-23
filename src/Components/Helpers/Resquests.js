@@ -11,13 +11,23 @@ import { alertError } from "./notifications";
 
 class Requests {
   _showNetworkErrorAlert(status) {
+    let error = "";
     if (status >= 400 && status < 500) {
       alertError("A client network error occurred.");
+      error = "A client network error occurred.";
+
     } else if (status >= 500 && status < 600) {
       alertError("Platform server error.");
+       error ="Platform server error."
+
     } else {
       alertError("A connection error occurred.");
+       error = "A connection error occurred.";
     }
+
+    // It is very important, an exception is created that the other requests will detect
+    // Required for promises to use the catch statement.
+    throw  new Error(error);
   }
 
   async _post(url, args, headers) {
@@ -28,7 +38,7 @@ class Requests {
           ...args,
         },
         {
-          ...headers, // here I receive the headers (including the cancellation token)
+          ...headers,
         }
       );
       return res;
@@ -50,7 +60,6 @@ class Requests {
   }
 
   async login({ email, password, headers }) {
-    // here I pass the parameters with the headers (and the cancellation token)
     const loginUser = await this._post(LOGIN_URL, { email, password }, headers);
     return loginUser;
   }
@@ -63,7 +72,7 @@ class Requests {
         email,
         password,
       },
-      headers // Here same as the previous ones
+      headers
     );
     return signupUser;
   }

@@ -2,4 +2,17 @@
   .container {
     padding-right: 0;
   }
+
+}
+
+@media screen and (max-width: 1200px) {
+	.app-movie{
+		margin-top: 3rem;
+	}
+
+	.error{
+	  	margin-left: auto;
+	  	margin-right: auto;
+	  	margin-top: 0;
+  	}
 }

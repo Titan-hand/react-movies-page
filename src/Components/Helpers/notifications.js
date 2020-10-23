@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { toast } from "@carlosedua/react-toastify";
 
 const commonsProps = {
   position: "top-right",

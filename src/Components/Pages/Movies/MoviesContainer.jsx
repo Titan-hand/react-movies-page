@@ -7,21 +7,22 @@ import { SetMovies } from "../../Redux/Actions/MoviesActions";
 const MoviesContainer = (props) => {
   const [moviesGenrers, setMoviesGenrers] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     Requests.getAllGenrersMovies().then((movies) => {
       setLoading(false);
+
       setMoviesGenrers(movies);
       props.SetMovies(movies);
 
       console.log(movies);
     })
     .catch((error) => {
-        setError(error);
+        setError(true);
     });
 
-  }, [props]);
+  }, []);
 
   return <MoviesComponent {...{ moviesGenrers, isLoading, error }} />;
 };

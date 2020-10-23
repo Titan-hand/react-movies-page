@@ -10,9 +10,10 @@ import ErrorAlert from "../../Elements/Errors/ErrorAlert";
 import "./Styles/styles.css";
 
 const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
+  
   return (
     <Layout>
-      <Container className="movies-container">
+      <Container>
         <div className="columns columns-sm-reverse">
           <div className="column-3 column-xl-12">
             <MoviesCategory />

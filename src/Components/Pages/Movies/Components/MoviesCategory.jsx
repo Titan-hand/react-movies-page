@@ -7,7 +7,7 @@ function MoviesCategory() {
       <h3 className="movies-aside-title title-normal">Best Movies</h3>
       <div className="columns">
         {MOVIES_GENRERS.map((genrer, index) => (
-          <div className="column-12 column-xl-4" key={index}>
+          <div className="column-12 column-xl-4 column-sm-6" key={index}>
             <ul className="movies-category-movies">
               <li className="movies-category-title">
                 <i className="fa fa-film" style={{ fontSize: "1.2rem" }}></i>
