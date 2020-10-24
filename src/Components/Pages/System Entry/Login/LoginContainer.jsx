@@ -49,29 +49,33 @@ const LoginContainer = (props) => {
     setLoading(true);
 
     cancelResquest = axios.CancelToken.source();
-    const res = await Resquests.login(
-      {
-        email: credentials.email,
-        password: credentials.password,
-      }, 
-      {
-        cancelToken: cancelResquest.token, // the token
-      }
-    );
 
-    setLoading(false);
-
-    if (res?.data?.ok === false) {
-      alertError("Error in your credentials");
-    } else if (res?.data?.ok === true) {
-      alertSuccess("Successful login.");
-      const userInfoLogged = await Resquests.getInfoUserLogged(
-        res.data.data.token
+    try {
+      const res = await Resquests.login(
+        {
+          email: credentials.email,
+          password: credentials.password,
+        },
+        {
+          cancelToken: cancelResquest.token, // the token
+        }
       );
 
-      saveToken(res.data.data.token);
-      props.SetCurrentUserInfo(userInfoLogged);
-      setLogged(true);
+      if (res?.data?.ok === false) {
+        alertError("Error in your credentials");
+      } else if (res?.data?.ok === true) {
+        alertSuccess("Successful login.");
+        const userInfoLogged = await Resquests.getInfoUserLogged(
+          res.data.data.token
+        );
+
+        saveToken(res.data.data.token);
+        props.SetCurrentUserInfo(userInfoLogged);
+        setLogged(true);
+      }
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
     }
   };
 

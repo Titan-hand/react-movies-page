@@ -2,17 +2,20 @@
   .container {
     padding-right: 0;
   }
-
 }
 
 @media screen and (max-width: 1200px) {
-	.app-movie{
-		margin-top: 3rem;
-	}
+  .columns-xl-reverse {
+    flex-direction: column-reverse;
+  }
 
-	.error{
-	  	margin-left: auto;
-	  	margin-right: auto;
-	  	margin-top: 0;
-  	}
+  .app-movie {
+    margin-top: 6rem;
+  }
+
+  .error {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+  }
 }

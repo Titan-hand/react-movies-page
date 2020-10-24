@@ -12,18 +12,21 @@ import { isValidToken, getToken } from "../Helpers/tokenFunctions";
 import { alertWarn } from "../Helpers/notifications";
 import { SetCurrentUserInfo } from "../Redux/Actions/UserActions";
 import Resquests from "../Helpers/Resquests";
+import ErrorPage from "../Elements/Errors/ErrorPage";
 
 class SessionPrivateRoute extends Component {
   state = {
     isLoading: true,
     validToken: false,
-    isLoggedUser: this.props.isLoggedUser,
+    isLoggedUser: this.props.isLoggedUser ?? false,
     allChecked: false,
-    token: getToken(),
+    error: null,
   };
 
   checkToken = async () => {
-    const validToken = await isValidToken(getToken());
+    const token = getToken();
+    console.log("checkToken  ", token);
+    const validToken = await isValidToken(token);
     this.setState({ validToken });
   };
 
@@ -37,26 +40,45 @@ class SessionPrivateRoute extends Component {
 
   // check token and then save userdata if is neccessary
   checkAndSave = async () => {
-    await this.checkToken();
-    await this.saveUserInfo();
-    this.setState({ isLoading: false, allChecked: true });
+    try {
+      await this.checkToken();
+      await this.saveUserInfo();
+      this.setState({ isLoading: false, allChecked: true });
+    } catch (error) {
+      this.setState({
+        isLoading: false,
+        allChecked: true,
+        error: true,
+      });
+    }
   };
 
   componentDidMount() {
     // si el usuario no está logueado
     // (ya sea que recargo la pagina o sea un anonimo) comprobamos si hay un token
     //  si ese token es valido, hacemos una sesion persistente
-    if (!this.state.isLoggedUser) this.checkAndSave();
+     this.checkAndSave();
   }
 
   render() {
-    const { isLoggedUser, isLoading, validToken, allChecked } = this.state;
-    if (isLoggedUser || validToken) {
-      return <Route {...this.props} />;
-    }
+    const {
+      isLoggedUser,
+      isLoading,
+      validToken,
+      allChecked,
+      error,
+    } = this.state;
 
     if (isLoading) {
       return <LoaderPage />;
+    }
+
+    if (error) {
+      return <ErrorPage />;
+    }
+
+    if (isLoggedUser || validToken) {
+      return <Route {...this.props} />;
     }
 
     if (allChecked) alertWarn("To enter here you must have an account.");

@@ -37,9 +37,22 @@
   background: var(--color-black);
 }
 
-.movies-category-loader{
+.movies-category-loader {
   margin-top: 8rem;
   margin-bottom: 5rem;
+}
+
+.loader-alert {
+  width: 100%;
+  height: auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.loader-alert-text {
+  
+  margin-bottom: 1.5rem;
+  font-weight: 500;
 }
 
 @keyframes lds-dual-ring {

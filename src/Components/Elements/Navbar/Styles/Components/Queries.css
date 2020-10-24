@@ -5,6 +5,7 @@
   }
 
   .nav {
+    user-select: none;
     width: 330px;
     flex-direction: column-reverse;
     justify-content: flex-end;

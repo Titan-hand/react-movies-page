@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SessionPrivateRoute from "./SessionPrivateRoute";
-import SessionRedirectRoute from "./SessionRedirectRouter";
+import SessionRedirectRoute from "./SessionRedirectRoute";
 
 // All Components Pages
 import MovieContainer from "../Pages/Movie/MovieContainer";

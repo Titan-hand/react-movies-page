@@ -1,11 +1,19 @@
 @media screen and (max-width: 550px) {
   body .container {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     padding: 0 1rem;
     margin-top: 5rem;
   }
 
   .banner-category {
     padding: 1rem 2rem;
+  }
+
+  .error-page-body {
+    font-size: var(--font-size-sm);
+  }
+
+  .error-page-title {
+    font-size: 2rem;
   }
 }

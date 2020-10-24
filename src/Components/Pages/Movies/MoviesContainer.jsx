@@ -13,20 +13,20 @@ const MoviesContainer = (props) => {
     if (props.movies && props.movies?.movies?.length > 0) {
       console.log("%cValores memorizados", "font-size: 18px");
       setLoading(false);
-      setMoviesGenrers(props.movies.movies)
-
+      setMoviesGenrers(props.movies.movies);
     } else {
-      Requests.getAllGenrersMovies().then((movies) => {
-        setLoading(false);
+      Requests.getAllGenrersMovies()
+        .then((movies) => {
+          setLoading(false);
 
-        setMoviesGenrers(movies);
-        props.SetMovies(movies);
-      })
-      .catch((error) => {
-            setError(true);
-      });
+          setMoviesGenrers(movies);
+          props.SetMovies(movies);
+        })
+        .catch((error) => {
+          setLoading(false);
+          setError(true);
+        });
     }
-    
   }, []);
 
   return <MoviesComponent {...{ moviesGenrers, isLoading, error }} />;

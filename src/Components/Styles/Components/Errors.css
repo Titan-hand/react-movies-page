@@ -1,30 +1,73 @@
-.error{
-	padding: 2rem;
-	background: var(--color-black);
-	margin: 7rem auto 2rem 3rem;
-	display: flex;
+.error {
+  padding: 2rem;
+  background: var(--color-black);
+  margin: 7rem auto 2rem 3rem;
+  display: flex;
 }
 
-.error-body{
-	margin-left: 1rem;
+.error-sm {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  padding: 2rem 1rem;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.error-title{
-	font-family: "Secular One", sans-serif;
-	font-weight: 500;
+.error.error-sm .error-title {
+  margin-top: 1rem;
 }
 
-.error-description{
-	margin-top: 1rem;
+.error.error-sm .error-icon > i {
+  font-size: 2.9rem;
 }
 
-.error-icon{
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.error-body {
+  margin-left: 1rem;
 }
 
-.error-icon > i{
-	color: #bb2205;
-	font-size: 4.5rem;
+.error-title {
+  font-family: "Secular One", sans-serif;
+  font-weight: 500;
+}
+
+.error-description {
+  margin-top: 1rem;
+}
+
+.error-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-icon > i {
+  color: #bb2205;
+  font-size: 4.5rem;
+}
+
+.error-page-container {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.error-page-body {
+  width: 600px;
+  max-width: 100%;
+  padding: 0 2rem;
+}
+
+.error-page-title {
+  font-size: 4rem;
+}
+
+.error-page-image {
+  width: 230px;
 }

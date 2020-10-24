@@ -2429,3 +2429,4 @@
 [1012/190833.213:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\libardorengifo\AppData\Local\Google\Chrome\User Data\Crashpad\reports\09eee03c-4290-48f3-9d1c-d231f91280b6.dmp: El sistema no puede encontrar el archivo especificado. (0x2)
 [1012/190833.213:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\libardorengifo\AppData\Local\Google\Chrome\User Data\Crashpad\reports\4d49fa15-f303-4849-87bd-054a25c527ae.dmp: El sistema no puede encontrar el archivo especificado. (0x2)
 [1012/190833.213:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1024/153902.622:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)

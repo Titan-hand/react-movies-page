@@ -28,20 +28,24 @@ const SignupContainer = () => {
   const onSubmitForm = async (ev) => {
     ev.preventDefault();
     setLoading(true);
-    const res = await Resquests.signup({
-      username: credentials.username,
-      email: credentials.email,
-      password: credentials.password,
-    });
- 
-    if (res?.data?.ok === false) {
-      alertError("Failed to create account.");
+
+    try {
+      const res = await Resquests.signup({
+        username: credentials.username,
+        email: credentials.email,
+        password: credentials.password,
+      });
+
+      if (res?.data?.ok === false) {
+        alertError("Failed to create account.");
+        setLoading(false);
+      } else if (res?.data?.ok === true) {
+        alertSuccess("Account created.");
+        setRegistrered(true);
+      }
+    } catch (error) {
       setLoading(false);
-    } else if (res?.data?.ok === true) {
-      alertSuccess("Account created.");
-      setRegistrered(true);
     }
-    console.log(res);
   };
 
   return isRegistrered ? (
