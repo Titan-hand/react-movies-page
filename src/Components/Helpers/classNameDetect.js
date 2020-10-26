@@ -1,5 +1,5 @@
-const classNameDetect = (props) => {
-  return props.className ? " " + props.className : "";
+const classNameDetect = ({className}) => {
+  return className ? " " + className : "";
 };
 
 export default classNameDetect;

@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import LoaderMovie from "../../../Elements/Loaders/LoaderMovie";
 import Banner from "../../../Elements/Banners/Banner";
-import ErrorBoundary from "../../../Elements/Errors/ErrorBoundary";
+// import ErrorBoundary from "../../../Elements/Errors/ErrorBoundary";
 import bannersColors from "../../../Config/bannerColorsMoviesCategory.js";
 
 const MovieLazy = lazy(() => import("./Movie"));

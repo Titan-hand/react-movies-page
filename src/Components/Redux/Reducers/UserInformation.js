@@ -1,7 +1,7 @@
 import {
   SET_CURRENT_USER_INFO,
   REMOVE_CURRENT_USER_INFO,
-} from "../Actions/Constants/UserActions";
+} from "../Types/usersTypes";
 
 const UserInformation = (state = {}, action) => {
 

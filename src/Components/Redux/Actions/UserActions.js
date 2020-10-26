@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER_INFO } from "./Constants/UserActions";
+import { SET_CURRENT_USER_INFO } from "../Types/usersTypes";
 
 export const SetCurrentUserInfo = (userInfo) => {
   return {
