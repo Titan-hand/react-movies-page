@@ -1,4 +1,4 @@
-import { SET_MOVIES } from "../Actions/Constants/MoviesActions";
+import { SET_MOVIES } from "../Types/moviesTypes";
 
 // el state=[] es sólo para la propiedad de pelicula del store
 // no significa que todo el estado sera un arreglo vacio

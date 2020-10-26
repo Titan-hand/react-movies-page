@@ -1,4 +1,4 @@
-import { SET_MOVIES } from "./Constants/MoviesActions";
+import { SET_MOVIES } from "../Types/moviesTypes";
 
 export function SetMovies(movies) {
   return {
