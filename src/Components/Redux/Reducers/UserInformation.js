@@ -14,7 +14,6 @@ const UserInformation = (state = {}, action) => {
 
     case REMOVE_CURRENT_USER_INFO:
       return {
-        ...state,
         currentUserInfo: null,
         isLoggedUser: false,
       };

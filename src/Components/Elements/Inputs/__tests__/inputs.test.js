@@ -6,8 +6,8 @@ import Text from '../Text';
 import Email from '../Email';
 import Pass from '../Pass';
 import GenericInput from '../Input';
-import InputIcon from '../InputIcon';
-import LabeledInput from '../LabeledInput/LabeledInput';
+// import InputIcon from '../InputIcon';
+// import LabeledInput from '../LabeledInput/LabeledInput';
 
 configure({ adapter: new Adapter()});
 
