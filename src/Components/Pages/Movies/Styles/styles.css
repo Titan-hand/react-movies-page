@@ -27,7 +27,7 @@
 }
 
 .movies-category-movies > li:not(:last-child) {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .movies-aside-title {

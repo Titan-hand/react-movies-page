@@ -6,7 +6,6 @@ import MoviesCategoryList from "./Components/MoviesCategoryList";
 import MoviesList from "./Components/MoviesList";
 import Loader from "../../Elements/Loaders/Loader";
 import ErrorAlert from "../../Elements/Errors/ErrorAlert";
-
 import "./Styles/styles.css";
 
 const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {

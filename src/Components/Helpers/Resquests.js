@@ -6,7 +6,7 @@ import {
   VALIDATE_TOKEN_URL,
 } from "../Config/api";
 
-import { MOVIES_ALL, MOVIES_GENRERS_URL, MOVIES_GENRERS } from "../Config/apiMovies";
+import { MOVIES_ALL, MOVIES_GENRERS_URL, MOVIES_GENRERS, MOVIE_ID_URL } from "../Config/apiMovies";
 import { alertError } from "./notifications";
 
 class Requests {
@@ -121,6 +121,11 @@ class Requests {
     }
 
     return axios.all(moviesGenrersPromises)
+  }
+
+  async getInfoMovieId(id){
+    const movie = await this._get(MOVIE_ID_URL(id));
+    return movie?.data?.data?.movie;
   }
 }
 
