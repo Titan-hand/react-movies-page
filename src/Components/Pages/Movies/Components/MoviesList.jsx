@@ -22,12 +22,17 @@ export default function MoviesList({ moviesGenrers }) {
             />
 
             {/*Y este otro map es para iterar en el arreglo de peliculas */}
+
             <div className="columns">
               {movieGenrer?.movies?.map((movie) => {
                 return (
                   <div className="column-6 column-sm-12" key={movie.id}>
                     <Suspense fallback={<LoaderMovie />}>
-                      <ErrorBoundary>
+                      <ErrorBoundary
+                        title="An error occurred while showing the movie"
+                        description=""
+                        className="error-sm"
+                      >
                         <MovieLazy {...movie} />
                       </ErrorBoundary>
                     </Suspense>

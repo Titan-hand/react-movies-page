@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -17,7 +17,6 @@ function Movie({
   for (let i = 0; i < Math.floor(rating); i++) {
     stars.push(<i className="fa fa-star" key={i}></i>);
   }
-
   return (
     <div className="movie" data-aos="fade-up">
       <div className="movie-image">

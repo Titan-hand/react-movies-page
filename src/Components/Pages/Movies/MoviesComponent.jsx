@@ -2,10 +2,11 @@ import React from "react";
 
 import Layout from "../../Elements/Layout/LayoutComponent";
 import Container from "../../Elements/Containers/ContainerComponent";
-import MoviesCategoryList from "./Components/MoviesCategoryList";
+import MoviesCategoryList from "./Components/Movies Category List/MoviesCategoryListContainer";
 import MoviesList from "./Components/MoviesList";
 import Loader from "../../Elements/Loaders/Loader";
 import ErrorAlert from "../../Elements/Errors/ErrorAlert";
+import ErrorBoundary from "../../Elements/Errors/ErrorBoundary";
 import "./Styles/styles.css";
 
 const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
@@ -26,7 +27,16 @@ const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
             ) : isLoading ? (
               <Loader isopen size="80px" className="movies-category-loader" />
             ) : (
-              <MoviesList moviesGenrers={moviesGenrers} />
+              /* Aqui se debe de poner el limite de error para que
+                capture la excepcion en todo el componente
+              */
+              <ErrorBoundary
+                title="An error occurred while displaying the movies"
+                description="This error occurred due to a programming error on the page, please send us an email."
+                className="error-sm"
+              >
+                <MoviesList moviesGenrers={moviesGenrers} />
+              </ErrorBoundary>
             )}
           </div>
         </div>
