@@ -20,7 +20,7 @@ function Movie({
     </div>
   );
 }
-
+ 
 Movie.propTypes = {
   title_long: PropTypes.string.isRequired,
   year: PropTypes.oneOfType([
