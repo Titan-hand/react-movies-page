@@ -9,8 +9,6 @@ const MovieContainer = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-  //getInfoMovieId
   useEffect(() => {
   	Requests.getInfoMovieId(id)
   	.then(movie => {
@@ -18,7 +16,7 @@ const MovieContainer = () => {
   		setMovieInfo(movie);
   		setLoading(false);
   	})
-  	.catch(error => {
+  	.catch(() => {
   		setError(true);
   	})
 

@@ -1,7 +1,6 @@
 import React, { memo } from "react";
-import bannersColors from "../../../../Config/bannerColorsMoviesCategory.js";
-import RGBA from "../../../../Helpers/rgba.js";
 import MoviesCategorListComponent from "./MoviesCategoryListComponent";
+import getLinearGradient from "../../../../Helpers/getLinearGradient";
 
 // get the specify movie's array objects
 function getMoviesByGenrer(moviesList, genrer) {
@@ -11,16 +10,7 @@ function getMoviesByGenrer(moviesList, genrer) {
   const moviesGenders = moviesByGenrer.movies;
   return moviesGenders.length >= 5 ? moviesGenders.slice(0, 5) : moviesGenders;
 }
-
-function getLinearGradient(genrer) {
-  const { color1, color2 } = bannersColors[genrer];
-  const background = `linear-gradient(to right, ${RGBA(color1, 70)}, ${RGBA(
-    color2,
-    50
-  )})`;
-  return background;
-}
-
+  
 function MoviesCategoryList(props) {
   return (
     <MoviesCategorListComponent
