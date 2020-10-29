@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ErrorAlert from "./ErrorAlert";
+import PropTypes from "prop-types";
 
-export default class ErrorBoundary extends Component {
+class ErrorBoundary extends Component {
   state = {
     hasError: false,
     errorInfo: "",
@@ -21,12 +22,17 @@ export default class ErrorBoundary extends Component {
   }
 
   render() {
-    const { title, description } = this.props;
-
     if (this.state.hasError) {
-      return <ErrorAlert {...{ title, description }} />;
+      return <ErrorAlert {...this.props} />;
     }
 
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+};
+
+export default ErrorBoundary;

@@ -9,7 +9,7 @@
   display: block;
   position: absolute;
   background: var(--color-yellow);
-  height: 90%;
+  height: 100%;
   width: 1px;
   top: 50%;
   transform: translateY(-50%);
@@ -24,6 +24,21 @@
   margin-bottom: 3.2rem;
   font-weight: 100;
   font-size: 14px;
+}
+
+.movies-category-movies > li {
+  display: flex;
+  align-items: center;
+}
+
+.movies-category-movies > li > a {
+  display: block;
+  color: var(--color-white-original);
+}
+
+.movies-category-movies > li > img {
+  display: block;
+  margin-right: 0.3rem;
 }
 
 .movies-category-movies > li:not(:last-child) {
@@ -51,7 +66,7 @@ ul.movies-category-movies > .movies-category-title {
   margin-bottom: 0.9rem;
   display: flex;
   align-items: center;
-  letter-spacing: 0.080rem;
+  letter-spacing: 0.08rem;
   padding: 1.5rem 1rem;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;

@@ -1,7 +1,7 @@
 import React from "react";
 import Background from "../../Elements/Background/Background";
-import HomeCoverpage from "./Elements/HomeCoverpage";
-import HomeMovieList from "./Elements/HomeMovieList";
+import HomeCoverpage from "./Components/HomeCoverpage";
+import HomeMovieList from "./Components/HomeMovieList";
 import LayoutComponent from "../../Elements/Layout/LayoutComponent";
 import Container from "../../Elements/Containers/ContainerComponent";
 

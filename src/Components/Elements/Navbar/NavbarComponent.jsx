@@ -1,11 +1,11 @@
 import React from "react";
 
 // components
-import NavbarLinks from "./Elements/NavbarLinks";
+import NavbarLinks from "./Components/NavbarLinks";
 import NavbarUserInfo from "../Elements Logged/Navbar/NavbarUserInfo";
-import NavbarSearch from "./Elements/NavbarSearch";
-import NavbarBars from "./Elements/NavbarBars";
-import NavbarCloseMenu from "./Elements/NavbarCloseMenu";
+import NavbarSearch from "./Components/NavbarSearch";
+import NavbarBars from "./Components/NavbarBars";
+import NavbarCloseMenu from "./Components/NavbarCloseMenu";
 
 // styles
 import "./Styles/styles.css";

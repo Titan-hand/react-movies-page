@@ -1,10 +1,11 @@
 import React from "react";
-import Loader from "./Loader";
 
 export default function () {
   return (
-    <div className="movie-loader">
-      <Loader isopen size="60px" />
+    <div className="movie-container">
+      <div className="movie-loader" />
+      <div className="movie-loader" />
+      <div className="movie-loader" />
     </div>
   );
 }
