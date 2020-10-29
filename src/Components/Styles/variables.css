@@ -9,5 +9,6 @@
   --color-online-user: #86f309;
   --color-notify-alert: #dd2c00;
   --color-black: rgba(0, 0, 0, 0.376);
+  --color-movie-loader: rgba(10, 10, 10, 0.568);
   --font-size-sm : 12px;
 }

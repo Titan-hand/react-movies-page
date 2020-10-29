@@ -9,7 +9,7 @@ import MovieCoverImage from "./Components/MovieCoverImage";
 import "./Styles/styles.css";
 
 const MovieComponent = (props) => {
-  const { movieInfo, isLoading, error } = props;
+  const { movieInfo, isLoading } = props;
   return isLoading ? (
     <Loader size="90px" isopen />
   ) : (
