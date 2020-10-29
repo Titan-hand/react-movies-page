@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function MovieCategory({ background, movies, genrer }) {
@@ -9,8 +10,13 @@ function MovieCategory({ background, movies, genrer }) {
           <i className="fa fa-film" style={{ fontSize: "1.2rem" }}></i>
           <h4 style={{ textTransform: "capitalize" }}>{genrer}</h4>
         </li>
-        {movies.map(({ title, id }) => (
-          <li key={id}>{title}</li>
+        {movies.map(({ title, id, small_cover_image }) => (
+          <li key={id}>
+            <img src={small_cover_image} alt="" loading="lazy" />
+            <Link to={`/movies/${id}`}>
+              <span>{title}</span>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

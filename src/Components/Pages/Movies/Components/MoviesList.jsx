@@ -11,12 +11,14 @@ export default function MoviesList({ moviesGenrers }) {
     <div className="movies-movies">
       {/*Este map es para crear los banners de cada categoria */}
       {moviesGenrers.map((movieGenrer, index) => {
+        const { genrer } = movieGenrer;
         return (
           <div className="movies-category" key={index}>
             <Banner
-              title={movieGenrer.genrer}
+              title={genrer}
+              slug={`/${genrer}`}
               image="https://image.freepik.com/free-vector/stylish-hexagonal-line-pattern-background_1017-19742.jpg"
-              {...getColorsBanner(movieGenrer.genrer)}
+              {...getColorsBanner(genrer)}
             />
 
             {/*Y este otro map es para iterar en el arreglo de peliculas */}

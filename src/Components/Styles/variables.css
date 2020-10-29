@@ -1,14 +1,15 @@
 :root {
   --color-dark: #212121;
+  --color-white-original: #fff;
   --color-white: rgba(255, 255, 255, 0.863);
   --color-white-light: rgba(255, 255, 255, 0.781);
   --color-gray: #eee;
   --color-gray-light: rgba(238, 238, 238, 0.466);
-  --color-yellow : #fddb3a;
-  --color-nav-active-link : #ffd91da9;
+  --color-yellow: #fddb3a;
+  --color-nav-active-link: #ffd91da9;
   --color-online-user: #86f309;
   --color-notify-alert: #dd2c00;
   --color-black: rgba(0, 0, 0, 0.376);
   --color-movie-loader: rgba(10, 10, 10, 0.568);
-  --font-size-sm : 12px;
+  --font-size-sm: 12px;
 }
