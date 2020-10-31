@@ -29,6 +29,7 @@ function testSimpleInputs(InputComponent){
     expect(onChange.mock.calls).toEqual([ [{ target: {value: 'bye'}}] ]);
 }
 
+// start testing
 describe('Testing Inputs', () => {
     it('input text', () => {
         testSimpleInputs(Text);
