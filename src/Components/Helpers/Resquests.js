@@ -4,10 +4,10 @@ import {
   SIGNUP_URL,
   GET_INFO_USER_LOGGED,
   VALIDATE_TOKEN_URL,
-} from "../Config/api";
+} from "../Config/api.js";
 
-import { MOVIES_ALL, MOVIES_GENRERS_URL, MOVIES_GENRERS, MOVIE_ID_URL } from "../Config/apiMovies";
-import { alertError } from "./notifications";
+import { MOVIES_ALL, MOVIES_GENRERS_URL, MOVIES_GENRERS, MOVIE_ID_URL } from "../Config/apiMovies.js";
+import { alertError } from "./notifications.js";
 
 class Requests {
   _showNetworkErrorAlert(status) {
@@ -27,7 +27,7 @@ class Requests {
 
     // It is very important, an exception is created that the other requests will detect
     // Required for promises to use the catch statement.
-    throw  new Error(error);
+    throw new Error(error);
   }
 
   async _post(url, args, headers) {

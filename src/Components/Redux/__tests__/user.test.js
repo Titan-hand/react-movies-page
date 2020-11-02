@@ -63,6 +63,4 @@ describe('Redux -> user', () => {
         });
     })
 
-
-
 });

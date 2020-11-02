@@ -11,6 +11,7 @@ const moviesData = [
 ];
 
 describe('Redux -> movies', () => {
+    
     describe('movies actions', () => {
         it('SetMovies', () => {
             const moviesAction = SetMovies(moviesData);
