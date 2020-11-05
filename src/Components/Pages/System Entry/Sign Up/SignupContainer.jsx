@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 // components
 import SignupComponent from "./SignupComponent";
@@ -8,15 +9,22 @@ import { alertError, alertSuccess } from "../../../Helpers/notifications";
 // api links
 import Resquests from "../../../Helpers/Resquests";
 
+let cancelRequest = null;
 const SignupContainer = () => {
   const [credentials, setCredentials] = useState({
     username: "",
     email: "",
     password: "",
   });
-  const [isRegistrered, setRegistrered] = useState(false);
 
+  const [isRegistrered, setRegistrered] = useState(false);
   const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      cancelRequest && cancelRequest.cancel();
+    };
+  }, []);
 
   const onChangeCredentials = ({ target }) => {
     setCredentials({
@@ -28,12 +36,15 @@ const SignupContainer = () => {
   const onSubmitForm = async (ev) => {
     ev.preventDefault();
     setLoading(true);
-
+    cancelRequest = axios.CancelToken.source();
     try {
       const res = await Resquests.signup({
         username: credentials.username,
         email: credentials.email,
         password: credentials.password,
+        headers: {
+          cancelToken: cancelRequest.token,
+        },
       });
 
       if (res?.data?.ok === false) {

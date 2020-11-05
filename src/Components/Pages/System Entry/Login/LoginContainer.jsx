@@ -32,7 +32,6 @@ const LoginContainer = (props) => {
   */
   useEffect(() => {
     return () => {
-      console.log("component will unmount???", cancelResquest);
       cancelResquest && cancelResquest.cancel();
     };
   }, []);
@@ -51,15 +50,13 @@ const LoginContainer = (props) => {
     cancelResquest = axios.CancelToken.source();
 
     try {
-      const res = await Resquests.login(
-        {
-          email: credentials.email,
-          password: credentials.password,
-        },
-        {
+      const res = await Resquests.login({
+        email: credentials.email,
+        password: credentials.password,
+        headers: {
           cancelToken: cancelResquest.token, // the token
-        }
-      );
+        },
+      });
 
       if (res?.data?.ok === false) {
         alertError("Error in your credentials");

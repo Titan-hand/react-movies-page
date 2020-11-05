@@ -6,7 +6,12 @@ import {
   VALIDATE_TOKEN_URL,
 } from "../Config/api.js";
 
-import { MOVIES_ALL, MOVIES_GENRERS_URL, MOVIES_GENRERS, MOVIE_ID_URL } from "../Config/apiMovies.js";
+import {
+  MOVIES_ALL,
+  MOVIES_GENRERS_URL,
+  MOVIES_GENRERS,
+  MOVIE_ID_URL,
+} from "../Config/apiMovies.js";
 import { alertError } from "./notifications.js";
 
 class Requests {
@@ -15,14 +20,12 @@ class Requests {
     if (status >= 400 && status < 500) {
       alertError("A client network error occurred.");
       error = "A client network error occurred.";
-
     } else if (status >= 500 && status < 600) {
       alertError("Platform server error.");
-       error ="Platform server error."
-
+      error = "Platform server error.";
     } else {
       alertError("A connection error occurred.");
-       error = "A connection error occurred.";
+      error = "A connection error occurred.";
     }
 
     // It is very important, an exception is created that the other requests will detect
@@ -32,15 +35,7 @@ class Requests {
 
   async _post(url, args, headers) {
     try {
-      const res = await axios.post(
-        url,
-        {
-          ...args,
-        },
-        {
-          ...headers,
-        }
-      );
+      const res = await axios.post(url, args, headers);
       return res;
     } catch (error) {
       this._showNetworkErrorAlert(error?.response?.status);
@@ -113,17 +108,17 @@ class Requests {
     };
   }
 
-  async getAllGenrersMovies(){
+  async getAllGenrersMovies() {
     const moviesGenrersPromises = [];
 
     for (const genrer of MOVIES_GENRERS) {
       moviesGenrersPromises.push(this.getGenrerMovie(genrer));
     }
 
-    return axios.all(moviesGenrersPromises)
+    return axios.all(moviesGenrersPromises);
   }
 
-  async getInfoMovieId(id){
+  async getInfoMovieId(id) {
     const movie = await this._get(MOVIE_ID_URL(id));
     return movie?.data?.data?.movie;
   }
