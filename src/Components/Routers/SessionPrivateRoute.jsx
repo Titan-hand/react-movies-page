@@ -13,6 +13,7 @@ import { alertWarn } from "../Helpers/notifications";
 import { SetCurrentUserInfo } from "../Redux/Actions/UserActions";
 import Resquests from "../Helpers/Resquests";
 import ErrorPage from "../Elements/Errors/ErrorPage";
+import axios from "axios";
 
 class SessionPrivateRoute extends Component {
   state = {
@@ -23,17 +24,21 @@ class SessionPrivateRoute extends Component {
     error: null,
   };
 
+  cancelRequest = null;
+
   checkToken = async () => {
     const token = getToken();
-    console.log("checkToken  ", token);
-    const validToken = await isValidToken(token);
+    const validToken = await isValidToken(token, this.cancelRequest.token);
     this.setState({ validToken });
   };
 
   // save info in redux again if store is void, for example user reload the page
   saveUserInfo = async () => {
     if (this.state.validToken) {
-      const userData = await Resquests.getInfoUserLogged(getToken());
+      const userData = await Resquests.getInfoUserLogged(
+        getToken(),
+        this.cancelRequest.token
+      );
       if (userData) this.props.SetCurrentUserInfo(userData);
     }
   };
@@ -45,6 +50,7 @@ class SessionPrivateRoute extends Component {
       await this.saveUserInfo();
       this.setState({ isLoading: false, allChecked: true });
     } catch (error) {
+      console.loh(error);
       this.setState({
         isLoading: false,
         allChecked: true,
@@ -57,7 +63,12 @@ class SessionPrivateRoute extends Component {
     // si el usuario no está logueado
     // (ya sea que recargo la pagina o sea un anonimo) comprobamos si hay un token
     //  si ese token es valido, hacemos una sesion persistente
-     this.checkAndSave();
+    this.cancelRequest = axios.CancelToken.source();
+    this.checkAndSave();
+  }
+
+  componentWillUnmount() {
+    this.cancelRequest && this.cancelRequest.cancel();
   }
 
   render() {

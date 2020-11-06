@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-
-// import { useSelector } from 'react-redux';
-
-// components
 import LoginComponent from "./LoginComponent";
 import { alertError, alertSuccess } from "../../../Helpers/notifications";
-
-// Redux elements
 import { connect } from "react-redux";
 import { SetCurrentUserInfo } from "../../../Redux/Actions/UserActions";
-
-// api links
 import Resquests from "../../../Helpers/Resquests";
 import { saveToken } from "../../../Helpers/tokenFunctions";
 
@@ -26,10 +18,7 @@ const LoginContainer = (props) => {
 
   const [isLogged, setLogged] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  /*
-  
-    This cancellation of the petition DOES NOT WORK
-  */
+ 
   useEffect(() => {
     return () => {
       cancelResquest && cancelResquest.cancel();
@@ -49,34 +38,36 @@ const LoginContainer = (props) => {
 
     cancelResquest = axios.CancelToken.source();
 
-    try {
-      const res = await Resquests.login({
-        email: credentials.email,
-        password: credentials.password,
-        headers: {
-          cancelToken: cancelResquest.token, // the token
-        },
-      });
+    const res = await Resquests.login({
+      email: credentials.email,
+      password: credentials.password,
+      headers: {
+        cancelToken: cancelResquest.token,
+      },
+    });
 
-      if (res?.data?.ok === false) {
-        alertError("Error in your credentials");
-      } else if (res?.data?.ok === true) {
-        alertSuccess("Successful login.");
-        const userInfoLogged = await Resquests.getInfoUserLogged(
-          res.data.data.token
-        );
-
-        saveToken(res.data.data.token);
-        props.SetCurrentUserInfo(userInfoLogged);
-        setLogged(true);
-      }
+    // esta actualizacion se ejecuta despues de la redireccion en el renderizado
+    // lo que causa la advertencia del componente desmontado
+    // setLoading(false);
+    if (res?.data?.ok === false) {
+      alertError("Error in your credentials");
       setLoading(false);
-    } catch (e) {
+    } else if (res?.data?.ok === true) {
+      alertSuccess("Successful login.");
+      const userInfoLogged = await Resquests.getInfoUserLogged(
+        res.data.data.token
+      );
+      saveToken(res.data.data.token);
+      props.SetCurrentUserInfo(userInfoLogged);
+      setLogged(true);
       setLoading(false);
     }
   };
 
-  return isLogged ? (
+  // Se hace uso de isLoading para evitar que la redireccion (renderizar <Redirect>)
+  // se ejecute antes que la actualizacion de isLoading, por lo tanto para poder
+  // redireccionar el componente debe estar totalmente cargado
+  return isLogged && !isLoading ? (
     <Redirect to="/movies" />
   ) : (
     <LoginComponent

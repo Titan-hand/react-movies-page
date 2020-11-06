@@ -21,10 +21,10 @@ export function existToken() {
   );
 }
 
-export async function isValidToken(token) {
+export async function isValidToken(token, cancelToken) {
   if (!existToken()) {
     return false;
   }
-  const _isValidToken = await Requests.validateToken(token);
+  const _isValidToken = await Requests.validateToken(token, cancelToken);
   return _isValidToken;
 }

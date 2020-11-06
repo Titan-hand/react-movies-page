@@ -1,6 +1,4 @@
 import React from "react";
-
-// Components
 import Center from "../../../Elements/Aligns/Center";
 import Background from "../../../Elements/Background/Background";
 import SignupForm from "./Components/SignupForm";

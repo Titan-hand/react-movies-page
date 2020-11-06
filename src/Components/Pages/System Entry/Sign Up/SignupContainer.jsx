@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-
-// components
 import SignupComponent from "./SignupComponent";
 import { alertError, alertSuccess } from "../../../Helpers/notifications";
-
-// api links
 import Resquests from "../../../Helpers/Resquests";
 
 let cancelRequest = null;
+
 const SignupContainer = () => {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -37,29 +34,27 @@ const SignupContainer = () => {
     ev.preventDefault();
     setLoading(true);
     cancelRequest = axios.CancelToken.source();
-    try {
-      const res = await Resquests.signup({
-        username: credentials.username,
-        email: credentials.email,
-        password: credentials.password,
-        headers: {
-          cancelToken: cancelRequest.token,
-        },
-      });
 
-      if (res?.data?.ok === false) {
-        alertError("Failed to create account.");
-        setLoading(false);
-      } else if (res?.data?.ok === true) {
-        alertSuccess("Account created.");
-        setRegistrered(true);
-      }
-    } catch (error) {
+    const res = await Resquests.signup({
+      username: credentials.username,
+      email: credentials.email,
+      password: credentials.password,
+      headers: {
+        cancelToken: cancelRequest.token,
+      },
+    });
+
+    if (res?.data?.ok === false) {
+      alertError("Failed to create account.");
+      setLoading(false);
+    } else if (res?.data?.ok === true) {
+      alertSuccess("Account created.");
+      setRegistrered(true);
       setLoading(false);
     }
   };
 
-  return isRegistrered ? (
+  return isRegistrered && !isLoading ? (
     <Redirect to="/login" />
   ) : (
     <SignupComponent

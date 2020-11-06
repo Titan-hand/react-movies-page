@@ -15,8 +15,9 @@ import {
 import { alertError } from "./notifications.js";
 
 class Requests {
-  _showNetworkErrorAlert(status) {
+  _showNetworkErrorAlert(status, fullError) {
     let error = "";
+    console.log(fullError)
     if (status >= 400 && status < 500) {
       alertError("A client network error occurred.");
       error = "A client network error occurred.";
@@ -27,10 +28,6 @@ class Requests {
       alertError("A connection error occurred.");
       error = "A connection error occurred.";
     }
-
-    // It is very important, an exception is created that the other requests will detect
-    // Required for promises to use the catch statement.
-    throw new Error(error);
   }
 
   async _post(url, args, headers) {
@@ -38,7 +35,7 @@ class Requests {
       const res = await axios.post(url, args, headers);
       return res;
     } catch (error) {
-      this._showNetworkErrorAlert(error?.response?.status);
+      this._showNetworkErrorAlert(error?.response?.status, error);
     }
   }
 
@@ -50,7 +47,7 @@ class Requests {
       });
       return res;
     } catch (error) {
-      this._showNetworkErrorAlert(error?.response?.status);
+      this._showNetworkErrorAlert(error?.response?.status, error);
     }
   }
 
@@ -72,10 +69,12 @@ class Requests {
     return signupUser;
   }
 
-  async getInfoUserLogged(token) {
+  async getInfoUserLogged(token, cancelToken) {
     const userInfoLogged = await this._get(
       GET_INFO_USER_LOGGED,
-      {},
+      {
+        cancelToken,
+      },
       {
         authorization: `Bearer ${token}`,
       }
@@ -83,10 +82,12 @@ class Requests {
     return userInfoLogged?.data?.data?.user;
   }
 
-  async validateToken(token) {
+  async validateToken(token, cancelToken) {
     const isValidToken = await this._get(
       VALIDATE_TOKEN_URL,
-      {},
+      {
+        cancelToken,
+      },
       {
         authorization: `Bearer ${token}`,
       }
