@@ -5,6 +5,7 @@
   background: #0f2027;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+  user-select: none;
 }
 
 .label-form-system-entry {
@@ -32,4 +33,15 @@ input.input-form-system-entry:focus {
 
 body .field:not(:last-child) {
   margin-bottom: 3rem;
+}
+
+.link-system-entry {
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-white);
+  font-weight: lighter;
+}
+
+.link-system-entry > i{
+  margin-left: 5px;
 }

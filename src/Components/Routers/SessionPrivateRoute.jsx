@@ -69,6 +69,7 @@ class SessionPrivateRoute extends Component {
 
   componentWillUnmount() {
     this.cancelRequest && this.cancelRequest.cancel();
+    console.log("Se cancela la comprobacion private route")
   }
 
   render() {

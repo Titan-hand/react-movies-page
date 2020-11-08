@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import LoaderBtn from "../../../../Elements/Buttons/LoaderBtn";
 import LabeledInput from "../../../../Elements/Inputs/LabeledInput/LabeledInput";
 
@@ -61,6 +61,10 @@ const LoginForm = ({
           }}
           isopen={isLoading}
         />
+        <Link to="/signup" className="link-system-entry">
+          <small>Sign up here</small>
+          <i className="fa fa-arrow-right" />
+        </Link>
       </div>
     </form>
   );
