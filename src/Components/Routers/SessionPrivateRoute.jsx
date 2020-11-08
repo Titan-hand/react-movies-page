@@ -50,7 +50,7 @@ class SessionPrivateRoute extends Component {
       await this.saveUserInfo();
       this.setState({ isLoading: false, allChecked: true });
     } catch (error) {
-      console.loh(error);
+      console.log(error);
       this.setState({
         isLoading: false,
         allChecked: true,

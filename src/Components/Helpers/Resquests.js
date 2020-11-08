@@ -74,7 +74,7 @@ class Requests {
     return signupUser;
   }
 
-  async getInfoUserLogged(token, cancelToken) {
+  async getInfoUserLogged(token, cancelToken = null) {
     const userInfoLogged = await this._get(
       GET_INFO_USER_LOGGED,
       {
@@ -87,7 +87,7 @@ class Requests {
     return userInfoLogged?.data?.data?.user;
   }
 
-  async validateToken(token, cancelToken) {
+  async validateToken(token, cancelToken = null) {
     const isValidToken = await this._get(
       VALIDATE_TOKEN_URL,
       {
