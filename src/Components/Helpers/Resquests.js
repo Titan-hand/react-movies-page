@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ABORTED_REQUEST } from "../Config/networkErrors";
 import {
   LOGIN_URL,
   SIGNUP_URL,
@@ -15,9 +16,8 @@ import {
 import { alertError } from "./notifications.js";
 
 class Requests {
-  _showNetworkErrorAlert(status, fullError) {
-    let error = "";
-    console.log(fullError)
+  _showNetworkErrorAlert(status) {
+    let error;
     if (status >= 400 && status < 500) {
       alertError("A client network error occurred.");
       error = "A client network error occurred.";
@@ -28,6 +28,7 @@ class Requests {
       alertError("A connection error occurred.");
       error = "A connection error occurred.";
     }
+    throw new Error(error);
   }
 
   async _post(url, args, headers) {
@@ -35,7 +36,9 @@ class Requests {
       const res = await axios.post(url, args, headers);
       return res;
     } catch (error) {
-      this._showNetworkErrorAlert(error?.response?.status, error);
+      if (error?.message !== ABORTED_REQUEST) {
+        this._showNetworkErrorAlert(error?.response?.status);
+      }
     }
   }
 
@@ -47,7 +50,9 @@ class Requests {
       });
       return res;
     } catch (error) {
-      this._showNetworkErrorAlert(error?.response?.status, error);
+      if (error?.message !== ABORTED_REQUEST) {
+        this._showNetworkErrorAlert(error?.response?.status);
+      }
     }
   }
 

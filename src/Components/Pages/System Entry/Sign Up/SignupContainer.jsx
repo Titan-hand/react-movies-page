@@ -4,6 +4,7 @@ import axios from "axios";
 import SignupComponent from "./SignupComponent";
 import { alertError, alertSuccess } from "../../../Helpers/notifications";
 import Resquests from "../../../Helpers/Resquests";
+import { ABORTED_REQUEST } from "../../../Config/networkErrors";
 
 let cancelRequest = null;
 
@@ -19,7 +20,7 @@ const SignupContainer = () => {
 
   useEffect(() => {
     return () => {
-      cancelRequest && cancelRequest.cancel();
+      cancelRequest && cancelRequest.cancel(ABORTED_REQUEST);
     };
   }, []);
 
@@ -35,21 +36,25 @@ const SignupContainer = () => {
     setLoading(true);
     cancelRequest = axios.CancelToken.source();
 
-    const res = await Resquests.signup({
-      username: credentials.username,
-      email: credentials.email,
-      password: credentials.password,
-      headers: {
-        cancelToken: cancelRequest.token,
-      },
-    });
+    try {
+      const res = await Resquests.signup({
+        username: credentials.username,
+        email: credentials.email,
+        password: credentials.password,
+        headers: {
+          cancelToken: cancelRequest.token,
+        },
+      });
 
-    if (res?.data?.ok === false) {
-      alertError("Failed to create account.");
-      setLoading(false);
-    } else if (res?.data?.ok === true) {
-      alertSuccess("Account created.");
-      setRegistrered(true);
+      if (res?.data?.ok === false) {
+        alertError("Failed to create account.");
+        setLoading(false);
+      } else if (res?.data?.ok === true) {
+        alertSuccess("Account created.");
+        setRegistrered(true);
+        setLoading(false);
+      }
+    } catch (error) {
       setLoading(false);
     }
   };

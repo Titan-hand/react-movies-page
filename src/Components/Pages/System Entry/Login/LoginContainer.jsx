@@ -7,9 +7,9 @@ import { connect } from "react-redux";
 import { SetCurrentUserInfo } from "../../../Redux/Actions/UserActions";
 import Resquests from "../../../Helpers/Resquests";
 import { saveToken } from "../../../Helpers/tokenFunctions";
+import { ABORTED_REQUEST } from "../../../Config/networkErrors";
 
 let cancelResquest = null;
-
 const LoginContainer = (props) => {
   const [credentials, setCredentials] = useState({
     email: "",
@@ -18,10 +18,10 @@ const LoginContainer = (props) => {
 
   const [isLogged, setLogged] = useState(false);
   const [isLoading, setLoading] = useState(false);
- 
+
   useEffect(() => {
     return () => {
-      cancelResquest && cancelResquest.cancel();
+      cancelResquest && cancelResquest.cancel(ABORTED_REQUEST);
     };
   }, []);
 
@@ -37,29 +37,32 @@ const LoginContainer = (props) => {
     setLoading(true);
 
     cancelResquest = axios.CancelToken.source();
+    try {
+      const res = await Resquests.login({
+        email: credentials.email,
+        password: credentials.password,
+        headers: {
+          cancelToken: cancelResquest.token,
+        },
+      });
 
-    const res = await Resquests.login({
-      email: credentials.email,
-      password: credentials.password,
-      headers: {
-        cancelToken: cancelResquest.token,
-      },
-    });
-
-    // esta actualizacion se ejecuta despues de la redireccion en el renderizado
-    // lo que causa la advertencia del componente desmontado
-    // setLoading(false);
-    if (res?.data?.ok === false) {
-      alertError("Error in your credentials");
-      setLoading(false);
-    } else if (res?.data?.ok === true) {
-      alertSuccess("Successful login.");
-      const userInfoLogged = await Resquests.getInfoUserLogged(
-        res.data.data.token
-      );
-      saveToken(res.data.data.token);
-      props.SetCurrentUserInfo(userInfoLogged);
-      setLogged(true);
+      // esta actualizacion se ejecuta despues de la redireccion en el renderizado
+      // lo que causa la advertencia del componente desmontado
+      // setLoading(false);
+      if (res?.data?.ok === false) {
+        alertError("Error in your credentials");
+        setLoading(false);
+      } else if (res?.data?.ok === true) {
+        alertSuccess("Successful login.");
+        const userInfoLogged = await Resquests.getInfoUserLogged(
+          res.data.data.token
+        );
+        saveToken(res.data.data.token);
+        props.SetCurrentUserInfo(userInfoLogged);
+        setLogged(true);
+        setLoading(false);
+      }
+    } catch (error) {
       setLoading(false);
     }
   };
