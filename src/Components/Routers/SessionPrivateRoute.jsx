@@ -1,11 +1,5 @@
-/**
- * ruta para manejar solamente si un usuario esta logueado o no.
- *
- * en caso de ya estar logueado no hace falta la comprobación del token
- */
 import React, { Component } from "react";
 import LoaderPage from "../Elements/Loaders/LoaderPage";
-
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import { isValidToken, getToken } from "../Helpers/tokenFunctions";
@@ -14,6 +8,7 @@ import { SetCurrentUserInfo } from "../Redux/Actions/UserActions";
 import Resquests from "../Helpers/Resquests";
 import ErrorPage from "../Elements/Errors/ErrorPage";
 import axios from "axios";
+import { ABORTED_REQUEST } from "../Config/networkErrors";
 
 class SessionPrivateRoute extends Component {
   state = {
@@ -26,39 +21,6 @@ class SessionPrivateRoute extends Component {
 
   cancelRequest = null;
 
-  checkToken = async () => {
-    const token = getToken();
-    const validToken = await isValidToken(token, this.cancelRequest.token);
-    this.setState({ validToken });
-  };
-
-  // save info in redux again if store is void, for example user reload the page
-  saveUserInfo = async () => {
-    if (this.state.validToken) {
-      const userData = await Resquests.getInfoUserLogged(
-        getToken(),
-        this.cancelRequest.token
-      );
-      if (userData) this.props.SetCurrentUserInfo(userData);
-    }
-  };
-
-  // check token and then save userdata if is neccessary
-  checkAndSave = async () => {
-    try {
-      await this.checkToken();
-      await this.saveUserInfo();
-      this.setState({ isLoading: false, allChecked: true });
-    } catch (error) {
-      console.log(error);
-      this.setState({
-        isLoading: false,
-        allChecked: true,
-        error: true,
-      });
-    }
-  };
-
   componentDidMount() {
     // si el usuario no está logueado
     // (ya sea que recargo la pagina o sea un anonimo) comprobamos si hay un token
@@ -68,9 +30,49 @@ class SessionPrivateRoute extends Component {
   }
 
   componentWillUnmount() {
-    this.cancelRequest && this.cancelRequest.cancel();
-    console.log("Se cancela la comprobacion private route")
+    this.cancelRequest && this.cancelRequest.cancel(ABORTED_REQUEST);
   }
+
+  checkToken = async () => {
+    const token = getToken();
+    const validToken = await isValidToken(token, this.cancelRequest.token);
+    // Si la solicitud se cancela, entonces el token no existe
+    if (validToken) {
+      this.setState({ validToken });
+      return true;
+    }
+  };
+
+  // save info in redux again if store is void, for example user reload the page
+  saveUserInfo = async () => {
+    if (this.state.validToken) {
+      const userData = await Resquests.getInfoUserLogged(
+        getToken(),
+        this.cancelRequest.token
+      );
+      if (userData) {
+        this.props.SetCurrentUserInfo(userData);
+        return true;
+      }
+    }
+  };
+
+  // check token and then save userdata if is neccessary
+  checkAndSave = async () => {
+    try {
+      const validToken = await this.checkToken();
+      const iValidUser = await this.saveUserInfo();
+      if (validToken && iValidUser) {
+        this.setState({ isLoading: false, allChecked: true });
+      }
+    } catch (error) {
+      this.setState({
+        isLoading: false,
+        allChecked: true,
+        error: true,
+      });
+    }
+  };
 
   render() {
     const {

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import { isValidToken, getToken } from "../Helpers/tokenFunctions";
 import ErrorPage from "../Elements/Errors/ErrorPage";
+import axios from "axios";
 
 class SessionRedirectRoute extends Component {
   state = {
@@ -14,19 +15,28 @@ class SessionRedirectRoute extends Component {
     token: getToken(),
     error: null,
   };
+  cancelRequest = null;
+
+  componentDidMount() {
+    this.cancelRequest = axios.CancelToken.source();
+    this.checkToken();
+  }
+
+  componentWillUnmount() {
+    this.cancelRequest && this.cancelRequest.cancel();
+  }
 
   checkToken = async () => {
     try {
-      const validToken = await isValidToken(getToken());
-      this.setState({ isLoading: false, validToken });
+      const validToken = await isValidToken(
+        getToken(),
+        this.cancelRequest.token
+      );
+      validToken && this.setState({ isLoading: false, validToken });
     } catch (error) {
       this.setState({ isLoading: false, error });
     }
   };
-
-  componentDidMount() {
-    this.checkToken();
-  }
 
   render() {
     const { isLoggedUser, isLoading, validToken, error } = this.state;

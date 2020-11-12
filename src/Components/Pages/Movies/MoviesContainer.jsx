@@ -6,10 +6,9 @@ import { SetMovies } from "../../Redux/Actions/MoviesActions";
 
 const MoviesContainer = (props) => {
   const [moviesGenrers, setMoviesGenrers] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { movies, SetMovies } = props;
-
 
   useEffect(() => {
     if (movies && movies?.movies?.length > 0) {
@@ -17,6 +16,7 @@ const MoviesContainer = (props) => {
       setLoading(false);
       setMoviesGenrers(movies.movies);
     } else {
+      setLoading(true);
       Requests.getAllGenrersMovies()
         .then((movies) => {
           setLoading(false);

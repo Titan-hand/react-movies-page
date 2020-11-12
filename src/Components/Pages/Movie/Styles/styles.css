@@ -1,11 +1,25 @@
-.title-movie{
-	font-size: 3em;
+.title-movie {
+  font-size: 3em;
+  margin-bottom: 2rem;
 }
 
-.movie-description{
-	margin-top: 2rem;
+.container-movie {
+  margin-top: 4rem;
 }
 
-.container-movie{
-	margin-top: 4rem;
+.movie-page-container > p {
+  margin-bottom: 1rem;
+}
+
+.movie-page-container > p > span {
+  color: var(--color-yellow);
+}
+
+.movie-page-container > p > span > i {
+  margin-right: 10px;
+}
+
+img.movie-page-cover-image {
+  height: 100%;
+  margin-left: 2rem;
 }

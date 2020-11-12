@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 function MovieCoverImage({ large_cover_image, title }) {
   return (
-    <div className="column-5 column-xl-12">
+    <div className="column-6 column-lg-12">
       <img
         src={large_cover_image}
         alt={`Movie ${title}'s coverimage`}
-        className="image image-cover"
+        className="image image-cover movie-page-cover-image"
       />
     </div>
   );

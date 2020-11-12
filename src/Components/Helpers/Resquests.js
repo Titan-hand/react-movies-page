@@ -124,8 +124,8 @@ class Requests {
     return axios.all(moviesGenrersPromises);
   }
 
-  async getInfoMovieId(id) {
-    const movie = await this._get(MOVIE_ID_URL(id));
+  async getInfoMovieId(id, cancelToken = null) {
+    const movie = await this._get(MOVIE_ID_URL(id), { cancelToken });
     return movie?.data?.data?.movie;
   }
 }

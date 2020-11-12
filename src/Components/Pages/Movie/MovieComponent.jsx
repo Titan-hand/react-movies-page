@@ -16,7 +16,7 @@ const MovieComponent = (props) => {
     <Layout>
       <Container className="container-movie">
         <BackgroundImage image={movieInfo.background_image} />
-        <div className="columns columns-xl-reverse">
+        <div className="columns">
           <MovieInfo {...movieInfo} />
           <MovieCoverImage {...movieInfo} />
         </div>
