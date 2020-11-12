@@ -25,7 +25,7 @@ class SessionPrivateRoute extends Component {
 
   checkToken = async () => {
     const token = getToken();
-    console.log("checkToken  ", token);
+    // console.log("checkToken  ", token);
     const validToken = await isValidToken(token);
     this.setState({ validToken });
   };

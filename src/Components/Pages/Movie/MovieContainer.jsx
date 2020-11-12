@@ -12,7 +12,7 @@ const MovieContainer = () => {
   useEffect(() => {
   	Requests.getInfoMovieId(id)
   	.then(movie => {
-  		console.log(movie)
+  		// console.log(movie)
   		setMovieInfo(movie);
   		setLoading(false);
   	})
