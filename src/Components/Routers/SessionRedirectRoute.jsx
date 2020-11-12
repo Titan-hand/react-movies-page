@@ -32,7 +32,7 @@ class SessionRedirectRoute extends Component {
         getToken(),
         this.cancelRequest.token
       );
-      validToken && this.setState({ isLoading: false, validToken });
+      this.setState({ isLoading: false, validToken });
     } catch (error) {
       this.setState({ isLoading: false, error });
     }
