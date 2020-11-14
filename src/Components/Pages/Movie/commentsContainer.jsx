@@ -1,27 +1,38 @@
 import React, { useState, useEffect, useCallback } from 'react';
-// import { useSelector } from 'react-redux';
-import { COMMENTS_URL } from "../../Config/api";
+import Request from '../../Helpers/Resquests';
 // components
 import CommentsComponent from './commentsComponent';
 
 function CommentsContainer({ id,title_long }) {
-    // const { currentUserInfo } = useSelector( state => state.UserInformation);
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
+    const [error, setError] = useState(null);
 
-    const handleSubmit = (ev, text, isReply) => {
+    const handleSubmit = async (ev, text, isReply) => {
         ev.preventDefault();
+        setLoading(true);
         
+        let created;
+        if(isReply){
+            created = await Request.createMovieCommentReply(id, 1234, { text })
+        }else{
+            created = await Request.createMovieComment(id, { text })
+        }
+
+        if(created) getComments();
+        else {
+            setError(true);
+            setLoading(false);
+        }
     }
 
     const getComments = useCallback(async () => {
         setLoading(true);
-        const r = await fetch(`${COMMENTS_URL}?movieId=${id}`);
-        const json = await r.json();
-        if(json.ok){
-            setComments(json.data.comments);
-            setLoading(false);
+        const comments = await Request.getMovieComments(id);
+        if(comments){
+            setComments(comments);
         }
+        setLoading(false);
     }, [id]); 
 
     useEffect(() => {
@@ -31,6 +42,7 @@ function CommentsContainer({ id,title_long }) {
     return(
         <CommentsComponent
             loading={loading}
+            error={error}
             comments={comments}
             handleSubmit={handleSubmit}
             movieName={title_long}

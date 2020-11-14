@@ -1,10 +1,10 @@
-// import React, { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
+import '../Styles/comments.css';
+
 
 function dateStr(date) {
     const d = new Date(date);
-    const { getDate, getMonth, getFullYear } = d;
-    return `${getDate()}/${getMonth() + 1}/${getFullYear()}`;
+    return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
 }
 
 function Comment({ username, text, date, photoUrl }) {
@@ -15,21 +15,39 @@ function Comment({ username, text, date, photoUrl }) {
                 <p className="comment-date">{dateStr(date)}</p>
             </div>
             <div className="comment-right">
-                {text}
+                <p className="comment-text">{text}</p>
             </div>
         </div>
     )
 }
 
 function CommentWraper(commentData) {
+    const [showResponses, setShowResponses ] = useState(false); 
+
     return(
         <div className="comment-wrapper">
             <Comment {...commentData} />
-            <div className="comment-wrapper-responses">
-                {
-                    commentData.responses?.map( r => <Comment {...r} />)
-                }
-            </div>
+            {/* only show responses if a comment have responses */}
+            {
+                (commentData.responses && showResponses) && (
+                <div className="comment-wrapper-responses">
+                    {
+                        commentData.responses?.map( (r, i) => <Comment key={i} {...r} />)
+                    }
+                </div>)
+            }
+            {/* "show/hide responses" button */}
+            {
+                commentData.responses
+                ?
+                <div
+                    className="showResponses"
+                    onClick={() => setShowResponses(!showResponses)}>
+                    {showResponses ? 'Hide' : 'Show'} Responses
+                </div>
+                :
+                null
+            }
         </div>
     )
 }
