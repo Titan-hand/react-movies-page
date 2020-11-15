@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+// context
+import { CommentsContext } from '../commentsContainer';
 // components
 import TextArea from '../../../Elements/Inputs/TextArea';
 import Button from '../../../Elements/Buttons/Submit';
 
-function CommentForm({handleSubmitComment}) {
+function CommentForm({ commentId = null, defaultValue = '' }) {
     const [ text, setText ] = useState('');
+    const { handleSubmitComment } = useContext(CommentsContext);
 
     const handleChange = ev => setText(ev.target.value);
     // handle submit wrapper
@@ -18,7 +21,7 @@ function CommentForm({handleSubmitComment}) {
 
             <TextArea 
                 onChange={handleChange} 
-                value={text} 
+                defaultValue={defaultValue} 
                 placeholder="write a comment" 
             />
             <div className="button-comment-container">

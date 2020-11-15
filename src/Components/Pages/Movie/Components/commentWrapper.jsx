@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // components
 import Comment from './comment';
-import ReplyForm from './replyForm';
+import ReplyFormWrapper from './replyFormWrapper';
 import '../Styles/comments.css';
 
 
@@ -13,30 +13,28 @@ function CommentWraper({ commentData }) {
         <div className="comment-wrapper">
             <Comment {...commentData} />
 
-            {/* reply and show responses buttons */}
-            <div className="comment-actions">
-                <div 
-                    className="comment-makeReply"
-                    onClick={() => setShowForm(true)}
-                >
-                    Reply
-                </div>
-                {
-                    (commentData.responses && !showResponses)
-                    &&
+            {/* reply button */}
+            <div className="commentMakeReply" onClick={() => setShowForm(true)}>
+                Reply
+            </div>
+                
+            {/* show replies button */}
+            {
+                commentData.responses?.length > 0 && (
+                <div className="comment-show-replies">
                     <div
                         className="showResponses"
                         onClick={() => setShowResponses(true)}>
                         Show
                         {' ' + commentData.responses.length}
-                        {commentData.responses.length > 1 ? ' replies' : ' reply'} 
+                        {commentData.responses.length > 1 ? ' replies' : ' reply'}
                     </div>
-                }
-            </div>
+                </div>)
+            }
 
-            {/* reply comment form */}
-            <ReplyForm
-                setShowForm={setShowForm}
+            {/* reply form wrapper, with inmediately reply feedback */}
+            <ReplyFormWrapper
+                closeForm={() => setShowForm(false)}
                 showForm={showForm} 
                 parentCommentId={commentData._id}
             />
@@ -45,8 +43,8 @@ function CommentWraper({ commentData }) {
             {
                 (commentData.responses && showResponses) && (
                 <div className="comment-wrapper-responses">
-                    {
-                        commentData.responses.map( (r, i) => <Comment key={i} {...r} isReply />)
+                    {commentData.responses.map( (r, i) => (
+                        <Comment key={i} {...r} commentId={commentData._id} isReply />))
                     }
                 </div>)
             }
@@ -54,9 +52,7 @@ function CommentWraper({ commentData }) {
             {/* "hide responses" button */}
             {
                 (commentData.responses && showResponses) &&(
-                <div
-                    className="showResponses"
-                    onClick={() => setShowResponses(false)}>
+                <div className="showResponses" onClick={() => setShowResponses(false)}>
                     Hide Replies
                 </div>)
             }

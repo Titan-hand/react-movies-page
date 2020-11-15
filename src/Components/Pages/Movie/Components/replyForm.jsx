@@ -1,38 +1,44 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Request from '../../../Helpers/Resquests';
 // components
 import TextArea from '../../../Elements/Inputs/TextArea';
 import Loader from '../../../Elements/Loaders/Loader';
-import Comment from './comment';
 
 
-function ReplyForm({ showForm, setShowForm, parentCommentId = null}) {
-    const [ replies, setReplies ] = useState([]);
+function ReplyForm({ 
+    showForm, 
+    closeForm, 
+    parentCommentId = null,
+    isEditing = false,
+    index = null, 
+    submitCallback = () => {},
+    defaultValue = ''
+}) 
+{
     const [ text, setText ] = useState('');
     const [loading, setLoading] = useState(false);
     const [ error, setError ] = useState(null);
-    const { currentUserInfo } = useSelector(state => state.UserInformation);
 
     const handleChange = ev => setText(ev.target.value);
 
-    const addReplyToShow = () => setReplies( prevState => {
-        const { username, photoUrl } = currentUserInfo;
-        const newReply = { username, photoUrl, text, date: Date.now() }
-        return [...prevState, newReply];
-    })
-
     const clearForm = () => {
         setText('');
-        setShowForm(false);
+        closeForm();
     }
 
     const handleSubmit = async (ev) => {
         ev.preventDefault();
         setLoading(true);
-        const created = await Request.createMovieCommentReply(parentCommentId, { text })
 
-        if(created) addReplyToShow();
+        let saved;
+        if(isEditing){
+            saved = await Request.updateMovieCommentReply(parentCommentId, index, { text });
+        } else {
+            saved = await Request.createMovieCommentReply(parentCommentId, { text })
+        }
+
+        if(saved) submitCallback(text);
         else setError(true);
     
         setLoading(false);
@@ -44,8 +50,6 @@ function ReplyForm({ showForm, setShowForm, parentCommentId = null}) {
 
     return (
         <div className="replyForm-and-new-replies">
-            {/* show immediately when a reply is created */}
-            { replies.map( (r, i) => <Comment key={i} {...r} isReply /> )}
     
             { loading && <Loader size="30" /> }
             
@@ -55,7 +59,7 @@ function ReplyForm({ showForm, setShowForm, parentCommentId = null}) {
                 <form onSubmit={handleSubmit}>
                     <TextArea 
                         onChange={handleChange} 
-                        value={text} 
+                        defaultValue={defaultValue}
                         placeholder="write a reply" 
                     />
                     <div className="button-comment-container">
@@ -71,6 +75,16 @@ function ReplyForm({ showForm, setShowForm, parentCommentId = null}) {
             }
         </div>
     )
+}
+
+ReplyForm.propTypes = {
+    showForm: PropTypes.bool.isRequired,
+    closeForm: PropTypes.func.isRequired,
+    parentCommentId: PropTypes.string,
+    submitCallback: PropTypes.func,
+    isEditing: PropTypes.bool,
+    index: PropTypes.number
+
 }
 
 export default ReplyForm;

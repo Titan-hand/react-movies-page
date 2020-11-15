@@ -160,6 +160,14 @@ class Requests {
 		return created?.data?.ok;
 	}
 
+	async updateMovieComment(commentId, newText){
+		return true;
+	}
+
+	async updateMovieCommentReply(parentCommentId, index, { text }){
+		return true;
+	}
+
 
 }
 

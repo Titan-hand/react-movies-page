@@ -9,10 +9,19 @@
 
 .comment-cont {
     display: flex;
+    flex-direction: column;
+}
+
+.comment-upside{
+    display: flex;
     background: #868686;
     border: 2px solid #e1e1e199;
     margin-bottom: 5px;
     border-radius: 4px;
+}
+
+.comment-downside{
+    display: flex;
 }
 
 .comment-left{
