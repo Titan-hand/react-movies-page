@@ -60,11 +60,10 @@ class SessionPrivateRoute extends Component {
   // check token and then save userdata if is neccessary
   checkAndSave = async () => {
     try {
-      const validToken = await this.checkToken();
-      const iValidUser = await this.saveUserInfo();
-      if (validToken && iValidUser) {
-        this.setState({ isLoading: false, allChecked: true });
-      }
+      await this.checkToken();
+      await this.saveUserInfo();
+      this.setState({ isLoading: false, allChecked: true });
+      
     } catch (error) {
       this.setState({
         isLoading: false,

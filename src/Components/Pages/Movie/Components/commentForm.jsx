@@ -3,20 +3,26 @@ import React, { useState } from 'react';
 import TextArea from '../../../Elements/Inputs/TextArea';
 import Button from '../../../Elements/Buttons/Submit';
 
-function CommentForm({handleSubmit, isReply = false}) {
+function CommentForm({handleSubmitComment}) {
     const [ text, setText ] = useState('');
+
     const handleChange = ev => setText(ev.target.value);
+    // handle submit wrapper
+    const handleSubmit = (ev, text) => {
+        setText('');
+        handleSubmitComment(ev, text);
+    } 
 
     return (
-        <form onSubmit={(ev) => handleSubmit(ev, text, isReply)}>
+        <form onSubmit={(ev) => handleSubmit(ev, text)}>
 
             <TextArea 
                 onChange={handleChange} 
                 value={text} 
-                placeholder={`write a ${isReply ? 'reply' : 'comment'}`} 
+                placeholder="write a comment" 
             />
             <div className="button-comment-container">
-                <Button value={isReply ? 'reply' : 'comment'} />
+                <Button value="comment" />
             </div>
 
         </form>

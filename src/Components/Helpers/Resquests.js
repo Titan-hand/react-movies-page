@@ -20,7 +20,7 @@ import { getToken } from "./tokenFunctions";
 
 class Requests {
 	_showNetworkErrorAlert(status) {
-		let error;
+		let error; 
 		if (status >= 400 && status < 500) {
 			alertError("A client network error occurred.");
 			error = "A client network error occurred.";
@@ -139,7 +139,6 @@ class Requests {
 			{},
 			{ authorization: `Bearer ${getToken()}` }
 		);
-		console.log(comments.data);
 		return comments?.data?.data?.comments;
 	}
 
@@ -149,12 +148,16 @@ class Requests {
 			{...commentData, movieId},
 			{ authorization: `Bearer ${getToken()}` }
 		);
-		console.log("created", created);
-		return created?.data?.message;
+		return created?.data?.ok;
 	}
 
-	async createMovieCommentReply(movieId, parentCommentId, commentData) {
-		return true;
+	async createMovieCommentReply(parentCommentId, commentData) {
+		const created = await this._post(
+			`${COMMENTS_URL}/reply`,
+			{parentCommentId, ...commentData},
+			{ authorization: `Bearer ${getToken()}` }
+		);
+		return created?.data?.ok;
 	}
 
 

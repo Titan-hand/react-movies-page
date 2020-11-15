@@ -7,7 +7,7 @@
     margin-top: 20px;
 }
 
-.comment-cont{
+.comment-cont {
     display: flex;
     background: #868686;
     border: 2px solid #e1e1e199;
@@ -38,5 +38,27 @@
 
 .comment-wrapper-responses{
     /* background: brown; */
+    padding-left: 70px;
+}
+
+/* replies */
+
+.comment-cont.isReply .comment-left{
+    padding: 5px;
+}
+
+.comment-cont.isReply .comment-left img{
+    width: 27px;
+}
+
+.comment-cont.isReply .comment-right{
+    padding: 5px;
+}
+
+.comment-cont.isReply .comment-text{
+    font-size: 17px;
+}
+
+.replyForm-and-new-replies{
     padding-left: 70px;
 }

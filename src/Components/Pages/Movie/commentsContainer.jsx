@@ -8,17 +8,12 @@ function CommentsContainer({ id,title_long }) {
     const [comments, setComments] = useState([]);
     const [error, setError] = useState(null);
 
-    const handleSubmit = async (ev, text, isReply) => {
+    const handleSubmitComment = async (ev, text) => {
         ev.preventDefault();
         setLoading(true);
         
-        let created;
-        if(isReply){
-            created = await Request.createMovieCommentReply(id, 1234, { text })
-        }else{
-            created = await Request.createMovieComment(id, { text })
-        }
-
+        const created = await Request.createMovieComment(id, { text })
+        
         if(created) getComments();
         else {
             setError(true);
@@ -44,7 +39,7 @@ function CommentsContainer({ id,title_long }) {
             loading={loading}
             error={error}
             comments={comments}
-            handleSubmit={handleSubmit}
+            handleSubmitComment={handleSubmitComment}
             movieName={title_long}
         />
     )
