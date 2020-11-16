@@ -19,7 +19,7 @@ const MovieContainer = () => {
     Requests.getInfoMovieId(id, cancel.token)
       .then((movie) => {
         if (movie) {
-          console.log(movie);
+          // console.log(movie);
           setMovieInfo(movie);
           setLoading(false);
         }

@@ -15,8 +15,8 @@ function CommentsContainer({ id,title_long }) {
         setLoading(true);
         
         let saved;
-        if(commentId) saved = await Request.updateMovieComment(commentId, { text })
-        else saved = await Request.createMovieComment(id, { text })
+        if(commentId) saved = await Request.updateMovieComment(commentId, text);
+        else saved = await Request.createMovieComment(id, text);
         
         if(saved) getComments();
         else {

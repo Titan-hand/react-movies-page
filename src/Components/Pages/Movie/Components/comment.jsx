@@ -7,14 +7,23 @@ import ReplyForm from './replyForm';
 import { dateStr } from '../../../Helpers/dateFunctions';
 
 
-function Comment({ commentId, index, username, text, date, photoUrl, isReply = false }) {
+function Comment({ 
+    commentId, 
+    index, 
+    username, 
+    text, 
+    date, 
+    photoUrl, 
+    isEdited, 
+    isReply = false 
+}) {
     const [deleting, setDeleting] = useState(false);
     const [editing, setEditing] = useState(false);
     const [_text, setText] = useState(text);
     const { currentUserInfo } = useSelector(state => state.UserInformation);
     
     // callback when a pincipal comment is edited
-    const submitCommentCallback = (txt) => {
+    const submitCallback = (txt) => {
         setText(txt);
         setEditing(false);
     }
@@ -27,6 +36,7 @@ function Comment({ commentId, index, username, text, date, photoUrl, isReply = f
                     <img src={photoUrl} alt={username + ' comment'} />
                     <p className="comment-username">{username}</p>
                     <p className="comment-date">{dateStr(date)}</p>
+                    <p className="comment-edited-p">{ isEdited && '(edited)' }</p>
                 </div>
                 <div className="comment-right">
                     {
@@ -38,10 +48,11 @@ function Comment({ commentId, index, username, text, date, photoUrl, isReply = f
                                     parentCommentId={commentId}
                                     index={index}
                                     defaultValue={_text}
+                                    submitCallback={submitCallback}
                                     isEditing 
                                 />) : (
                                 <CommentForm 
-                                    submitCallback={submitCommentCallback} 
+                                    submitCallback={submitCallback} 
                                     commentId={commentId}
                                     defaultValue={_text}
                                 />

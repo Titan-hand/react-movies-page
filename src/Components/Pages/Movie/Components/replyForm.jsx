@@ -33,16 +33,18 @@ function ReplyForm({
 
         let saved;
         if(isEditing){
-            saved = await Request.updateMovieCommentReply(parentCommentId, index, { text });
+            console.log("va a guardar!!! -> index", index);
+            saved = await Request.updateMovieCommentReply(parentCommentId, index, text);
         } else {
-            saved = await Request.createMovieCommentReply(parentCommentId, { text })
+            saved = await Request.createMovieCommentReply(parentCommentId, text)
         }
 
-        if(saved) submitCallback(text);
-        else setError(true);
-    
+        let txt = text;
         setLoading(false);
         clearForm();
+        
+        if(saved) submitCallback(txt);
+        else setError(true);
     }
 
     // === render ===

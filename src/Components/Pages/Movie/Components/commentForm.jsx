@@ -5,19 +5,21 @@ import { CommentsContext } from '../commentsContainer';
 import TextArea from '../../../Elements/Inputs/TextArea';
 import Button from '../../../Elements/Buttons/Submit';
 
-function CommentForm({ commentId = null, defaultValue = '' }) {
-    const [ text, setText ] = useState('');
+function CommentForm({ commentId = null, defaultValue = '', submitCallback = () => null }) {
+    const [ text, setText ] = useState(defaultValue);
     const { handleSubmitComment } = useContext(CommentsContext);
 
     const handleChange = ev => setText(ev.target.value);
     // handle submit wrapper
-    const handleSubmit = (ev, text) => {
+    const handleSubmit = (ev) => {
+        ev.preventDefault();
         setText('');
-        handleSubmitComment(ev, text);
+        submitCallback();
+        handleSubmitComment(ev, text, commentId);
     } 
 
     return (
-        <form onSubmit={(ev) => handleSubmit(ev, text)}>
+        <form onSubmit={handleSubmit}>
 
             <TextArea 
                 onChange={handleChange} 

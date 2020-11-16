@@ -11,7 +11,7 @@ function CommentWraper({ commentData }) {
 
     return(
         <div className="comment-wrapper">
-            <Comment {...commentData} />
+            <Comment {...commentData} commentId={commentData._id} />
 
             {/* reply button */}
             <div className="commentMakeReply" onClick={() => setShowForm(true)}>
@@ -44,7 +44,13 @@ function CommentWraper({ commentData }) {
                 (commentData.responses && showResponses) && (
                 <div className="comment-wrapper-responses">
                     {commentData.responses.map( (r, i) => (
-                        <Comment key={i} {...r} commentId={commentData._id} isReply />))
+                        <Comment 
+                            {...r} 
+                            key={i} 
+                            commentId={commentData._id} 
+                            index={i}
+                            isReply 
+                        />))
                     }
                 </div>)
             }

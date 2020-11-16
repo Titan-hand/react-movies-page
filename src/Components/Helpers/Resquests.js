@@ -36,7 +36,18 @@ class Requests {
 
 	async _post(url, args, headers) {
 		try {
-			const res = await axios.post(url, args, { headers });
+			const res = await axios.post(url, args, { headers, cancelToken: headers.cancelToken });
+			return res;
+		} catch (error) {
+			if (error?.message !== ABORTED_REQUEST) {
+				this._showNetworkErrorAlert(error?.response?.status);
+			}
+		}
+	}
+
+	async _put(url, body, headers) {
+		try {
+			const res = await axios.put(url, body, {headers});
 			return res;
 		} catch (error) {
 			if (error?.message !== ABORTED_REQUEST) {
@@ -142,30 +153,42 @@ class Requests {
 		return comments?.data?.data?.comments;
 	}
 
-	async createMovieComment(movieId, commentData = {}) {
+	async createMovieComment(movieId, text) {
 		const created = await this._post(
 			`${COMMENTS_URL}/create`,
-			{...commentData, movieId},
+			{text, movieId},
 			{ authorization: `Bearer ${getToken()}` }
 		);
 		return created?.data?.ok;
 	}
 
-	async createMovieCommentReply(parentCommentId, commentData) {
+	async createMovieCommentReply(parentCommentId, text) {
 		const created = await this._post(
 			`${COMMENTS_URL}/reply`,
-			{parentCommentId, ...commentData},
+			{parentCommentId, text},
 			{ authorization: `Bearer ${getToken()}` }
 		);
 		return created?.data?.ok;
 	}
 
 	async updateMovieComment(commentId, newText){
-		return true;
+		const updated = await this._put(
+			`${COMMENTS_URL}/update-comment`,
+			{commentId, newText},
+			{ authorization: `Bearer ${getToken()}` }
+		);
+		return updated?.data?.ok;
 	}
 
-	async updateMovieCommentReply(parentCommentId, index, { text }){
-		return true;
+	async updateMovieCommentReply(parentCommentId, index, text){
+		console.log("esta a punto de guardar");
+		const updated = await this._put(
+			`${COMMENTS_URL}/update-reply`,
+			{parentCommentId, index, newText: text},
+			{ authorization: `Bearer ${getToken()}` }
+		);
+		console.log("guardó ???", updated.data);
+		return updated?.data?.ok;
 	}
 
 
