@@ -8,16 +8,31 @@ function ReplyFormWrapper(props) {
     const [ replies, setReplies ] = useState([]);
     const { currentUserInfo } = useSelector(state => state.UserInformation);
 
-    const addReplyToShow = (text) => setReplies( prevState => {
+    // show reply inmediately after create
+    const addReplyToShow = (text, parentCommentId) => setReplies( prevState => {
         const { username, photoUrl } = currentUserInfo;
-        const newReply = { username, photoUrl, text, date: Date.now() }
+        const newReply = { username, photoUrl, text, date: Date.now(), parentCommentId }
         return [...prevState, newReply];
     })
+
+    // remove reply inmediately after delete
+    const removeReply = index => {
+        let repliesCopy = [...replies];
+        repliesCopy.splice(index, 1);
+        setReplies(repliesCopy);
+    }
 
     return (
         <div className="replyForm-and-new-replies">
             {/* show immediately when a reply is created */}
-            { replies.map( (r, i) => <Comment key={i} {...r} isReply /> )}
+            { replies.map( (r, i) => (
+                <Comment 
+                    key={i} {...r} 
+                    commentId={r.parentCommentId} 
+                    isReply 
+                    deleteCallback={() => removeReply(i)}    
+                /> )
+            )}
     
             <ReplyForm {...props} submitCallback={addReplyToShow} />
         </div>

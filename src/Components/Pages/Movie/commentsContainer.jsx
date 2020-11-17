@@ -39,7 +39,7 @@ function CommentsContainer({ id,title_long }) {
     }, [getComments])
 
     return(
-        <CommentsContext.Provider value={{ handleSubmitComment }}>
+        <CommentsContext.Provider value={{ handleSubmitComment, getComments }}>
             <CommentsComponent
                 loading={loading}
                 error={error}

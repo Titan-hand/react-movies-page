@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 // components
 import CommentForm from './commentForm';
 import ReplyForm from './replyForm';
+import DeleteComment from './deleteComment';
 // utils
 import { dateStr } from '../../../Helpers/dateFunctions';
 
@@ -15,7 +17,8 @@ function Comment({
     date, 
     photoUrl, 
     isEdited, 
-    isReply = false 
+    isReply = false,
+    deleteCallback = null 
 }) {
     const [deleting, setDeleting] = useState(false);
     const [editing, setEditing] = useState(false);
@@ -68,13 +71,39 @@ function Comment({
                 (username === currentUserInfo.username) && (
                     <>
                         { !editing && <div onClick={() => setEditing(true)}>Edit</div> }
-                        { !deleting && <div onClick={() => setDeleting(true)}>Delete</div> }
+                        
+                        {!deleting && <div onClick={() => setDeleting(true)}>Delete</div>}
+
+                        <DeleteComment
+                            commentId={commentId}
+                            index={index}
+                            showDelete={deleting}
+                            setShowDelete={setDeleting}
+                            deleteCallback={deleteCallback}
+                            isReply={isReply}
+                        />
                     </>
                 )
             }
             </div>
         </div>
     )
+}
+
+
+Comment.propTypes = {
+    commentId: PropTypes.string.isRequired, 
+    index: PropTypes.number, 
+    username: PropTypes.string.isRequired, 
+    text: PropTypes.string.isRequired, 
+    date: PropTypes.number.isRequired, 
+    photoUrl: PropTypes.string.isRequired, 
+    isEdited: PropTypes.bool, 
+    isReply: PropTypes.bool,
+    deleteCallback: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.oneOf([null])
+    ]),
 }
 
 export default Comment;

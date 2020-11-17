@@ -56,6 +56,19 @@ class Requests {
 		}
 	}
 
+	async _delete(url, headers) {
+		try {
+			const res = await axios.delete(url, {
+				headers
+			} );
+			return res;
+		} catch (error) {
+			if (error?.message !== ABORTED_REQUEST) {
+				this._showNetworkErrorAlert(error?.response?.status);
+			}
+		}
+	}
+
 	async _get(url, args, headers) {
 		try {
 			const res = await axios.get(url, {
@@ -168,7 +181,8 @@ class Requests {
 			{parentCommentId, text},
 			{ authorization: `Bearer ${getToken()}` }
 		);
-		return created?.data?.ok;
+		const { ok, data } = created.data;
+		return { ok, data }
 	}
 
 	async updateMovieComment(commentId, newText){
@@ -181,14 +195,31 @@ class Requests {
 	}
 
 	async updateMovieCommentReply(parentCommentId, index, text){
-		console.log("esta a punto de guardar");
 		const updated = await this._put(
 			`${COMMENTS_URL}/update-reply`,
 			{parentCommentId, index, newText: text},
 			{ authorization: `Bearer ${getToken()}` }
 		);
-		console.log("guardó ???", updated.data);
-		return updated?.data?.ok;
+		const { ok, data } = updated.data;
+		return { ok, data }
+	}
+
+	async deleteMovieComment(commentId){
+		const deleted = await this._delete(
+			`${COMMENTS_URL}/delete-comment?commentId=${commentId}`,
+			{ authorization: `Bearer ${getToken()}` }
+		);
+		console.log("borró comment ???", deleted.data);
+		return deleted?.data?.ok;
+	}
+
+	async deleteMovieCommentReply(parentCommentId, index){
+		const deleted = await this._delete(
+			`${COMMENTS_URL}/delete-reply?parentCommentId=${parentCommentId}&index=${index}`,
+			{ authorization: `Bearer ${getToken()}` }
+		);
+		console.log("borró reply ???", deleted.data);
+		return deleted?.data?.ok;
 	}
 
 

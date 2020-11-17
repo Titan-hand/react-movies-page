@@ -33,7 +33,6 @@ function ReplyForm({
 
         let saved;
         if(isEditing){
-            console.log("va a guardar!!! -> index", index);
             saved = await Request.updateMovieCommentReply(parentCommentId, index, text);
         } else {
             saved = await Request.createMovieCommentReply(parentCommentId, text)
@@ -43,7 +42,7 @@ function ReplyForm({
         setLoading(false);
         clearForm();
         
-        if(saved) submitCallback(txt);
+        if(saved.ok) submitCallback(txt, saved.data.parentCommentId);
         else setError(true);
     }
 
