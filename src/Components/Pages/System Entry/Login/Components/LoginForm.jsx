@@ -23,11 +23,7 @@ const LoginForm = ({
           onChange: onChangeCredentials,
           value: email,
           required: true,
-        }}
-        label-props={{
-          htmlFor: "email",
-          className: "label-floating label-form-system-entry",
-          text: "Email:",
+          placeholder: "Email",
         }}
       />
       <LabeledInput
@@ -41,11 +37,7 @@ const LoginForm = ({
           onChange: onChangeCredentials,
           value: password,
           required: true,
-        }}
-        label-props={{
-          htmlFor: "password",
-          className: "label-floating label-form-system-entry",
-          text: "Password:",
+          placeholder: "Password",
         }}
       />
 

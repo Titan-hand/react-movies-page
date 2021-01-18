@@ -14,11 +14,11 @@ const SignupComponent = (props) => {
         <div className="container">
           <div className="container-system-entry">
             <div className="columns columns-sm-reverse" style={{ padding: 0 }}>
-              <div className="column-7 column-sm-12">
+              <div className="column-7 column-sm-12" style={{ padding: 0 }}>
                 <SignupForm {...props} />
               </div>
 
-              <div className="column-5 column-sm-12">
+              <div className="column-5 column-sm-12" style={{ padding: 0 }}>
                 <div className="container-coverpage container-center-elements relative">
                   <div className="bg-system-entry-coverpage"></div>
                   <h1 className="title title-system-entry">

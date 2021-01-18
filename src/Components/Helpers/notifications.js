@@ -10,7 +10,6 @@ const commonsProps = {
   progress: undefined,
 };
 
-
 export function alertError(title = "Error.") {
   toast.error("☓ " + title, {
     ...commonsProps,

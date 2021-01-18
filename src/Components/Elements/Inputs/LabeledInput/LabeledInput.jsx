@@ -13,18 +13,20 @@ const LabeledInput = (props) => {
     <div className="field">
       <In {...inputProps} />
 
-      <LabelForm
-        {...labelProps}
-        className={`${classNameDetect(labelProps)}${isLabelFloating}`}
-      >
-        {labelProps.text}
-      </LabelForm>
+      {labelProps && (
+        <LabelForm
+          {...labelProps}
+          className={`${classNameDetect(labelProps)}${isLabelFloating}`}
+        >
+          {labelProps.text}
+        </LabelForm>
+      )}
     </div>
   );
 };
 
 LabeledInput.propTypes = {
-  "label-props": PropTypes.object.isRequired,
+  "label-props": PropTypes.object,
   "input-props": PropTypes.object.isRequired,
 };
 export default LabeledInput;

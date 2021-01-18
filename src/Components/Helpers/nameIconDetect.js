@@ -1,6 +1,5 @@
 const nameIconDetect = (props) => {
-    return props.icon ? props.icon : "";
-  };
-  
-  export default nameIconDetect;
-  
+  return props.icon ? props.icon : "";
+};
+
+export default nameIconDetect;

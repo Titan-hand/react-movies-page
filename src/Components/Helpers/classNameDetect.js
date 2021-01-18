@@ -1,5 +1,1 @@
-const classNameDetect = ({className}) => {
-  return className ? " " + className : "";
-};
-
-export default classNameDetect;
+export default ({ className }) => (className ? " " + className : "");

@@ -5,7 +5,7 @@ const NavbarCloseMenu = () => {
     <>
       <div className="nav-menu-toggle">
         <label htmlFor="navbar-nav-toggle">
-          <i className="fa fa-times"></i>
+          <i className="fa fa-times" />
         </label>
       </div>
     </>

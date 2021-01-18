@@ -1,9 +1,7 @@
-const bgColorDetect = (props) => {
-  return props.bgColor
+export default (p) => {
+  return p.bgColor
     ? {
-        backgroundColor: props.bgColor,
+        backgroundColor: p.bgColor,
       }
     : {};
 };
-
-export default bgColorDetect;

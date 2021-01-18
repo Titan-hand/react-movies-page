@@ -10,6 +10,6 @@ body .text-bold {
   font-weight: bold;
 }
 
-.text-white{
+.text-white {
   color: var(--color-white);
 }

@@ -9,7 +9,7 @@ const Btn = (props) => {
       {...props}
       className={`button button-primary${classNameDetect(props)}`}
     >
-      {props.value}
+      {props?.value}
     </button>
   );
 };

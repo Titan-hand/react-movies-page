@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import MoviesComponent from "./MoviesComponent";
 import Requests from "../../Helpers/Resquests";
@@ -9,6 +9,12 @@ const MoviesContainer = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { movies, SetMovies } = props;
+  const isMounted = useRef(null);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => (isMounted.current = false);
+  });
 
   useEffect(() => {
     if (movies && movies?.movies?.length > 0) {
@@ -19,14 +25,17 @@ const MoviesContainer = (props) => {
       setLoading(true);
       Requests.getAllGenrersMovies()
         .then((movies) => {
-          setLoading(false);
-
-          setMoviesGenrers(movies);
-          SetMovies(movies);
+          if (isMounted.current) {
+            setLoading(false);
+            setMoviesGenrers(movies);
+            SetMovies(movies);
+          }
         })
         .catch(() => {
-          setLoading(false);
-          setError(true);
+          if (isMounted.current) {
+            setLoading(false);
+            setError(true);
+          }
         });
     }
   }, [movies, SetMovies]);

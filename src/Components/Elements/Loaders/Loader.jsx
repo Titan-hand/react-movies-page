@@ -17,7 +17,7 @@ const Loader = (props) => {
           border: parseInt(sizeLoader.width) <= 35 ? border(3) : border(6),
           borderColor: borderColor,
         }}
-      ></div>
+      />
     </div>
   ) : null;
 };

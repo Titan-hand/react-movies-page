@@ -24,11 +24,7 @@ export default function SignupForm({
           onChange: onChangeCredentials,
           value: username,
           required: true,
-        }}
-        label-props={{
-          htmlFor: "username",
-          className: "label-floating label-form-system-entry",
-          text: "Username:",
+          placeholder: "Username",
         }}
       />
       <LabeledInput
@@ -42,11 +38,7 @@ export default function SignupForm({
           onChange: onChangeCredentials,
           value: email,
           required: true,
-        }}
-        label-props={{
-          htmlFor: "email",
-          className: "label-floating label-form-system-entry",
-          text: "Email:",
+          placeholder: "Password",
         }}
       />
       <LabeledInput
@@ -60,11 +52,7 @@ export default function SignupForm({
           onChange: onChangeCredentials,
           value: password,
           required: true,
-        }}
-        label-props={{
-          htmlFor: "email",
-          className: "label-floating label-form-system-entry",
-          text: "Password:",
+          placeholder: "Repeat password",
         }}
       />
 
@@ -84,7 +72,7 @@ export default function SignupForm({
           <small>Do you already have an account?</small>
           <i className="fa fa-arrow-right" />
         </Link>
-      </div>  
+      </div>
     </form>
   );
 }

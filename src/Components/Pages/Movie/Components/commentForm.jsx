@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 // redux
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 // context
 import { CommentsContext } from "../commentsContainer";
 // components
@@ -14,7 +14,7 @@ function CommentForm({
 }) {
   const [text, setText] = useState(defaultValue);
   const { handleSubmitComment } = useContext(CommentsContext);
-  const { currentUserInfo } = useSelector( state => state.UserInformation);
+  const { currentUserInfo } = useSelector((state) => state.UserInformation);
 
   const handleChange = (ev) => setText(ev.target.value);
   // handle submit wrapper
@@ -27,14 +27,12 @@ function CommentForm({
 
   return (
     <div className="comment-user-form">
-      {
-        !commentId && (
+      {!commentId && (
         <div className="form-usr-avatar">
           <img src={currentUserInfo.photoUrl} alt="user avatar" />
         </div>
-        )
-      }
-      
+      )}
+
       <form onSubmit={handleSubmit} className="form-user-comment">
         <TextArea
           onChange={handleChange}
@@ -46,7 +44,6 @@ function CommentForm({
           <Button value="comment" />
         </div>
       </form>
-
     </div>
   );
 }

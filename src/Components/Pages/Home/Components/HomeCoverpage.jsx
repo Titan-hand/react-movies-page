@@ -37,7 +37,7 @@ const HomeCoverpage = () => {
 
       <div className="home-buttons">
         <button
-          className="button button-warning button-rounded"
+          className="button button-warning button-big button-rounded"
           style={{
             marginRight: "30px",
           }}
@@ -45,7 +45,7 @@ const HomeCoverpage = () => {
           <i className="fa fa-play"></i>
           Watch more
         </button>
-        <button className="button button-rounded">
+        <button className="button button-success button-big button-rounded">
           <i className="fa fa-eye"></i>
           View List Movies
         </button>

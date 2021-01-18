@@ -12,7 +12,7 @@ const InputIcon = (props) => {
         className={`field-addon${classNameDetect(props)}`}
         style={bgColorDetect(props)}
       >
-        <i className={`fa fa-${nameIconDetect(props)}`}></i>
+        <i className={`fa fa-${nameIconDetect(props)}`} />
       </div>
     </>
   );
