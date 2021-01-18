@@ -52,7 +52,7 @@ function ReplyForm({
     return (
         <div className="replyForm-and-new-replies">
     
-            { loading && <Loader size="30" /> }
+            { loading && <Loader size="10" isopen={loading} /> }
             
             {
                 (showForm && !loading)

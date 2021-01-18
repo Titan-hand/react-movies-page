@@ -33,7 +33,7 @@ function DeleteComment({
 
   // ===== render =====
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader size="10" isopen={loading} />;
 
   if (error) return <h3>error: comment not deleted</h3>;
 

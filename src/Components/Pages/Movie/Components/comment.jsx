@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 // components
@@ -34,13 +35,20 @@ function Comment({
   return (
     <div className={`comment-cont ${isReply ? "isReply" : ""}`}>
       <div className="comment-upside">
+        
         <div className="comment-left">
           <img src={photoUrl} alt={username + " comment"} />
-          <p className="comment-username">{username}</p>
-          <p className="comment-date">{dateStr(date)}</p>
-          <p className="comment-edited-p">{isEdited && "(edited)"}</p>
         </div>
+
         <div className="comment-right">
+
+          <div className="comment-top-inline">
+            <p className="comment-username"><Link to={`/users/${username}`}>{username}</Link></p>
+            <span className="comment-top-dot" />
+            <p className="comment-date">{dateStr(date)}</p>
+            <p className="comment-edited-p">{isEdited && "(edited)"}</p>
+          </div>
+
           {editing &&
             (isReply ? (
               <ReplyForm

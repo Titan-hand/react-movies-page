@@ -21,17 +21,18 @@ function CommentWraper({ commentData }) {
 
       {/* reply button */}
       <div className="commentMakeReply" onClick={() => setShowForm(true)}>
-        Reply
+        reply comment
       </div>
 
       {/* "show replies" button */}
-      {resp?.length > 0 && (
+      {resp?.length > 0 && !showResponses && (
         <div className="comment-show-replies">
           <div className="showResponses" onClick={() => setShowResponses(true)}>
             Show
             {" " + resp.length}
             {resp.length > 1 ? " replies" : " reply"}
           </div>
+          <i className="fa fa-angle-down" aria-hidden="true"></i>
         </div>
       )}
 
@@ -60,8 +61,9 @@ function CommentWraper({ commentData }) {
 
       {/* "hide responses" button */}
       {resp && showResponses && (
-        <div className="showResponses" onClick={() => setShowResponses(false)}>
-          Hide Replies
+        <div className="comment-show-replies" onClick={() => setShowResponses(false)}>
+          <p>Hide Replies</p>
+          <i className="fa fa-angle-up" aria-hidden="true"></i>
         </div>
       )}
     </div>
