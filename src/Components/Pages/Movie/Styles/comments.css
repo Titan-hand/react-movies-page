@@ -1,9 +1,15 @@
-.container.comments {
+.comments {
+  margin-top: 2rem;
   padding: 20px 0;
+}
+
+.comment-date {
+  font-size: 80%;
 }
 
 .comment-user-form {
   display: flex;
+  margin-bottom: 5rem;
 }
 
 .form-usr-avatar {
@@ -35,7 +41,6 @@
 }
 
 .comment-wrapper {
-  /* border: 2px solid red; */
   margin-bottom: 50px;
   margin-top: 20px;
   position: relative;
@@ -52,8 +57,6 @@
 
 .comment-upside {
   display: flex;
-  /* background: #868686;
-  border: 2px solid #e1e1e199; */
   margin-bottom: 5px;
   border-radius: 4px;
 }
@@ -81,7 +84,6 @@
   right: 0;
   bottom: -20px;
   text-decoration: underline;
-  text-transform: lowercase;
 }
 
 .comment-downside div {
@@ -95,7 +97,6 @@
   bottom: -20px;
   text-decoration: underline;
   cursor: pointer;
-  text-transform: lowercase;
 }
 
 .comment-left {
@@ -121,7 +122,6 @@
 }
 
 .comment-wrapper-responses {
-  /* background: brown; */
   padding-left: 70px;
 }
 
@@ -140,7 +140,7 @@
 }
 
 .comment-cont.isReply .comment-text {
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .replyForm-and-new-replies {

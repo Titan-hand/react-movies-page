@@ -19,6 +19,10 @@
 body .field-addon.nav-field-addon {
   background: transparent;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
 }
 
 .field-input > .field-addon.nav-field-addon > i {

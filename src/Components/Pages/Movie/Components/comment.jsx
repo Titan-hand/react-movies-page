@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 // components
@@ -24,26 +24,23 @@ function Comment({
   const [editing, setEditing] = useState(false);
   const [_text, setText] = useState(text);
   const { currentUserInfo } = useSelector((state) => state.UserInformation);
-
-  // callback when a pincipal comment is edited
   const submitCallback = (txt) => {
     setText(txt);
     setEditing(false);
   };
 
-  //  === render ===
   return (
     <div className={`comment-cont ${isReply ? "isReply" : ""}`}>
       <div className="comment-upside">
-        
         <div className="comment-left">
           <img src={photoUrl} alt={username + " comment"} />
         </div>
 
         <div className="comment-right">
-
           <div className="comment-top-inline">
-            <p className="comment-username"><Link to={`/users/${username}`}>{username}</Link></p>
+            <p className="comment-username">
+              <Link to={`/users/${username}`}>{username}</Link>
+            </p>
             <span className="comment-top-dot" />
             <p className="comment-date">{dateStr(date)}</p>
             <p className="comment-edited-p">{isEdited && "(edited)"}</p>
@@ -74,9 +71,20 @@ function Comment({
       <div className="comment-downside">
         {username === currentUserInfo.username && (
           <>
-            {!editing && <div onClick={() => setEditing(true)}>Edit</div>}
+            {!editing && (
+              <div
+                onClick={() => setEditing(true)}
+                style={{ marginRight: "1rem" }}
+              >
+                <i className="fa fa-pencil-alt" />
+              </div>
+            )}
 
-            {!deleting && <div onClick={() => setDeleting(true)}>Delete</div>}
+            {!deleting && (
+              <div onClick={() => setDeleting(true)}>
+                <i className="fa fa-trash" />
+              </div>
+            )}
 
             <DeleteComment
               commentId={commentId}

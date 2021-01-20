@@ -5,7 +5,6 @@ import Loader from "../../Elements/Loaders/Loader";
 import BackgroundImage from "../../Elements/Background/BackgroundImage";
 import MovieInfo from "./Components/MovieInfo";
 import MovieCoverImage from "./Components/MovieCoverImage";
-import MovieComments from "./commentsContainer";
 
 import "./Styles/styles.css";
 
@@ -21,7 +20,6 @@ const MovieComponent = (props) => {
           <MovieInfo {...movieInfo} />
           <MovieCoverImage {...movieInfo} />
         </div>
-        <MovieComments {...movieInfo} />
       </Container>
     </Layout>
   );

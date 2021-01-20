@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import MovieComments from "../commentsContainer";
 
 function MovieInfo({
+  id,
   title_long,
   description_full,
   year,
@@ -51,6 +53,19 @@ function MovieInfo({
           {" " + new Date(date_uploaded).toLocaleString()}
         </p>
       </div>
+
+      <MovieComments
+        {...{
+          id,
+          title_long,
+          description_full,
+          year,
+          genres,
+          download_count,
+          language,
+          date_uploaded,
+        }}
+      />
     </div>
   );
 }

@@ -21,7 +21,7 @@ function CommentWraper({ commentData }) {
 
       {/* reply button */}
       <div className="commentMakeReply" onClick={() => setShowForm(true)}>
-        reply comment
+        Reply comment
       </div>
 
       {/* "show replies" button */}
