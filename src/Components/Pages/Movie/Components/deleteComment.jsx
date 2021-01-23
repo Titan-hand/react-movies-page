@@ -41,12 +41,18 @@ function DeleteComment({
     return (
       <div className="delete-comment-container">
         <p className="delete-c-title">Are you sure?</p>
-        <div className="delete-c-buttons">
-          <div onClick={deleteComment} className="delete-c-btn yes">
-            yes
+        <div className="delete-c-buttons button-group">
+          <div
+            onClick={deleteComment}
+            className="button button-danger delete-c-btn yes"
+          >
+            Yes
           </div>
-          <div onClick={() => setShowDelete(false)} className="delete-c-btn no">
-            no
+          <div
+            onClick={() => setShowDelete(false)}
+            className="button button-primary delete-c-btn no"
+          >
+            No
           </div>
         </div>
       </div>

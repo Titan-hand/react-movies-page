@@ -158,6 +158,10 @@
   height: 80px;
 }
 
+.delete-c-title {
+  text-align: center;
+}
+
 .comment-show-replies {
   display: flex;
   cursor: pointer;
@@ -184,18 +188,17 @@
 
 .delete-comment-container {
   background: #212020f2;
-  padding: 3px 7px;
+  padding: 0.8rem;
   border-radius: 5px;
   position: absolute;
-  width: 120px;
+  width: 200px;
   bottom: 0;
   right: 8px;
   cursor: default;
 }
 
 .delete-c-buttons {
-  display: flex;
-  justify-content: space-around;
+  width: 100%;
 }
 
 .delete-c-btn {
