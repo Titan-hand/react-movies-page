@@ -27,7 +27,7 @@
 .movie-loader {
   background: var(--color-movie-loader);
   width: 100%;
-  max-width: 200px;
+  max-width: calc(100% - 155px);
   height: 25px;
   align-self: flex-end;
   margin-right: 1.8rem;

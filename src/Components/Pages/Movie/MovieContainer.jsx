@@ -15,11 +15,9 @@ const MovieContainer = () => {
 
   useEffect(() => {
     cancel = axios.CancelToken.source();
-
     Requests.getInfoMovieId(id, cancel.token)
       .then((movie) => {
         if (movie) {
-          // console.log(movie);
           setMovieInfo(movie);
           setLoading(false);
         }

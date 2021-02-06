@@ -1,5 +1,6 @@
 import React from "react";
 import Loader from "../../Elements/Loaders/Loader";
+import ErrorAlert from "../../Elements/Errors/ErrorAlert";
 import CommentForm from "./Components/commentForm";
 import CommentWrapper from "./Components/commentWrapper";
 
@@ -13,7 +14,10 @@ function CommentsComponent({ handleSubmitComment, comments, loading, error }) {
       {loading ? (
         <Loader size="30" isopen={loading} />
       ) : error ? (
-        <h1>some error was happened</h1>
+        <ErrorAlert
+          title="Some error was happened"
+          description="A network error ocurred in fetch comments movie"
+        />   
       ) : (
         comments.map((comment, i) => {
           return <CommentWrapper key={i} commentData={comment} />;

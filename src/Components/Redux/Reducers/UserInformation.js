@@ -3,8 +3,9 @@ import {
   REMOVE_CURRENT_USER_INFO,
 } from "../Types/usersTypes";
 
-const UserInformation = (state = {}, action) => {
+import { deleteToken } from "../../Helpers/tokenFunctions";
 
+const UserInformation = (state = {}, action) => {
   switch (action.type) {
     case SET_CURRENT_USER_INFO:
       return {
@@ -13,6 +14,7 @@ const UserInformation = (state = {}, action) => {
       };
 
     case REMOVE_CURRENT_USER_INFO:
+      deleteToken();
       return {
         currentUserInfo: null,
         isLoggedUser: false,

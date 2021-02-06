@@ -15,8 +15,12 @@ function CommentsContainer({ id, title_long }) {
     setLoading(true);
 
     let saved;
-    if (commentId) saved = await Request.updateMovieComment(commentId, text);
-    else saved = await Request.createMovieComment(id, text);
+    try {
+      if (commentId) saved = await Request.updateMovieComment(commentId, text);
+      else saved = await Request.createMovieComment(id, text);
+    } catch (error) {
+      setError(true);
+    }
 
     if (saved) getComments();
     else {
@@ -27,10 +31,15 @@ function CommentsContainer({ id, title_long }) {
 
   const getComments = useCallback(async () => {
     setLoading(true);
-    const comments = await Request.getMovieComments(id);
-    if (comments) {
-      setComments(comments);
+    try {
+      const comments = await Request.getMovieComments(id);
+      if (comments) {
+        setComments(comments);
+      }
+    } catch (error) {
+      setError(true);
     }
+
     setLoading(false);
   }, [id]);
 
@@ -39,7 +48,9 @@ function CommentsContainer({ id, title_long }) {
   }, [getComments]);
 
   return (
-    <CommentsContext.Provider value={{ handleSubmitComment, getComments }}>
+    <CommentsContext.Provider
+      value={{ handleSubmitComment, getComments, loading }}
+    >
       <CommentsComponent
         loading={loading}
         error={error}

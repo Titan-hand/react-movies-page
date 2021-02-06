@@ -13,7 +13,7 @@ function CommentForm({
   submitCallback = () => null,
 }) {
   const [text, setText] = useState(defaultValue);
-  const { handleSubmitComment } = useContext(CommentsContext);
+  const { handleSubmitComment, loading } = useContext(CommentsContext);
   const { currentUserInfo } = useSelector((state) => state.UserInformation);
 
   const handleChange = (ev) => setText(ev.target.value);
@@ -41,7 +41,7 @@ function CommentForm({
           className="text-area-comment"
         />
         <div className="button-comment-container">
-          <Button value="comment" />
+          <Button value="comment" disabled={loading} />
         </div>
       </form>
     </div>
