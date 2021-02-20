@@ -18,7 +18,7 @@ const NavbarLinks = (props) => {
       </div>
       <ul className="nav-menu">
         <li className="nav-menu-link">
-          <Link to="/">Top Movies</Link>
+          <Link to="/movies">Movies</Link>
         </li>
         {isLogged && (
           <li className="nav-menu-link">

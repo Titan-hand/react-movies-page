@@ -12,11 +12,24 @@ function Movie({
   language,
   genres,
   id,
+  toggleFavorite,
+  favoriteMovies,
 }) {
   return (
     <div className="movie" data-aos="fade-up">
       <MovieImage {...{ medium_cover_image, small_cover_image, title_long }} />
-      <MovieBody {...{ title_long, year, language, genres, rating, id }} />
+      <MovieBody
+        {...{
+          title_long,
+          year,
+          language,
+          genres,
+          rating,
+          id,
+          toggleFavorite,
+          favoriteMovies,
+        }}
+      />
     </div>
   );
 }

@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MovieStars from "./MovieStars";
 import { Link } from "react-router-dom";
 
-export default function ({ title_long, year, language, genres, rating, id }) {
+export default function MovieBody({
+  title_long,
+  year,
+  language,
+  genres,
+  rating,
+  id,
+  toggleFavorite,
+  favoriteMovies,
+}) {
+  const [isFavorite, setFavorite] = useState(false);
+  useEffect(() => {
+    setFavorite(favoriteMovies.includes(id));
+  }, [favoriteMovies, id]);
+  
   return (
     <div className="movie-body">
       <h5 className="movie-title">
@@ -17,6 +31,13 @@ export default function ({ title_long, year, language, genres, rating, id }) {
       <p className="movie-info">Genres : {genres.join(", ")}</p>
 
       <MovieStars rating={rating} />
+      <i
+        className="fa fa-heart movie-heart"
+        style={{
+          color: isFavorite ? "#e40017" : "#fff",
+        }}
+        onClick={() => toggleFavorite(id)}
+      />
 
       <Link to={`/movies/${id}`} className="button-movie">
         <button className="button-block button-small button button-success button-outline button-flat">

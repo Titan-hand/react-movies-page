@@ -18,26 +18,27 @@ const MoviesContainer = (props) => {
 
   useEffect(() => {
     if (movies && movies?.movies?.length > 0) {
-      console.log("%cValores memorizados", "font-size: 18px");
+      console.log("%cValores memorizados", "font-size: 16px");
       setLoading(false);
       setMoviesGenrers(movies.movies);
-    } else {
-      setLoading(true);
-      Requests.getAllGenrersMovies()
-        .then((movies) => {
-          if (isMounted.current) {
-            setLoading(false);
-            setMoviesGenrers(movies);
-            SetMovies(movies);
-          }
-        })
-        .catch(() => {
-          if (isMounted.current) {
-            setLoading(false);
-            setError(true);
-          }
-        });
+      return;
     }
+    
+    setLoading(true);
+    Requests.getAllGenrersMovies()
+      .then((movies) => {
+        if (isMounted.current) {
+          setLoading(false);
+          setMoviesGenrers(movies);
+          SetMovies(movies);
+        }
+      })
+      .catch(() => {
+        if (isMounted.current) {
+          setLoading(false);
+          setError(true);
+        }
+      });
   }, [movies, SetMovies]);
 
   return <MoviesComponent {...{ moviesGenrers, isLoading, error }} />;

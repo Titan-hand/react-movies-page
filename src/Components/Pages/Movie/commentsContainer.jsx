@@ -18,7 +18,7 @@ function CommentsContainer({ id, title_long }) {
     try {
       if (commentId) saved = await Request.updateMovieComment(commentId, text);
       else saved = await Request.createMovieComment(id, text);
-    } catch (error) {
+    } catch {
       setError(true);
     }
 
@@ -36,7 +36,7 @@ function CommentsContainer({ id, title_long }) {
       if (comments) {
         setComments(comments);
       }
-    } catch (error) {
+    } catch {
       setError(true);
     }
 

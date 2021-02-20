@@ -6,6 +6,8 @@ import {
   GET_INFO_USER_LOGGED,
   VALIDATE_TOKEN_URL,
   COMMENTS_URL,
+  SET_FAVORITE_MOVIE,
+  GET_FAVORITE_MOVIES_USER,
 } from "../Config/api.js";
 
 import {
@@ -157,6 +159,32 @@ class Requests {
   async getInfoMovieId(id, cancelToken = null) {
     const movie = await this._get(MOVIE_ID_URL(id), { cancelToken });
     return movie?.data?.data?.movie;
+  }
+
+  // ============ Favorite Movies ===============
+  async setFavoriteMovie(userId, movieId) {
+    const favoriteMovie = await this._post(
+      SET_FAVORITE_MOVIE,
+      {
+        userId,
+        movieId,
+      },
+      {
+        authorization: `Bearer ${getToken()}`,
+      }
+    );
+    return favoriteMovie;
+  }
+
+  async getFavoriteMoviesUser(userId) {
+    const favoriteMoviesUser = await this._get(
+      GET_FAVORITE_MOVIES_USER(userId),
+      {},
+      {
+        authorization: `Bearer ${getToken()}`,
+      }
+    );
+    return favoriteMoviesUser?.data?.data;
   }
 
   // ============ comments ================

@@ -3,9 +3,9 @@ import {
   REMOVE_CURRENT_USER_INFO,
 } from "../Types/usersTypes";
 
-import { deleteToken } from "../../Helpers/tokenFunctions";
+import { deleteToken, existToken } from "../../Helpers/tokenFunctions";
 
-const UserInformation = (state = {}, action) => {
+const UserInformation = (state = { isLoggedUser: existToken() }, action) => {
   switch (action.type) {
     case SET_CURRENT_USER_INFO:
       return {

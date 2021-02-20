@@ -17,9 +17,19 @@ class SessionRedirectRoute extends Component {
   };
   cancelRequest = null;
 
+  checkCancellation = (error) => {
+    if (!axios.isCancel(error)) {
+      this.setState({
+        isLoading: false,
+        allChecked: true,
+        error: true,
+      });
+    }
+  };
   componentDidMount() {
     this.cancelRequest = axios.CancelToken.source();
     this.checkToken();
+    this.isMounted = true;
   }
 
   componentWillUnmount() {
@@ -32,9 +42,9 @@ class SessionRedirectRoute extends Component {
         getToken(),
         this.cancelRequest.token
       );
-      this.setState({ isLoading: false, validToken });
+      this.isMounted && this.setState({ isLoading: false, validToken });
     } catch (error) {
-      this.setState({ isLoading: false, error });
+      this.checkCancellation(error);
     }
   };
 

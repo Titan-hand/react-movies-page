@@ -15,16 +15,19 @@ const MovieContainer = () => {
 
   useEffect(() => {
     cancel = axios.CancelToken.source();
-    Requests.getInfoMovieId(id, cancel.token)
-      .then((movie) => {
+    async function getInfoMovie() {
+      try {
+        const movie = await Requests.getInfoMovieId(id, cancel.token);
         if (movie) {
           setMovieInfo(movie);
           setLoading(false);
         }
-      })
-      .catch(() => {
+      } catch {
         setError(true);
-      });
+      }
+    }
+    
+    getInfoMovie();
     return () => {
       cancel && cancel.cancel(ABORTED_REQUEST);
     };

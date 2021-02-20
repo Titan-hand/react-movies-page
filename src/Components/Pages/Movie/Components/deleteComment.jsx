@@ -17,25 +17,24 @@ function DeleteComment({
   const deleteComment = async () => {
     setLoading(true);
     setError(null);
-    let deleted;
     console.log("the comment id", commentId);
-    if (isReply) {
-      deleted = await Request.deleteMovieCommentReply(commentId, index);
-    } else {
-      deleted = await Request.deleteMovieComment(commentId);
+    try {
+      if (isReply) {
+        await Request.deleteMovieCommentReply(commentId, index);
+      } else {
+        await Request.deleteMovieComment(commentId);
+      }
+    } catch {
+      setError(true);
     }
-
-    if (!deleted) setError(true);
 
     setLoading(false);
     deleteCallback ? deleteCallback() : setShowDelete(false);
   };
 
-  // ===== render =====
-
   if (loading) return <Loader size="10" isopen={loading} />;
 
-  if (error) return <h3>error: comment not deleted</h3>;
+  if (error) return <h3>Error: comment not deleted</h3>;
 
   if (showDelete)
     return (

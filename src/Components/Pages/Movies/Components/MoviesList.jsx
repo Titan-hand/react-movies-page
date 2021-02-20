@@ -1,12 +1,49 @@
-import React, { lazy, Suspense } from "react";
+import React, {
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+} from "react";
 import LoaderMovie from "../../../Elements/Loaders/LoaderMovie";
 import Banner from "../../../Elements/Banners/Banner";
 import ErrorBoundary from "../../../Elements/Errors/ErrorBoundary";
 import getColorsBanner from "../../../Helpers/getColors";
+import { connect } from "react-redux";
+import Requests from "../../../Helpers/Resquests";
+import { alertError } from "../../../Helpers/notifications";
 
 const MovieLazy = lazy(() => import("../../../Elements/Movie/Movie"));
 
-export default function MoviesList({ moviesGenrers }) {
+function MoviesList({ moviesGenrers, user }) {
+  const userId = user.currentUserInfo._id;
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const isMounted = useRef(true);
+
+  const toggleFavorite = async (id) => {
+    try {
+      await Requests.setFavoriteMovie(userId, id);
+      getFavoriteMovies();
+    } catch (error) {
+      alertError("Error in save your movie preference");
+    }
+  };
+
+  const getFavoriteMovies = useCallback(async () => {
+    try {
+      const _favoriteMoviesRes = await Requests.getFavoriteMoviesUser(userId);
+      isMounted.current && setFavoriteMovies(_favoriteMoviesRes);
+    } catch (error) {
+      alertError("Error in download all your favorite movies");
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    getFavoriteMovies();
+    return () => (isMounted.current = false);
+  }, [getFavoriteMovies]);
+
   return Array.isArray(moviesGenrers) && moviesGenrers.length > 0 ? (
     <div className="movies-movies">
       {/*Este map es para crear los banners de cada categoria */}
@@ -33,7 +70,10 @@ export default function MoviesList({ moviesGenrers }) {
                         description=""
                         className="error-sm"
                       >
-                        <MovieLazy {...movie} />
+                        <MovieLazy
+                          {...movie}
+                          {...{ toggleFavorite, favoriteMovies }}
+                        />
                       </ErrorBoundary>
                     </Suspense>
                   </div>
@@ -46,3 +86,9 @@ export default function MoviesList({ moviesGenrers }) {
     </div>
   ) : null;
 }
+
+const mapStateToPros = (state) => ({
+  user: state.UserInformation,
+});
+
+export default connect(mapStateToPros)(MoviesList);

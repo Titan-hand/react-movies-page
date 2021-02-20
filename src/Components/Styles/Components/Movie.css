@@ -64,6 +64,11 @@
   font-size: 10px;
 }
 
+.movie-heart {
+  margin-bottom: 0.8rem;
+  cursor: pointer;
+}
+
 .movies-category:not(:last-child) {
   margin-bottom: 3rem;
 }

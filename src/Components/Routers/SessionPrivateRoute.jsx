@@ -21,39 +21,59 @@ class SessionPrivateRoute extends Component {
 
   cancelRequest = null;
 
+  checkCancellation = (error) => {
+    if (!axios.isCancel(error)) {
+      this.setState({
+        isLoading: false,
+        allChecked: true,
+        error: true,
+      });
+    }
+  };
+
   componentDidMount() {
     // si el usuario no está logueado
     // (ya sea que recargo la pagina o sea un anonimo) comprobamos si hay un token
     //  si ese token es valido, hacemos una sesion persistente
     this.cancelRequest = axios.CancelToken.source();
     this.checkAndSave();
+    this._isMounted = true;
   }
 
   componentWillUnmount() {
     this.cancelRequest && this.cancelRequest.cancel(ABORTED_REQUEST);
+    this._isMounted = false;
   }
 
   checkToken = async () => {
-    const token = getToken();
-    const validToken = await isValidToken(token, this.cancelRequest.token);
-    // Si la solicitud se cancela, entonces el token no existe
-    if (validToken) {
-      this.setState({ validToken });
-      return true;
+    try {
+      const token = getToken();
+      const validToken = await isValidToken(token, this.cancelRequest.token);
+      // Si la solicitud se cancela, entonces el token no existe
+      if (validToken) {
+        this.setState({ validToken });
+        return true;
+      }
+    } catch (error) {
+      this.checkCancellation(error);
     }
   };
 
   // save info in redux again if store is void, for example user reload the page
   saveUserInfo = async () => {
-    if (this.state.validToken) {
-      const userData = await Resquests.getInfoUserLogged(
-        getToken(),
-        this.cancelRequest.token
-      );
-      if (userData) {
-        this.props.SetCurrentUserInfo(userData);
-        return true;
+    try {
+      if (this.state.validToken) {
+        const userData = await Resquests.getInfoUserLogged(
+          getToken(),
+          this.cancelRequest.token
+        );
+        if (userData) {
+          this.props.SetCurrentUserInfo(userData);
+          return true;
+        }
       }
+    } catch (error) {
+      this.checkCancellation(error);
     }
   };
 
@@ -62,14 +82,9 @@ class SessionPrivateRoute extends Component {
     try {
       await this.checkToken();
       await this.saveUserInfo();
-      this.setState({ isLoading: false, allChecked: true });
-      
+      this._isMounted && this.setState({ isLoading: false, allChecked: true });
     } catch (error) {
-      this.setState({
-        isLoading: false,
-        allChecked: true,
-        error: true,
-      });
+      this.checkCancellation(error);
     }
   };
 
