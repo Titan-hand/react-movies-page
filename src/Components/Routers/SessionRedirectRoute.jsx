@@ -29,11 +29,12 @@ class SessionRedirectRoute extends Component {
   componentDidMount() {
     this.cancelRequest = axios.CancelToken.source();
     this.checkToken();
-    this.isMounted = true;
+    this._isMounted = true;
   }
 
   componentWillUnmount() {
     this.cancelRequest && this.cancelRequest.cancel();
+    this._isMounted = false;
   }
 
   checkToken = async () => {
@@ -42,7 +43,7 @@ class SessionRedirectRoute extends Component {
         getToken(),
         this.cancelRequest.token
       );
-      this.isMounted && this.setState({ isLoading: false, validToken });
+      this._isMounted && this.setState({ isLoading: false, validToken });
     } catch (error) {
       this.checkCancellation(error);
     }
