@@ -1,42 +1,30 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-// components
-import Comment from './comment';
-import ReplyForm from './replyForm';
+import React from "react";
+import { useSelector } from "react-redux";
+import MovieComment from "./MovieComments/MovieComment";
+import useReplyMovieForm from "../../../Hooks/useReplyMovieForm";
+import ReplyForm from "./replyForm";
 
 function ReplyFormWrapper(props) {
-    const [ replies, setReplies ] = useState([]);
-    const { currentUserInfo } = useSelector(state => state.UserInformation);
+  const { currentUserInfo } = useSelector((state) => state.UserInformation);
+  const { replies, addReplyToShow, removeReply } = useReplyMovieForm(
+    currentUserInfo
+  );
 
-    // show reply inmediately after create
-    const addReplyToShow = (text, parentCommentId) => setReplies( prevState => {
-        const { username, photoUrl } = currentUserInfo;
-        const newReply = { username, photoUrl, text, date: Date.now(), parentCommentId }
-        return [...prevState, newReply];
-    })
+  return (
+    <div className="replyForm-and-new-replies">
+      {replies.map((r, i) => (
+        <MovieComment
+          key={i}
+          {...r}
+          commentId={r.parentCommentId}
+          isReply
+          deleteCallback={() => removeReply(i)}
+        />
+      ))}
 
-    // remove reply inmediately after delete
-    const removeReply = index => {
-        let repliesCopy = [...replies];
-        repliesCopy.splice(index, 1);
-        setReplies(repliesCopy);
-    }
-
-    return (
-        <div className="replyForm-and-new-replies">
-            {/* show immediately when a reply is created */}
-            { replies.map( (r, i) => (
-                <Comment 
-                    key={i} {...r} 
-                    commentId={r.parentCommentId} 
-                    isReply 
-                    deleteCallback={() => removeReply(i)}    
-                /> )
-            )}
-    
-            <ReplyForm {...props} submitCallback={addReplyToShow} />
-        </div>
-    )
+      <ReplyForm {...props} submitCallback={addReplyToShow} />
+    </div>
+  );
 }
 
 export default ReplyFormWrapper;

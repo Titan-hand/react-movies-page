@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-// components
-import MovieCommentForm from "./MovieComments/MovieCommentForm";
-import ReplyForm from "./replyForm";
-import DeleteComment from "./deleteComment";
-// utils
-import { dateStr } from "../../../Helpers/dateFunctions";
+import MovieCommentForm from "./MovieCommentForm";
+import ReplyForm from "../replyForm";
+import DeleteComment from "../deleteComment";
+import { dateStr } from "../../../../Helpers/dateFunctions";
+import useMovieComment from "../../../../Hooks/useMovieComment";
 
 function Comment({
   commentId,
@@ -20,14 +19,18 @@ function Comment({
   isReply = false,
   deleteCallback = null,
 }) {
-  const [deleting, setDeleting] = useState(false);
-  const [editing, setEditing] = useState(false);
-  const [_text, setText] = useState(text);
+  const {
+    deleting,
+    editing,
+    _text,
+    submitCallback,
+    enableEditing,
+    disableEditing,
+    enableDeleting,
+    setDeleting,
+  } = useMovieComment(text);
+
   const { currentUserInfo } = useSelector((state) => state.UserInformation);
-  const submitCallback = (txt) => {
-    setText(txt);
-    setEditing(false);
-  };
 
   return (
     <div className={`comment-cont ${isReply ? "isReply" : ""}`}>
@@ -50,7 +53,7 @@ function Comment({
             (isReply ? (
               <ReplyForm
                 showForm={editing}
-                closeForm={() => setEditing(false)}
+                closeForm={disableEditing}
                 parentCommentId={commentId}
                 index={index}
                 defaultValue={_text}
@@ -73,7 +76,7 @@ function Comment({
           <>
             {!editing && (
               <div
-                onClick={() => setEditing(true)}
+                onClick={enableEditing}
                 style={{ marginRight: "1rem" }}
               >
                 <i className="fa fa-pencil-alt" />
@@ -81,7 +84,7 @@ function Comment({
             )}
 
             {!deleting && (
-              <div onClick={() => setDeleting(true)}>
+              <div onClick={enableDeleting}>
                 <i className="fa fa-trash" />
               </div>
             )}
