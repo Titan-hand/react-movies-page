@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Layout from "../../Elements/Layout/LayoutComponent";
 import Container from "../../Elements/Containers/ContainerComponent";
 import Loader from "../../Elements/Loaders/Loader";
@@ -6,12 +6,9 @@ import BackgroundImage from "../../Elements/Background/BackgroundImage";
 import MovieInfo from "./Components/MovieInfo";
 import MovieCoverImage from "./Components/MovieCoverImage";
 import ErrorAlert from "../../Elements/Errors/ErrorAlert";
-
 import "./Styles/styles.css";
 
-const MovieComponent = (props) => {
-  const { movieInfo, isLoading, error } = props;
-
+const MovieComponent = ({ movieInfo, isLoading, error }) => {
   if (isLoading) {
     return <Loader size="90px" isopen />;
   }
@@ -38,4 +35,4 @@ const MovieComponent = (props) => {
   );
 };
 
-export default MovieComponent;
+export default memo(MovieComponent);

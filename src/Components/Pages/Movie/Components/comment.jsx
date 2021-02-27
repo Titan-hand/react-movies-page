@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 // components
-import CommentForm from "./commentForm";
+import MovieCommentForm from "./MovieComments/MovieCommentForm";
 import ReplyForm from "./replyForm";
 import DeleteComment from "./deleteComment";
 // utils
@@ -58,7 +58,7 @@ function Comment({
                 isEditing
               />
             ) : (
-              <CommentForm
+              <MovieCommentForm
                 submitCallback={submitCallback}
                 commentId={commentId}
                 defaultValue={_text}

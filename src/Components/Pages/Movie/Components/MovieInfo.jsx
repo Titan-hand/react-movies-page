@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MovieComments from "../commentsContainer";
+import MovieComments from "./MovieComments/MovieCommentsContainer";
 
 function MovieInfo({
   id,

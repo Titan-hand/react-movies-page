@@ -1,5 +1,4 @@
 import React from "react";
-
 import Layout from "../../Elements/Layout/LayoutComponent";
 import Container from "../../Elements/Containers/ContainerComponent";
 import MoviesCategoryList from "./Components/Movies Category List/MoviesCategoryListContainer";
@@ -27,9 +26,6 @@ const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
             ) : isLoading ? (
               <Loader isopen size="80px" className="movies-category-loader" />
             ) : (
-              /* Aqui se debe de poner el limite de error para que
-                capture la excepcion en todo el componente
-              */
               <ErrorBoundary
                 title="An error occurred while displaying the movies"
                 description="This error occurred due to a programming error on the page, please send us an email."

@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import { CommentsContext } from "../commentsContainer";
-// components
-import Comment from "./comment";
-import ReplyFormWrapper from "./replyFormWrapper";
-import "../Styles/comments.css";
+import { CommentsContext } from "../../../../Context/MovieCommentsContext";
+import Comment from "../comment";
+import ReplyFormWrapper from "../replyFormWrapper";
+import "../../Styles/comments.css";
 
-function CommentWraper({ commentData }) {
+function MovieCommentWraper({ commentData }) {
   const [showResponses, setShowResponses] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const { getComments } = useContext(CommentsContext);
@@ -70,4 +69,4 @@ function CommentWraper({ commentData }) {
   );
 }
 
-export default CommentWraper;
+export default MovieCommentWraper;

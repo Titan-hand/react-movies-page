@@ -8,6 +8,7 @@ import MovieContainer from "../Pages/Movie/MovieContainer";
 import MoviesContainer from "../Pages/Movies/MoviesContainer";
 import LoginContainer from "../Pages/System Entry/Login/LoginContainer";
 import SignupContainer from "../Pages/System Entry/Sign Up/SignupContainer";
+import FavoriteMovies from "../Pages/Favorite/FavoriteMoviesContainer"
 import HomeContainer from "../Pages/Home/HomeContainer";
 
 import NotFound from "../Pages/Not Found/NotFound";
@@ -31,6 +32,10 @@ const Routers = () => {
         <SessionRedirectRoute exact path="/signup">
           <SignupContainer />
         </SessionRedirectRoute>
+
+        <SessionPrivateRoute exact path="/favorites">
+          <FavoriteMovies />
+        </SessionPrivateRoute>
 
         <Route exact path="/">
           <HomeContainer />

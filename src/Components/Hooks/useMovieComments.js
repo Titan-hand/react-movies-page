@@ -1,11 +1,7 @@
-import React, { useState, useEffect, useCallback, createContext } from "react";
-import Request from "../../Helpers/Resquests";
-// components
-import CommentsComponent from "./commentsComponent";
+import { useState, useEffect, useCallback } from "react";
+import Request from "../Helpers/Resquests";
 
-const CommentsContext = createContext(null);
-
-function CommentsContainer({ id, title_long }) {
+export default function useMovieComments(id) {
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
@@ -47,20 +43,11 @@ function CommentsContainer({ id, title_long }) {
     getComments();
   }, [getComments]);
 
-  return (
-    <CommentsContext.Provider
-      value={{ handleSubmitComment, getComments, loading }}
-    >
-      <CommentsComponent
-        loading={loading}
-        error={error}
-        comments={comments}
-        handleSubmitComment={handleSubmitComment}
-        movieName={title_long}
-      />
-    </CommentsContext.Provider>
-  );
+  return {
+    loading,
+    comments,
+    error,
+    handleSubmitComment,
+    getComments,
+  };
 }
-
-export default CommentsContainer;
-export { CommentsContext };

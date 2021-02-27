@@ -1,13 +1,10 @@
 import React, { useState, useContext } from "react";
-// redux
 import { useSelector } from "react-redux";
-// context
-import { CommentsContext } from "../commentsContainer";
-// components
-import TextArea from "../../../Elements/Inputs/TextArea";
-import Button from "../../../Elements/Buttons/Submit";
+import { CommentsContext } from "../../../../Context/MovieCommentsContext";
+import TextArea from "../../../../Elements/Inputs/TextArea";
+import BtnSubmit from "../../../../Elements/Buttons/Submit";
 
-function CommentForm({
+function MovieCommentForm({
   commentId = null,
   defaultValue = "",
   submitCallback = () => null,
@@ -17,7 +14,6 @@ function CommentForm({
   const { currentUserInfo } = useSelector((state) => state.UserInformation);
 
   const handleChange = (ev) => setText(ev.target.value);
-  // handle submit wrapper
   const handleSubmit = (ev) => {
     ev.preventDefault();
     setText("");
@@ -41,11 +37,11 @@ function CommentForm({
           className="text-area-comment"
         />
         <div className="button-comment-container">
-          <Button value="comment" disabled={loading} />
+          <BtnSubmit value="comment" disabled={loading} />
         </div>
       </form>
     </div>
   );
 }
 
-export default CommentForm;
+export default MovieCommentForm;
