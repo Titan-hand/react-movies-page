@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import MovieComment from "./MovieComment";
-import ReplyFormWrapper from "../replyFormWrapper";
-import "../../Styles/comments.css";
+import ReplyMovieFormWrapper from "./ReplyMovieFormWrapper";
 import useMovieCommentsContext from "../../../../Hooks/useMovieCommentsContext";
+import "../../Styles/comments.css";
 
 function MovieCommentWraper({ commentData }) {
   const [showResponses, setShowResponses] = useState(false);
@@ -32,7 +32,7 @@ function MovieCommentWraper({ commentData }) {
         </div>
       )}
 
-      <ReplyFormWrapper
+      <ReplyMovieFormWrapper
         closeForm={() => setShowForm(false)}
         showForm={showForm}
         parentCommentId={commentData._id}

@@ -1,36 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import Request from "../../../Helpers/Resquests";
-import Loader from "../../../Elements/Loaders/Loader";
+import Loader from "../../../../Elements/Loaders/Loader";
+import useDeleteMovieComment from "../../../../Hooks/useDeleteMovieComment";
 
-function DeleteComment({
+function DeleteMovieComment({
   commentId,
   showDelete,
   setShowDelete,
   index = 0,
-  deleteCallback = null,
-  isReply = false,
+  deleteCallback,
+  isReply,
 }) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const deleteComment = async () => {
-    setLoading(true);
-    setError(null);
-    console.log("the comment id", commentId);
-    try {
-      if (isReply) {
-        await Request.deleteMovieCommentReply(commentId, index);
-      } else {
-        await Request.deleteMovieComment(commentId);
-      }
-    } catch {
-      setError(true);
-    }
-
-    setLoading(false);
-    deleteCallback ? deleteCallback() : setShowDelete(false);
-  };
+  const { loading, error, deleteComment } = useDeleteMovieComment({
+    commentId,
+    index,
+    deleteCallback,
+    isReply,
+    setShowDelete,
+  });
 
   if (loading) return <Loader size="10" isopen={loading} />;
 
@@ -60,7 +47,7 @@ function DeleteComment({
   return null;
 }
 
-DeleteComment.propType = {
+DeleteMovieComment.propType = {
   commentId: PropTypes.string.isRequired,
   showDelete: PropTypes.bool.isRequired,
   setShowDelete: PropTypes.func.isRequired,
@@ -72,4 +59,4 @@ DeleteComment.propType = {
   isReply: PropTypes.bool,
 };
 
-export default DeleteComment;
+export default DeleteMovieComment;

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import Request from "../../../Helpers/Resquests";
-// components
-import TextArea from "../../../Elements/Inputs/TextArea";
-import Loader from "../../../Elements/Loaders/Loader";
+import TextArea from "../../../../Elements/Inputs/TextArea";
+import Loader from "../../../../Elements/Loaders/Loader";
+import useReplyCommentMovie from "../../../../Hooks/useReplyCommentMovie";
 
 function ReplyForm({
   showForm,
@@ -11,44 +10,23 @@ function ReplyForm({
   parentCommentId = null,
   isEditing = false,
   index = null,
-  submitCallback = () => {},
+  submitCallback,
   defaultValue = "",
 }) {
-  const [text, setText] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const {
+    clearForm,
+    loading,
+    error,
+    handleChange,
+    handleSubmit,
+  } = useReplyCommentMovie({
+    closeForm,
+    parentCommentId,
+    isEditing,
+    index,
+    submitCallback,
+  });
 
-  const handleChange = (ev) => setText(ev.target.value);
-
-  const clearForm = () => {
-    setText("");
-    closeForm();
-  };
-
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
-    setLoading(true);
-
-    let saved;
-    if (isEditing) {
-      saved = await Request.updateMovieCommentReply(
-        parentCommentId,
-        index,
-        text
-      );
-    } else {
-      saved = await Request.createMovieCommentReply(parentCommentId, text);
-    }
-
-    let txt = text;
-    setLoading(false);
-    clearForm();
-
-    if (saved.ok) submitCallback(txt, saved.data.parentCommentId);
-    else setError(true);
-  };
-
-  // === render ===
   if (error) return <h3>Sorry, an error has occurred</h3>;
 
   return (

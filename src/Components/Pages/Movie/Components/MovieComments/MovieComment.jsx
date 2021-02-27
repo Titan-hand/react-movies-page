@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import MovieCommentForm from "./MovieCommentForm";
-import ReplyForm from "../replyForm";
-import DeleteComment from "../deleteComment";
+import ReplyCommentForm from "./ReplyCommentForm";
+import DeleteMovieComment from "./DeleteMovieComment";
 import { dateStr } from "../../../../Helpers/dateFunctions";
 import useMovieComment from "../../../../Hooks/useMovieComment";
 
@@ -51,7 +51,7 @@ function Comment({
 
           {editing &&
             (isReply ? (
-              <ReplyForm
+              <ReplyCommentForm
                 showForm={editing}
                 closeForm={disableEditing}
                 parentCommentId={commentId}
@@ -89,7 +89,7 @@ function Comment({
               </div>
             )}
 
-            <DeleteComment
+            <DeleteMovieComment
               commentId={commentId}
               index={index}
               showDelete={deleting}
