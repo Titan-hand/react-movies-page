@@ -1,14 +1,12 @@
 import React, { memo, useEffect, useState } from "react";
 import FavoriteMoviesComponent from "./FavoriteMoviesComponent";
 import useMovies from "../../Hooks/useMovies";
-import { useSelector } from "react-redux";
+import useGetUserId from "../../Hooks/useGetUserId";
 import Requests from "../../Helpers/Resquests";
 
 function FavoriteMoviesContainer() {
   const [error, setError] = useState(false);
-  const idUser = useSelector(
-    (state) => state?.UserInformation?.currentUserInfo?._id
-  );
+  const idUser = useGetUserId();
 
   const [favoriteMoviesIds, setFavoriteMoviesIds] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);

@@ -1,12 +1,10 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { useSelector } from "react-redux";
 import { alertError } from "../Helpers/notifications";
 import Requests from "../Helpers/Resquests";
+import useGetUserId from "../Hooks/useGetUserId";
 
 export default function useFavoriteMovies() {
-  const userId = useSelector(
-    (state) => state?.UserInformation?.currentUserInfo?._id
-  );
+  const userId = useGetUserId();
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const isMounted = useRef(true);
 

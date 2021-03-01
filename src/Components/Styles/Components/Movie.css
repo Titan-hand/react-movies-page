@@ -67,6 +67,12 @@
 .movie-heart {
   margin-bottom: 0.8rem;
   cursor: pointer;
+  transition: all 0.1s linear;
+  transform-origin: center left;
+}
+
+.movie-heart:active {
+  transform: scale(1.3);
 }
 
 .movies-category:not(:last-child) {

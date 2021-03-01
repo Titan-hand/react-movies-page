@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import TextArea from "../../../../Elements/Inputs/TextArea";
 import BtnSubmit from "../../../../Elements/Buttons/Submit";
 import useMovieCommentsContext from "../../../../Hooks/useMovieCommentsContext";
+import useCurrentUserInfo from "../../../../Hooks/useCurrentUserInfo";
 
 function MovieCommentForm({
   commentId = null,
@@ -11,7 +11,7 @@ function MovieCommentForm({
 }) {
   const [text, setText] = useState(defaultValue);
   const { handleSubmitComment, loading } = useMovieCommentsContext();
-  const { currentUserInfo } = useSelector((state) => state.UserInformation);
+  const currentUserInfo = useCurrentUserInfo();
 
   const handleChange = (ev) => setText(ev.target.value);
   const handleSubmit = (ev) => {

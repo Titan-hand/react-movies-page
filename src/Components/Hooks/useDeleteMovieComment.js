@@ -14,7 +14,7 @@ export default function useDeleteMovieComment({
   const deleteComment = async () => {
     setLoading(true);
     setError(null);
-    console.log("the comment id", commentId);
+
     try {
       if (isReply) {
         await Request.deleteMovieCommentReply(commentId, index);

@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import MovieCommentForm from "./MovieCommentForm";
 import ReplyCommentForm from "./ReplyCommentForm";
 import DeleteMovieComment from "./DeleteMovieComment";
 import { dateStr } from "../../../../Helpers/dateFunctions";
 import useMovieComment from "../../../../Hooks/useMovieComment";
-
+import useCurrentUserInfo from "../../../../Hooks/useCurrentUserInfo"
 function Comment({
   commentId,
   index,
@@ -30,7 +29,7 @@ function Comment({
     setDeleting,
   } = useMovieComment(text);
 
-  const { currentUserInfo } = useSelector((state) => state.UserInformation);
+  const currentUserInfo = useCurrentUserInfo();
 
   return (
     <div className={`comment-cont ${isReply ? "isReply" : ""}`}>
