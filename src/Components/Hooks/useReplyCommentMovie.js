@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Request from "../Helpers/Resquests";
 
 export default function useReplyCommentMovie({
@@ -11,6 +11,7 @@ export default function useReplyCommentMovie({
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const isMounted = useRef(false);
 
   const handleChange = (ev) => setText(ev.target.value);
 
@@ -35,16 +36,22 @@ export default function useReplyCommentMovie({
         saved = await Request.createMovieCommentReply(parentCommentId, text);
       }
     } catch {
-      setError(true);
+      isMounted.current && setError(true);
     }
+    if (isMounted.current) {
+      let txt = text;
+      setLoading(false);
+      clearForm();
 
-    let txt = text;
-    setLoading(false);
-    clearForm();
-
-    if (saved.ok) submitCallback(txt, saved.data.parentCommentId);
-    else setError(true);
+      if (saved.ok) submitCallback(txt, saved.data.parentCommentId);
+      else setError(true);
+    }
   };
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => (isMounted.current = false);
+  }, []);
 
   return {
     text,
