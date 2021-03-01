@@ -14,9 +14,9 @@ export default function MovieBody({
 }) {
   const [isFavorite, setFavorite] = useState(false);
   useEffect(() => {
-    setFavorite(favoriteMovies.includes(id));
+    if (favoriteMovies) setFavorite(favoriteMovies.includes(id));
   }, [favoriteMovies, id]);
-  
+
   return (
     <div className="movie-body">
       <h5 className="movie-title">
@@ -36,7 +36,7 @@ export default function MovieBody({
         style={{
           color: isFavorite ? "#e40017" : "#fff",
         }}
-        onClick={() => toggleFavorite(id)}
+        onClick={() => toggleFavorite?.(id)}
       />
 
       <Link to={`/movies/${id}`} className="button-movie">

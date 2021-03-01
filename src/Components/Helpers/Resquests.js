@@ -187,6 +187,16 @@ class Requests {
     return favoriteMoviesUser?.data?.data;
   }
 
+  async getFavoriteMoviesByIds(moviesIds) {
+    const promises = [];
+    for (const movieId of moviesIds) {
+      promises.push(this.getInfoMovieId(movieId));
+    }
+
+    const moviesInfo = await Promise.all(promises);
+    return moviesInfo;
+  }
+
   // ============ comments ================
   async getMovieComments(movieId, skip = 0, limit = 0) {
     const comments = await this._get(

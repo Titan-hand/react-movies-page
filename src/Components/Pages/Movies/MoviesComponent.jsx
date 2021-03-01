@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../Elements/Layout/LayoutComponent";
 import Container from "../../Elements/Containers/ContainerComponent";
 import MoviesCategoryList from "./Components/Movies Category List/MoviesCategoryListContainer";
-import MoviesList from "./Components/MoviesList";
+import MoviesListByCategory from "./Components/MoviesListByCategory";
 import Loader from "../../Elements/Loaders/Loader";
 import ErrorAlert from "../../Elements/Errors/ErrorAlert";
 import ErrorBoundary from "../../Elements/Errors/ErrorBoundary";
@@ -31,7 +31,7 @@ const MoviesComponent = ({ moviesGenrers, isLoading, error }) => {
                 description="This error occurred due to a programming error on the page, please send us an email."
                 className="error-sm"
               >
-                <MoviesList moviesGenrers={moviesGenrers} />
+                <MoviesListByCategory moviesGenrers={moviesGenrers} />
               </ErrorBoundary>
             )}
           </div>
