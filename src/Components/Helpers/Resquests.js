@@ -197,6 +197,12 @@ class Requests {
     return moviesInfo;
   }
 
+  async getAllFavoriteMovies(idUser) {
+    const movies = await this.getFavoriteMoviesUser(idUser);
+    const favoriteMoviesArray = await this.getFavoriteMoviesByIds(movies);
+    return favoriteMoviesArray;
+  }
+
   // ============ comments ================
   async getMovieComments(movieId, skip = 0, limit = 0) {
     const comments = await this._get(
