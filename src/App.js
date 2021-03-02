@@ -10,6 +10,7 @@ import "./Components/Styles/styles.css";
 import "./Components/Styles/Vendors/lazy-load-images.min.css";
 import "@carlosedua/react-toastify/dist/ReactToastify.css";
 
+
 function App() {
   return (
     <>
