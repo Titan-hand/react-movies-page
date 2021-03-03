@@ -38,7 +38,7 @@ export default function SignupForm({
           onChange: onChangeCredentials,
           value: email,
           required: true,
-          placeholder: "Password",
+          placeholder: "Email",
         }}
       />
       <LabeledInput
@@ -52,7 +52,7 @@ export default function SignupForm({
           onChange: onChangeCredentials,
           value: password,
           required: true,
-          placeholder: "Repeat password",
+          placeholder: "Password",
         }}
       />
 
